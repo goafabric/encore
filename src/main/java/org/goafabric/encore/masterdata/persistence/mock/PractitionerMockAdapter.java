@@ -5,7 +5,7 @@ import org.goafabric.encore.masterdata.persistence.PractitionerAdapter;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Profile("mock")
@@ -15,31 +15,18 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
     public Practitioner getPractitioner(String id) {
         return Practitioner.builder()
                 .id(id)
-                .name(Arrays.asList(createName()))
-                .address(Arrays.asList(createAddress()))
-                .telecom(Arrays.asList(createTelecom()))
+                .name(Collections.singletonList(createName()))
+                .address(Collections.singletonList(createAddress()))
+                .telecom(Collections.singletonList(createTelecom()))
                 .build();
     }
-
-    private Patient createPatient(String id) {
-        return Patient.builder()
-                .id(id)
-                .name(Arrays.asList(createName()))
-                .address(Arrays.asList(createAddress()))
-                .telecom(Arrays.asList(createTelecom()))
-                .build();
-    }
-
 
     private HumanName createName() {
         //StringType family = new StringType("Burns").addExtension(Extension.builder().url("http://fhir.de/StructureDefinition/humanname-namenszusatz/0.2").valueString("the 3rd").build());
-
-        var humanName = HumanName.builder()
-                .given(Arrays.asList("Monty"))
+        return HumanName.builder()
+                .given(List.of("Monty"))
                 .family("Burns")
                 .build();
-
-        return humanName;
     }
 
     private Address createAddress() {

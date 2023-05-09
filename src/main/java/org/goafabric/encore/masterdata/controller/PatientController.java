@@ -22,7 +22,6 @@ public class PatientController {
 
     @GetMapping("/{id}")
     public Patient getPatient(@PathVariable String id) {
-        patientLogic.sayMyName("Homer"); //just for showcase
         return patientLogic.getPatient(id);
     }
 

@@ -7,7 +7,7 @@ import org.goafabric.encore.masterdata.persistence.OrganizationAdapter;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Profile("mock")
@@ -17,7 +17,7 @@ public class OrganizationMockAdapter implements OrganizationAdapter {
         return Organization.builder()
                 .id(id)
                 .name("Krust Burger")
-                .address(Arrays.asList(createAddress()))
+                .address(Collections.singletonList(createAddress()))
                 .build();
     }
 

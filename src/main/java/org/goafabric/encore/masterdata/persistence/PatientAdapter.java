@@ -10,5 +10,4 @@ public interface PatientAdapter {
 
     Bundle findyByLastName(String lastName);
 
-    void sayMyName(String homer);
 }

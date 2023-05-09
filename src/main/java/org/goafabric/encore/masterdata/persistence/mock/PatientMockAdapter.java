@@ -1,12 +1,10 @@
 package org.goafabric.encore.masterdata.persistence.mock;
 
-import org.goafabric.encore.masterdata.controller.dto.*;
+import org.goafabric.encore.masterdata.controller.dto.Bundle;
+import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.persistence.PatientAdapter;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Profile("mock")
 @Component
@@ -29,47 +27,12 @@ public class PatientMockAdapter implements PatientAdapter {
         return bundle;
     }
 
-    @Override
-    public void sayMyName(String homer) {
-    }
-
     private Patient createPatient(String id) {
         return Patient.builder()
                 .id(id)
-                .name(Arrays.asList(createName()))
-                .address(Arrays.asList(createAddress()))
-                .telecom(Arrays.asList(createTelecom()))
-                .build();
-    }
-
-
-    private HumanName createName() {
-        var humanName = HumanName.builder()
-                .given(Arrays.asList("Homer"))
-                .family("Simpson")
-                //.familyExtension(new ExtensionWrapper().addExtension("http://fhir.de/StructureDefinition/humanname-namenszusatz/0.2", "The 3rd"))
-                .build();
-
-        return humanName;
-    }
-
-    private Address createAddress() {
-        return Address.builder()
-                .id("42")
-                .city("Springfield")
-                .postalCode("78313")
-                .country("US")
-                .line(List.of("Evergreen Terrace 742"))
-                .use(AdressUse.HOME.getValue())
-                .build();
-    }
-
-    public static Telecom createTelecom() {
-        return Telecom.builder()
-                .id("45")
-                .system(TelecomSystem.PHONE.getValue())
-                .use(AdressUse.HOME.getValue())
-                .value("0245-33553")
+                .name(MockUtil.createName("Homer", "Simpson"))
+                .address(MockUtil.createAddress("Evergreen Terrace 742"))
+                .telecom(MockUtil.createTelecom("0245-33553"))
                 .build();
     }
 
