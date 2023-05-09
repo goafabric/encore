@@ -1,14 +1,9 @@
 package org.goafabric.encore.masterdata.persistence.mock;
 
-import org.goafabric.encore.masterdata.controller.dto.Address;
-import org.goafabric.encore.masterdata.controller.dto.AdressUse;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.persistence.OrganizationAdapter;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-
-import java.util.Collections;
-import java.util.List;
 
 @Profile("mock")
 @Component
@@ -17,20 +12,7 @@ public class OrganizationMockAdapter implements OrganizationAdapter {
         return Organization.builder()
                 .id(id)
                 .name("Krust Burger")
-                .address(Collections.singletonList(createAddress()))
+                .address(MockUtil.createAddress("Clownstreet 452"))
                 .build();
     }
-
-
-    private Address createAddress() {
-        return Address.builder()
-                .id("22")
-                .city("Springfield")
-                .postalCode("78313")
-                .country("US")
-                .line(List.of("Clownstreet 452"))
-                .use(AdressUse.HOME.getValue())
-                .build();
-    }
-
 }
