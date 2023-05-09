@@ -21,22 +21,22 @@ public class PatientController {
     }
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, "application/fhir+json"})
-    public void createPatient(Patient patient) {
-
+    public void create(Patient patient) {
+        patientLogic.create(patient);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePatient(@PathVariable String id) {
-
+    public void delete(@PathVariable String id) {
+        patientLogic.delete(id);
     }
 
     @GetMapping("/{id}")
-    public Patient getPatient(@PathVariable String id) {
+    public Patient getById(@PathVariable String id) {
         return patientLogic.getPatient(id);
     }
 
     @GetMapping
-    public Bundle findPatients(@RequestParam(value = "family", required = false) String familyName,
+    public Bundle find(@RequestParam(value = "family", required = false) String familyName,
                                @RequestParam(value = "name", required = false) String name) {
         log.info("name: {}, familyName: {}", name, familyName);
 

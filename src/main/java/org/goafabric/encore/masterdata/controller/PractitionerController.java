@@ -15,18 +15,18 @@ public class PractitionerController {
 	}
 
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, "application/fhir+json"})
-	public void createPractitioner(Practitioner practitioner) {
-
+	public void create(Practitioner practitioner) {
+		practitionerLogic.create(practitioner);
 	}
 
 	@DeleteMapping("/{id}")
-	public void deletePractitioner(@PathVariable String id) {
-
+	public void delete(@PathVariable String id) {
+		practitionerLogic.delete(id);
 	}
 
 	@GetMapping("/{id}")
-	public Practitioner getPractitioner(@PathVariable String id) {
-		return practitionerLogic.getPractitioner(id);
+	public Practitioner getById(@PathVariable String id) {
+		return practitionerLogic.getById(id);
 	}
 
 }

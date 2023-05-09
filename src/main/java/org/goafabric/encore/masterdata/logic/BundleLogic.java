@@ -26,7 +26,7 @@ public class BundleLogic {
         bundle.addEntry(createBundleEntry(
                 patientLogic.getPatient(id), id));
         bundle.addEntry(createBundleEntry(
-                practitionerLogic.getPractitioner(id), id));
+                practitionerLogic.getById(id), id));
 
         return bundle;
     }

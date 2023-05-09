@@ -15,18 +15,17 @@ public class OrganizationController  {
     }
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, "application/fhir+json"})
-    public void createOrganization(Organization organization) {
-
+    public void create(Organization organization) {
+        organizationLogic.create(organization);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOrganization(@PathVariable String id) {
-
+    public void delete(@PathVariable String id) {
+        organizationLogic.delete(id);
     }
 
-
     @GetMapping("/{id}")
-    public Organization getOrganization(@PathVariable String id) {
-        return organizationLogic.getOrganization(id);
+    public Organization getById(@PathVariable String id) {
+        return organizationLogic.getById(id);
     }
 }

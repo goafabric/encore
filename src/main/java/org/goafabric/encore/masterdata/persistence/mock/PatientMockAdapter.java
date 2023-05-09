@@ -9,12 +9,22 @@ import org.springframework.stereotype.Component;
 @Profile("mock")
 @Component
 public class PatientMockAdapter implements PatientAdapter {
+    @Override
+    public void create(Patient patient) {
+
+    }
+
+    @Override
+    public void delete(String id) {
+
+    }
+
     public Patient getPatient(String id) {
         return createPatient(id);
     }
 
     @Override
-    public Bundle findyFirstName(String firstName) {
+    public Bundle findByFirstName(String firstName) {
         Bundle bundle = new Bundle();
         bundle.addEntry(createBundleEntry(createPatient("1"), "1"));
         return bundle;

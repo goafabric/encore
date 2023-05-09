@@ -8,7 +8,17 @@ import org.springframework.stereotype.Component;
 @Profile("mock")
 @Component
 public class OrganizationMockAdapter implements OrganizationAdapter {
-    public Organization getOrganization(String id) {
+    @Override
+    public void create(Organization organization) {
+
+    }
+
+    @Override
+    public void delete(String id) {
+
+    }
+
+    public Organization getById(String id) {
         return Organization.builder()
                 .id(id)
                 .name("Krust Burger")

@@ -9,7 +9,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class PractitionerMockAdapter implements PractitionerAdapter {
     @Override
-    public Practitioner getPractitioner(String id) {
+    public void create(Practitioner practitioner) {
+
+    }
+
+    @Override
+    public void delete(String id) {
+
+    }
+
+    @Override
+    public Practitioner getById(String id) {
         return Practitioner.builder()
                 .id(id)
                 .name(MockUtil.createName("Monty", "Burns"))

@@ -16,14 +16,15 @@ public class BundleController {
         this.bundleLogic = bundleLogic;
     }
 
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, "application/fhir+json"})
+    public void create(Bundle bundle) {
+        bundleLogic.createBundle(bundle);
+    }
+
     @GetMapping("{id}")
-    public Bundle getBundle(String id) {
+    public Bundle getById(String id) {
         return bundleLogic.getBundle(id);
     }
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, "application/fhir+json"})
-    public void createBundle(Bundle bundle) {
-        bundleLogic.createBundle(bundle);
-    }
 
 }
