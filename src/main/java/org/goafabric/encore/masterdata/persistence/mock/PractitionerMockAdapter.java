@@ -1,13 +1,12 @@
 package org.goafabric.encore.masterdata.persistence.mock;
 
-import org.goafabric.encore.masterdata.persistence.PractitionerAdapter;
 import org.goafabric.encore.masterdata.controller.dto.*;
+import org.goafabric.encore.masterdata.persistence.PractitionerAdapter;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-
-import static java.util.Arrays.asList;
+import java.util.List;
 
 @Profile("mock")
 @Component
@@ -49,16 +48,16 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
                 .city("Springfield")
                 .postalCode("78313")
                 .country("US")
-                .line(asList("Evergreen Terrace 742"))
-                .use("home")
+                .line(List.of("Evergreen Terrace 742"))
+                .use(AdressUse.HOME.getValue())
                 .build();
     }
 
     public static Telecom createTelecom() {
         return Telecom.builder()
                 .id("45")
-                .system("phone")
-                .use("home")
+                .system(TelecomSystem.PHONE.getValue())
+                .use(AdressUse.HOME.getValue())
                 .value("0245-33553")
                 .build();
     }

@@ -1,14 +1,14 @@
 package org.goafabric.encore.masterdata.persistence.mock;
 
-import org.goafabric.encore.masterdata.persistence.OrganizationAdapter;
 import org.goafabric.encore.masterdata.controller.dto.Address;
+import org.goafabric.encore.masterdata.controller.dto.AdressUse;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
+import org.goafabric.encore.masterdata.persistence.OrganizationAdapter;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-
-import static java.util.Arrays.asList;
+import java.util.List;
 
 @Profile("mock")
 @Component
@@ -28,8 +28,8 @@ public class OrganizationMockAdapter implements OrganizationAdapter {
                 .city("Springfield")
                 .postalCode("78313")
                 .country("US")
-                .line(asList("Clownstreet 452"))
-                .use("HOME")
+                .line(List.of("Clownstreet 452"))
+                .use(AdressUse.HOME.getValue())
                 .build();
     }
 
