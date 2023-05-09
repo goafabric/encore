@@ -20,6 +20,16 @@ public class PatientController {
         this.patientLogic = patientLogic;
     }
 
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, "application/fhir+json"})
+    public void createPatient(Patient patient) {
+
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletePatient(@PathVariable String id) {
+
+    }
+
     @GetMapping("/{id}")
     public Patient getPatient(@PathVariable String id) {
         return patientLogic.getPatient(id);
