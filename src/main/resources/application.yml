@@ -29,6 +29,8 @@ security.authentication.enabled: false
 spring.security.user.name: "admin"
 spring.security.user.password: "admin"
 
+spring.profiles.active: "mock"
+
 #logging
 logging.level.root: "WARN"
 logging.level.org.springframework: "INFO"
