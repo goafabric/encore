@@ -64,7 +64,6 @@ tasks.withType<Test> {
 	finalizedBy("jacocoTestReport")
 }
 
-/*
 jib {
 	val amd64 = com.google.cloud.tools.jib.gradle.PlatformParameters(); amd64.os = "linux"; amd64.architecture = "amd64"; val arm64 = com.google.cloud.tools.jib.gradle.PlatformParameters(); arm64.os = "linux"; arm64.architecture = "arm64"
 	from.image = baseImage
@@ -84,5 +83,3 @@ tasks.named<BootBuildImage>("bootBuildImage") {
 		exec { commandLine("docker", "push", nativeImageName) }
 	}
 }
-
- */
