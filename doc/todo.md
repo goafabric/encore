@@ -1,2 +1,2 @@
-- save and delete methods, fake data
+- save and delete methods, enums, fake data
 - spring security + 403 for fhir write tests
