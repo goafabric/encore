@@ -3,20 +3,24 @@ package org.goafabric.encore.masterdata.persistence.mock;
 import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.persistence.PatientAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Profile("mock")
 @Component
 public class PatientMockAdapter implements PatientAdapter {
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
     @Override
     public void create(Patient patient) {
-
+        log.info("creating patient " + patient.toString());
     }
 
     @Override
     public void delete(String id) {
-
+        log.info("deleting patient" + id);
     }
 
     public Patient getPatient(String id) {
