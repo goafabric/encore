@@ -3,7 +3,6 @@ package org.goafabric.encore.crossfunctional;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -37,8 +36,8 @@ public class HttpInterceptor implements WebMvcConfigurer {
     }
 
     public static String getUserName() {
-        return userName.get() != null ? userName.get()
-                : SecurityContextHolder.getContext().getAuthentication() != null ? SecurityContextHolder.getContext().getAuthentication().getName() : "";
+        return userName.get() != null ? userName.get() : "";
+                //: SecurityContextHolder.getContext().getAuthentication() != null ? SecurityContextHolder.getContext().getAuthentication().getName() : "";
     }
 
 }

@@ -49,7 +49,7 @@ dependencies {
 
 	//crosscuting
 	implementation("org.springframework.boot:spring-boot-starter-aop")
-	implementation("org.springframework.boot:spring-boot-starter-security")
+	//implementation("org.springframework.boot:spring-boot-starter-security")
 
 	//code generation
 	compileOnly("org.projectlombok:lombok")
@@ -57,6 +57,9 @@ dependencies {
 
 	//test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:6.4.0")
+	testImplementation("ca.uhn.hapi.fhir:hapi-fhir-structures-r4:6.4.0")
+
 }
 
 tasks.withType<Test> {
