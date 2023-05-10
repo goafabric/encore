@@ -15,6 +15,8 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.0"
 	id("org.graalvm.buildtools.native") version "0.9.20"
 	id("com.google.cloud.tools.jib") version "3.3.1"
+
+	id("com.vaadin") version "24.0.2"
 }
 
 jacoco { toolVersion = "0.8.9" }
@@ -61,7 +63,7 @@ dependencies {
 	testImplementation("ca.uhn.hapi.fhir:hapi-fhir-structures-r4:6.4.4")
 
 	//vaadin
-	//implementation("com.vaadin:vaadin-spring-boot-starter:24.0.2")
+	implementation("com.vaadin:vaadin-spring-boot-starter:24.0.2")
 	//developmentOnly("org.springframework.boot:spring-boot-devtools")
 
 	implementation("net.datafaker:datafaker:1.8.1") { exclude("org.yaml", "snakeyaml") }
@@ -83,6 +85,7 @@ jib {
 
 tasks.register("dockerImageNative") { group = "build"; dependsOn("bootBuildImage") }
 tasks.named<BootBuildImage>("bootBuildImage") {
+	dependsOn("vaadinBuildFrontend")
 	val nativeImageName = "${dockerRegistry}/${project.name}-native" + (if (System.getProperty("os.arch").equals("aarch64")) "-arm64v8" else "") + ":${project.version}"
 	builder.set(nativeBuilder)
 	imageName.set(nativeImageName)
