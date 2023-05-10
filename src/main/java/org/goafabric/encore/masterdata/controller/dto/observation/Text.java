@@ -1,5 +1,5 @@
 
-package org.goafabric.encore.masterdata.controller.dto;
+package org.goafabric.encore.masterdata.controller.dto.observation;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;

@@ -1,4 +1,4 @@
-package org.goafabric.encore.masterdata.controller.dto;
+package org.goafabric.encore.masterdata.controller.dto.types;
 
 public enum AdressUse {
     /**

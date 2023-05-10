@@ -3,7 +3,6 @@ package org.goafabric.encore.masterdata.controller.dto.observation;
 
 import lombok.Data;
 import org.goafabric.encore.masterdata.controller.dto.Meta;
-import org.goafabric.encore.masterdata.controller.dto.Text;
 
 @Data
 public class Observation {

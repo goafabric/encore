@@ -1,6 +1,8 @@
 package org.goafabric.encore.masterdata.persistence.mock;
 
 import org.goafabric.encore.masterdata.controller.dto.*;
+import org.goafabric.encore.masterdata.controller.dto.types.AdressUse;
+import org.goafabric.encore.masterdata.controller.dto.types.TelecomSystem;
 
 import java.util.Collections;
 import java.util.List;
