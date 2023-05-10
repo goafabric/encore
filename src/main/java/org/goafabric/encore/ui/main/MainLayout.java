@@ -14,6 +14,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import org.goafabric.encore.ui.monitoring.FhirView;
 import org.goafabric.encore.ui.monitoring.TraceingView;
 import org.goafabric.encore.ui.patient.PatientView;
 import org.goafabric.encore.ui.practitioner.PractitionerView;
@@ -51,7 +52,8 @@ public class MainLayout extends AppLayout {
                 new RouterLink("Patient", PatientView.class),
                 new RouterLink("Practitioner", PractitionerView.class),
                 //new RouterLink("Settings", SettingsController.class),
-                new RouterLink("Monitoring", TraceingView.class)
+                new RouterLink("Monitoring", TraceingView.class),
+                new RouterLink("FHIR", FhirView.class)
         ));
     }
 

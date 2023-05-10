@@ -10,7 +10,8 @@ import com.vaadin.flow.router.Route;
 public class MainView extends VerticalLayout {
     public MainView() {
         setSizeFull();
-
+        this.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        //this.setAlignItems(Alignment.CENTER);
         this.add(new Image("images/logo.png", ""));
     }
 }
