@@ -9,6 +9,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import org.goafabric.encore.ui.patient.PatientController;
+import org.goafabric.encore.ui.practitioner.PractitionerController;
 import org.goafabric.encore.ui.settings.SettingsController;
 
 @Route(value = "")
@@ -20,7 +22,7 @@ public class MainLayout extends AppLayout {
     }
 
     private void createHeader() {
-        H1 logo = new H1("Main");
+        H1 logo = new H1("Encore");
         logo.addClassNames(
                 LumoUtility.FontSize.LARGE,
                 LumoUtility.Margin.MEDIUM);
@@ -39,6 +41,8 @@ public class MainLayout extends AppLayout {
 
     private void createDrawer() {
         addToDrawer(new VerticalLayout(
+                new RouterLink("Patient", PatientController.class),
+                new RouterLink("Practitioner", PractitionerController.class),
                 new RouterLink("Settings", SettingsController.class)
         ));
     }

@@ -64,7 +64,7 @@ dependencies {
 
 	//vaadin
 	implementation("com.vaadin:vaadin-spring-boot-starter:24.0.2")
-	//developmentOnly("org.springframework.boot:spring-boot-devtools")
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
 	implementation("net.datafaker:datafaker:1.8.1") { exclude("org.yaml", "snakeyaml") }
 }
