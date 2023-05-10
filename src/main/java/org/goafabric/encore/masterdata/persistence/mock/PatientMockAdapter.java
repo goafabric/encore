@@ -21,7 +21,7 @@ public class PatientMockAdapter implements PatientAdapter {
     private final List<Patient> patients = new ArrayList<>();
 
     public PatientMockAdapter() {
-        IntStream.range(0, 100).forEach(i -> patients.add(createPatient(UUID.randomUUID().toString())));
+        IntStream.range(0, 100).forEach(i -> patients.add(createPatient()));
     }
 
     @Override
@@ -36,7 +36,7 @@ public class PatientMockAdapter implements PatientAdapter {
 
     @Override
     public Patient getById(String id) {
-        return createPatient(id);
+        return createPatient();
     }
 
     @Override
@@ -50,9 +50,9 @@ public class PatientMockAdapter implements PatientAdapter {
         return bundle;
     }
 
-    private Patient createPatient(String id) {
+    private Patient createPatient() {
         return Patient.builder()
-                .id(id)
+                .id(UUID.randomUUID().toString())
                 .name(MockUtil.createName("Homer", "Simpson"))
                 .address(MockUtil.createAddress("Evergreen Terrace 742"))
                 .telecom(MockUtil.createTelecom("0245-33553"))

@@ -6,6 +6,8 @@ import org.goafabric.encore.masterdata.persistence.OrganizationAdapter;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Profile("mock")
 @Component
 public class OrganizationMockAdapter implements OrganizationAdapter {
@@ -21,18 +23,18 @@ public class OrganizationMockAdapter implements OrganizationAdapter {
 
     public Bundle search(String lastName) {
         Bundle bundle = new Bundle<Organization>();
-        bundle.addEntry(createBundleEntry(createOrganization("1"), "1"));
+        bundle.addEntry(createBundleEntry(createOrganization(), "1"));
         return bundle;
     }
 
 
     public Organization getById(String id) {
-        return createOrganization(id);
+        return createOrganization();
     }
 
-    private static Organization createOrganization(String id) {
+    private static Organization createOrganization() {
         return Organization.builder()
-                .id(id)
+                .id(UUID.randomUUID().toString())
                 .name("Krust Burger")
                 .address(MockUtil.createAddress("Clownstreet 452"))
                 .build();

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Profile("mock")
 @Component
@@ -19,7 +20,7 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
     private final List<Practitioner> practitioners = new ArrayList<>();
 
     public PractitionerMockAdapter() {
-        practitioners.add(createPractitioner("1"));
+        practitioners.add(createPractitioner());
     }
 
     @Override
@@ -34,7 +35,7 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
 
     @Override
     public Practitioner getById(String id) {
-        return createPractitioner(id);
+        return createPractitioner();
     }
 
 
@@ -50,9 +51,9 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
     }
 
 
-    private static Practitioner createPractitioner(String id) {
+    private static Practitioner createPractitioner() {
         return Practitioner.builder()
-                .id(id)
+                .id(UUID.randomUUID().toString())
                 .name(MockUtil.createName("Monty", "Burns"))
                 .address(MockUtil.createAddress("Evergreen Terrace 742"))
                 .telecom(MockUtil.createTelecom("0245-33553"))
