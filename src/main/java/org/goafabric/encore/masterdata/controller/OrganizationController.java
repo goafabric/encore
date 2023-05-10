@@ -1,5 +1,6 @@
 package org.goafabric.encore.masterdata.controller;
 
+import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.logic.OrganizationLogic;
 import org.springframework.http.MediaType;
@@ -28,4 +29,11 @@ public class OrganizationController  {
     public Organization getById(@PathVariable String id) {
         return organizationLogic.getById(id);
     }
+
+    @GetMapping
+    public Bundle search(@RequestParam(value = "name", required = false) String name) {
+
+        return organizationLogic.search(name);
+    }
+
 }

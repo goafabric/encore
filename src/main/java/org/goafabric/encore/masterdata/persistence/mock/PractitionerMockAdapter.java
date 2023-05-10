@@ -28,6 +28,7 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
         return createPractitioner(id);
     }
 
+    @Override
     public Bundle search(String lastName) {
         Bundle bundle = new Bundle<Practitioner>();
         bundle.addEntry(createBundleEntry(createPractitioner("1"), "1"));

@@ -35,7 +35,6 @@ public class PatientMockAdapter implements PatientAdapter {
         return bundle;
     }
 
-
     private Patient createPatient(String id) {
         return Patient.builder()
                 .id(id)

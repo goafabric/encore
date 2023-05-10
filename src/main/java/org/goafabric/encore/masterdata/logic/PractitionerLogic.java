@@ -2,6 +2,7 @@ package org.goafabric.encore.masterdata.logic;
 
 import lombok.experimental.Delegate;
 import org.goafabric.encore.crossfunctional.DurationLog;
+import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.persistence.PractitionerAdapter;
 import org.springframework.stereotype.Component;
 
@@ -14,4 +15,5 @@ public class PractitionerLogic {
     public PractitionerLogic(PractitionerAdapter practitionerAdapter) {
         this.practitionerAdapter = practitionerAdapter;
     }
+
 }

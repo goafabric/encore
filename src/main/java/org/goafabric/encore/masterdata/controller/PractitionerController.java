@@ -1,5 +1,6 @@
 package org.goafabric.encore.masterdata.controller;
 
+import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
 import org.goafabric.encore.masterdata.logic.PractitionerLogic;
 import org.springframework.http.MediaType;
@@ -27,6 +28,13 @@ public class PractitionerController {
 	@GetMapping("/{id}")
 	public Practitioner getById(@PathVariable String id) {
 		return practitionerLogic.getById(id);
+	}
+
+	@GetMapping
+	public Bundle search(@RequestParam(value = "family", required = false) String familyName,
+						 @RequestParam(value = "name", required = false) String name) {
+
+		return practitionerLogic.search(familyName);
 	}
 
 }
