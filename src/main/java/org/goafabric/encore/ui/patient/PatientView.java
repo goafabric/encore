@@ -6,7 +6,7 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.goafabric.encore.masterdata.persistence.mock.PatientMockAdapter;
-import org.goafabric.encore.ui.MainLayout;
+import org.goafabric.encore.ui.main.MainLayout;
 
 @Route(value = "patient", layout = MainLayout.class)
 @PageTitle("patient")

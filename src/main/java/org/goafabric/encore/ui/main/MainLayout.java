@@ -1,4 +1,4 @@
-package org.goafabric.encore.ui;
+package org.goafabric.encore.ui.main;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -11,7 +11,6 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.flow.theme.lumo.LumoUtility;
@@ -19,7 +18,7 @@ import org.goafabric.encore.ui.patient.PatientView;
 import org.goafabric.encore.ui.practitioner.PractitionerView;
 import org.goafabric.encore.ui.settings.SettingsController;
 
-@Route(value = "")
+//@Route(value = "")
 public class MainLayout extends AppLayout {
 
     private boolean darkness = false;
@@ -35,7 +34,7 @@ public class MainLayout extends AppLayout {
                 LumoUtility.FontSize.LARGE,
                 LumoUtility.Margin.MEDIUM);
 
-        var header = new HorizontalLayout(new DrawerToggle(), createHomeButton(), createDarkToggle(), logo);
+        var header = new HorizontalLayout(new DrawerToggle(), createHomeButton(), createDarkToggle());
 
         header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
         header.setWidthFull();
