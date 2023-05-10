@@ -16,11 +16,11 @@ public class OrganizationMockAdapter implements OrganizationAdapter {
     private final List<Organization> organizations = new ArrayList<>();
 
     public OrganizationMockAdapter() {
+        organizations.add(createOrganization());
     }
 
     @Override
     public void create(Organization organization) {
-        organizations.add(createOrganization());
     }
 
     @Override
