@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.IntStream;
 
 @Profile("mock")
 @Component
@@ -21,7 +20,9 @@ public class PatientMockAdapter implements PatientAdapter {
     private final List<Patient> patients = new ArrayList<>();
 
     public PatientMockAdapter() {
-        IntStream.range(0, 100).forEach(i -> patients.add(createPatient()));
+        patients.add(createPatient("Homer", "Simpson", "Evergreen Terrace 742", "0245-33553"));
+        //IntStream.range(0, 100).forEach(i -> patients.add(
+
     }
 
     @Override
@@ -36,7 +37,7 @@ public class PatientMockAdapter implements PatientAdapter {
 
     @Override
     public Patient getById(String id) {
-        return createPatient();
+        return createPatient("Homer", "Simpson", "Evergreen Terrace 742", "0245-33553");
     }
 
     @Override
@@ -50,12 +51,12 @@ public class PatientMockAdapter implements PatientAdapter {
         return bundle;
     }
 
-    private Patient createPatient() {
+    private Patient createPatient(String given, String family, String street, String phone) {
         return Patient.builder()
                 .id(UUID.randomUUID().toString())
-                .name(MockUtil.createName("Homer", "Simpson"))
-                .address(MockUtil.createAddress("Evergreen Terrace 742"))
-                .telecom(MockUtil.createTelecom("0245-33553"))
+                .name(MockUtil.createName(given, family))
+                .address(MockUtil.createAddress(street))
+                .telecom(MockUtil.createTelecom(phone))
                 .build();
     }
 

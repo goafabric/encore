@@ -20,7 +20,9 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
     private final List<Practitioner> practitioners = new ArrayList<>();
 
     public PractitionerMockAdapter() {
-        practitioners.add(createPractitioner());
+        practitioners.add(createPractitioner("Dr Julius", "Hibbert", "Commonstreet 345", "555-520"));
+        practitioners.add(createPractitioner("Dr Marvin", "Monroe", "Psychestreet 104", "555-525"));
+        practitioners.add(createPractitioner("Dr Nick", "Riveria", "Nickstreet 221", "555-501"));
     }
 
     @Override
@@ -35,7 +37,7 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
 
     @Override
     public Practitioner getById(String id) {
-        return createPractitioner();
+        return practitioners.get(0);
     }
 
 
@@ -51,12 +53,12 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
     }
 
 
-    private static Practitioner createPractitioner() {
+    private Practitioner createPractitioner(String given, String family, String street, String phone) {
         return Practitioner.builder()
                 .id(UUID.randomUUID().toString())
-                .name(MockUtil.createName("Monty", "Burns"))
-                .address(MockUtil.createAddress("Evergreen Terrace 742"))
-                .telecom(MockUtil.createTelecom("0245-33553"))
+                .name(MockUtil.createName(given, family))
+                .address(MockUtil.createAddress(street))
+                .telecom(MockUtil.createTelecom(phone))
                 .build();
     }
 
