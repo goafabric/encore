@@ -18,8 +18,6 @@ public class PatientController extends VerticalLayout {
         this.add(new Text("Patients ..."));
         this.add(patientGrid);
 
-
         patientGrid.setItems(adapter.searchShortCut(""));
-
     }
 }
