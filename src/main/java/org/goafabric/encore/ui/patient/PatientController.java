@@ -14,6 +14,7 @@ public class PatientController extends VerticalLayout {
 
     public PatientController(PatientMockAdapter adapter) {
         patientGrid = new PatientGrid();
+
         setSizeFull();
         this.add(new Text("Patients ..."));
         this.add(patientGrid);
