@@ -1,13 +1,19 @@
-package org.goafabric.encore.ui.main;
+package org.goafabric.encore.ui;
 
+import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.goafabric.encore.ui.patient.PatientView;
 import org.goafabric.encore.ui.practitioner.PractitionerView;
@@ -15,6 +21,8 @@ import org.goafabric.encore.ui.settings.SettingsController;
 
 @Route(value = "")
 public class MainLayout extends AppLayout {
+
+    private boolean darkness = false;
 
     public MainLayout() {
         createHeader();
@@ -27,7 +35,7 @@ public class MainLayout extends AppLayout {
                 LumoUtility.FontSize.LARGE,
                 LumoUtility.Margin.MEDIUM);
 
-        var header = new HorizontalLayout(new DrawerToggle(), logo );
+        var header = new HorizontalLayout(new DrawerToggle(), createHomeButton(), createDarkToggle(), logo);
 
         header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
         header.setWidthFull();
@@ -45,5 +53,20 @@ public class MainLayout extends AppLayout {
                 new RouterLink("Practitioner", PractitionerView.class),
                 new RouterLink("Settings", SettingsController.class)
         ));
+    }
+
+    private Button createDarkToggle() {
+        Button button  = new Button(new Icon(VaadinIcon.COFFEE));
+        button.addClickListener((ComponentEventListener<ClickEvent<Button>>) event -> {
+            darkness = !darkness;
+            getElement().executeJs("document.documentElement.setAttribute('theme', $0)", darkness ? Lumo.DARK : Lumo.LIGHT);
+        });
+        return button;
+    }
+
+    private Button createHomeButton() {
+        var button = new Button(VaadinIcon.HOME.create());
+        button.addClickListener((ComponentEventListener<ClickEvent<Button>>) event -> getUI().get().getPage().setLocation("/"));
+        return button;
     }
 }
