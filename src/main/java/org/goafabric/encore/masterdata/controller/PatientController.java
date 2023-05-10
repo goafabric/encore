@@ -32,7 +32,7 @@ public class PatientController {
 
     @GetMapping("/{id}")
     public Patient getById(@PathVariable String id) {
-        return patientLogic.getPatient(id);
+        return patientLogic.getById(id);
     }
 
     @GetMapping

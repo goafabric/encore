@@ -23,7 +23,8 @@ public class PatientMockAdapter implements PatientAdapter {
         log.info("deleting patient" + id);
     }
 
-    public Patient getPatient(String id) {
+    @Override
+    public Patient getById(String id) {
         return createPatient(id);
     }
 
@@ -33,6 +34,7 @@ public class PatientMockAdapter implements PatientAdapter {
         bundle.addEntry(createBundleEntry(createPatient("1"), "1"));
         return bundle;
     }
+
 
     private Patient createPatient(String id) {
         return Patient.builder()

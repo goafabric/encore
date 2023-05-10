@@ -9,7 +9,7 @@ public interface PatientAdapter {
 
     void delete(String id);
 
-    Patient getPatient(String id);
+    Patient getById(String id);
 
     Bundle search(String lastName);
 
