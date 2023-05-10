@@ -28,14 +28,7 @@ public class PatientMockAdapter implements PatientAdapter {
     }
 
     @Override
-    public Bundle findByFirstName(String firstName) {
-        Bundle bundle = new Bundle();
-        bundle.addEntry(createBundleEntry(createPatient("1"), "1"));
-        return bundle;
-    }
-
-    @Override
-    public Bundle findyByLastName(String lastName) {
+    public Bundle search(String lastName) {
         Bundle bundle = new Bundle();
         bundle.addEntry(createBundleEntry(createPatient("1"), "1"));
         return bundle;

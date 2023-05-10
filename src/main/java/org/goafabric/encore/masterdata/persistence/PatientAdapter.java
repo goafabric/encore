@@ -11,8 +11,6 @@ public interface PatientAdapter {
 
     Patient getPatient(String id);
 
-    Bundle findByFirstName(String firstName);
-
-    Bundle findyByLastName(String lastName);
+    Bundle search(String lastName);
 
 }

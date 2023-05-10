@@ -36,12 +36,11 @@ public class PatientController {
     }
 
     @GetMapping
-    public Bundle find(@RequestParam(value = "family", required = false) String familyName,
+    public Bundle search(@RequestParam(value = "family", required = false) String familyName,
                                @RequestParam(value = "name", required = false) String name) {
         log.info("name: {}, familyName: {}", name, familyName);
 
-        return patientLogic.findyByLastName(familyName);
+        return patientLogic.search(familyName);
     }
-
 
 }
