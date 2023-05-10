@@ -12,7 +12,5 @@ public class MainView extends VerticalLayout {
         setSizeFull();
 
         this.add(new Image("images/logo.png", ""));
-
-        setHorizontalComponentAlignment(Alignment.CENTER);
     }
 }
