@@ -9,8 +9,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.LumoUtility;
-import org.goafabric.encore.ui.patient.PatientController;
-import org.goafabric.encore.ui.practitioner.PractitionerController;
+import org.goafabric.encore.ui.patient.PatientView;
+import org.goafabric.encore.ui.practitioner.PractitionerView;
 import org.goafabric.encore.ui.settings.SettingsController;
 
 @Route(value = "")
@@ -41,8 +41,8 @@ public class MainLayout extends AppLayout {
 
     private void createDrawer() {
         addToDrawer(new VerticalLayout(
-                new RouterLink("Patient", PatientController.class),
-                new RouterLink("Practitioner", PractitionerController.class),
+                new RouterLink("Patient", PatientView.class),
+                new RouterLink("Practitioner", PractitionerView.class),
                 new RouterLink("Settings", SettingsController.class)
         ));
     }

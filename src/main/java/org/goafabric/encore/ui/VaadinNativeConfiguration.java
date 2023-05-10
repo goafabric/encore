@@ -1,5 +1,6 @@
 package org.goafabric.encore.ui;
 
+import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
 import org.goafabric.encore.masterdata.controller.dto.*;
 import org.springframework.aot.hint.RuntimeHints;
@@ -12,7 +13,7 @@ import org.springframework.context.annotation.ImportRuntimeHints;
 @ImportRuntimeHints(VaadinNativeConfiguration.vaadinRuntimeHints.class)
 @RegisterReflectionForBinding({ Patient.class, Practitioner.class, Organization.class, Address.class, Telecom.class })
 @Theme(value = "default")
-public class VaadinNativeConfiguration {//implements AppShellConfigurator {
+public class VaadinNativeConfiguration implements AppShellConfigurator {
 
     static class vaadinRuntimeHints implements RuntimeHintsRegistrar {
         @Override

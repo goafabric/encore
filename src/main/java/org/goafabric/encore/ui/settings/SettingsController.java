@@ -24,9 +24,6 @@ public class SettingsController extends VerticalLayout {
         tabSheet.add("Payment",
                 new Div(new Text("This is the Payment tab content")));
 
-        tabSheet.add("Contacts",
-                new Div(new Text("This is the Contacts tab content")));
-
         add(tabSheet);
     }
 }
