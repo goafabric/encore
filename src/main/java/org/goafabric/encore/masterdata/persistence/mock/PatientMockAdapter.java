@@ -1,5 +1,6 @@
 package org.goafabric.encore.masterdata.persistence.mock;
 
+import net.datafaker.Faker;
 import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.persistence.PatientAdapter;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.IntStream;
 
 @Profile("mock")
 @Component
@@ -20,9 +22,12 @@ public class PatientMockAdapter implements PatientAdapter {
     private final List<Patient> patients = new ArrayList<>();
 
     public PatientMockAdapter() {
-        patients.add(createPatient("Homer", "Simpson", "Evergreen Terrace 742", "0245-33553"));
-        //IntStream.range(0, 100).forEach(i -> patients.add(
+        Faker faker = new Faker();
 
+        patients.add(createPatient("Homer", "Simpson", "Evergreen Terrace 742", "0245-33553"));
+
+        IntStream.range(0, 100).forEach(i -> patients.add(
+                createPatient(faker.name().firstName(), faker.name().lastName(), faker.simpsons().location(), "0245-43553")));
     }
 
     @Override

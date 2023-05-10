@@ -57,9 +57,14 @@ dependencies {
 
 	//test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:6.4.0")
-	testImplementation("ca.uhn.hapi.fhir:hapi-fhir-structures-r4:6.4.0")
+	testImplementation("ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:6.4.4")
+	testImplementation("ca.uhn.hapi.fhir:hapi-fhir-structures-r4:6.4.4")
 
+	//vaadin
+	//implementation("com.vaadin:vaadin-spring-boot-starter:24.0.2")
+	//developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+	implementation("net.datafaker:datafaker:1.8.1") { exclude("org.yaml", "snakeyaml") }
 }
 
 tasks.withType<Test> {
