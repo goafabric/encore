@@ -1,14 +1,17 @@
 package org.goafabric.encore.ui;
 
+import com.vaadin.flow.theme.Theme;
+import org.goafabric.encore.masterdata.controller.dto.*;
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;
+import org.springframework.aot.hint.annotation.RegisterReflectionForBinding;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportRuntimeHints;
 
 @Configuration
 @ImportRuntimeHints(VaadinNativeConfiguration.vaadinRuntimeHints.class)
-//@RegisterReflectionForBinding({ Address.class, Person.class })
-//@Theme(value = "flowcrmtutorial")
+@RegisterReflectionForBinding({ Patient.class, Practitioner.class, Organization.class, Address.class, Telecom.class })
+@Theme(value = "default")
 public class VaadinNativeConfiguration {//implements AppShellConfigurator {
 
     static class vaadinRuntimeHints implements RuntimeHintsRegistrar {
