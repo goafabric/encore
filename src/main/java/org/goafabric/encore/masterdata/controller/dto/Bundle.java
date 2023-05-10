@@ -16,10 +16,10 @@ public class Bundle<T> {
     private String id;
     private final String resourceType = "Bundle";
 
-    private final List<BundleEntryComponent<T>> entries = new ArrayList<>();
+    private final List<BundleEntryComponent<T>> entry = new ArrayList<>();
 
     public void addEntry(BundleEntryComponent bundleEntry) {
-        entries.add(bundleEntry);
+        entry.add(bundleEntry);
     }
 
     @Data

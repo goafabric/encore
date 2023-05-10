@@ -8,10 +8,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Profile("mock")
 @Component
 public class PractitionerMockAdapter implements PractitionerAdapter {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+    private final List<Practitioner> practitioners = new ArrayList<>();
+
+    public PractitionerMockAdapter() {
+        practitioners.add(createPractitioner("1"));
+    }
 
     @Override
     public void create(Practitioner practitioner) {
@@ -28,10 +37,15 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
         return createPractitioner(id);
     }
 
+
     @Override
     public Bundle search(String lastName) {
-        Bundle bundle = new Bundle<Practitioner>();
-        bundle.addEntry(createBundleEntry(createPractitioner("1"), "1"));
+        var bundle = new Bundle<Practitioner>();
+
+        practitioners.stream().filter(patient ->
+                        patient.getName().get(0).getFamily().toLowerCase().startsWith(lastName.toLowerCase()))
+                .forEach(p -> bundle.addEntry(createBundleEntry(p, p.getId())));
+
         return bundle;
     }
 
