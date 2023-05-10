@@ -30,7 +30,7 @@ public class PatientMockAdapter implements PatientAdapter {
 
     @Override
     public Bundle search(String lastName) {
-        Bundle bundle = new Bundle();
+        Bundle bundle = new Bundle<Patient>();
         bundle.addEntry(createBundleEntry(createPatient("1"), "1"));
         return bundle;
     }

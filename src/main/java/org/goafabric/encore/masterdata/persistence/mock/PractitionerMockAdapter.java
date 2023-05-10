@@ -1,5 +1,6 @@
 package org.goafabric.encore.masterdata.persistence.mock;
 
+import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
 import org.goafabric.encore.masterdata.persistence.PractitionerAdapter;
 import org.slf4j.Logger;
@@ -24,11 +25,27 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
 
     @Override
     public Practitioner getById(String id) {
+        return createPractitioner(id);
+    }
+
+    public Bundle search(String lastName) {
+        Bundle bundle = new Bundle<Practitioner>();
+        bundle.addEntry(createBundleEntry(createPractitioner("1"), "1"));
+        return bundle;
+    }
+
+
+    private static Practitioner createPractitioner(String id) {
         return Practitioner.builder()
                 .id(id)
                 .name(MockUtil.createName("Monty", "Burns"))
                 .address(MockUtil.createAddress("Evergreen Terrace 742"))
                 .telecom(MockUtil.createTelecom("0245-33553"))
                 .build();
+    }
+
+    private Bundle.BundleEntryComponent createBundleEntry(Object resource, String id) {
+        return Bundle.BundleEntryComponent.builder().resource(resource)
+                .fullUrl(resource.getClass().getSimpleName() + "/" + id).build();
     }
 }
