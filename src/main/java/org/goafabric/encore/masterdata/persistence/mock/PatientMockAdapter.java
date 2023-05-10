@@ -8,10 +8,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.IntStream;
+
 @Profile("mock")
 @Component
 public class PatientMockAdapter implements PatientAdapter {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+    private final List<Patient> patients = new ArrayList<>();
+
+    public PatientMockAdapter() {
+        IntStream.range(0, 100).forEach(i -> patients.add(createPatient(UUID.randomUUID().toString())));
+    }
 
     @Override
     public void create(Patient patient) {
@@ -30,8 +41,12 @@ public class PatientMockAdapter implements PatientAdapter {
 
     @Override
     public Bundle search(String lastName) {
-        Bundle bundle = new Bundle<Patient>();
-        bundle.addEntry(createBundleEntry(createPatient("1"), "1"));
+        var bundle = new Bundle<Patient>();
+
+        patients.stream().filter(patient ->
+                patient.getName().get(0).getFamily().toLowerCase().startsWith(lastName.toLowerCase()))
+                .forEach(p -> bundle.addEntry(createBundleEntry(p, p.getId())));
+
         return bundle;
     }
 
