@@ -14,11 +14,13 @@ public class PatientGrid extends Grid<Patient> {
     private void createView() {
         addClassName("contact-grid");
         setSizeFull();
-        setColumns("firstName", "lastName", "address.street", "address.city");
+        setColumns();
 
-        addColumn(p -> p.getName().get(0).getGiven()).setHeader("firstName");
+        addColumn(p -> p.getName().get(0).getGiven().get(0)).setHeader("firstName");
+        addColumn(p -> p.getName().get(0).getFamily()).setHeader("lastName");
+        addColumn(p -> p.getAddress().get(0).getCity()).setHeader("city");
+        addColumn(p -> p.getAddress().get(0).getLine().get(0)).setHeader("street");
 
-        //addColumn(p -> p.getStatus().getName()).setHeader("Status");
         getColumns().forEach(col -> col.setAutoWidth(true));
     }
 }

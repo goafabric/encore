@@ -56,6 +56,12 @@ public class PatientMockAdapter implements PatientAdapter {
         return bundle;
     }
 
+    public List<Patient> searchShortCut(String lastName) {
+        return patients.stream().filter(patient ->
+                        patient.getName().get(0).getFamily().toLowerCase().startsWith(lastName.toLowerCase())).toList();
+    }
+
+
     private Patient createPatient(String given, String family, String street, String phone) {
         return Patient.builder()
                 .id(UUID.randomUUID().toString())

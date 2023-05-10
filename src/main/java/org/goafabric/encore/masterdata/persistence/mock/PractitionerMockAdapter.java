@@ -52,6 +52,11 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
         return bundle;
     }
 
+    public List<Practitioner> searchShortCut(String lastName) {
+        return practitioners.stream().filter(patient ->
+                        patient.getName().get(0).getFamily().toLowerCase().startsWith(lastName.toLowerCase())).toList();
+    }
+
 
     private Practitioner createPractitioner(String given, String family, String street, String phone) {
         return Practitioner.builder()
