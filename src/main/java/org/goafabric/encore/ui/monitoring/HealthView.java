@@ -7,6 +7,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import org.springframework.boot.actuate.health.HealthEndpoint;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -23,8 +24,7 @@ public class HealthView extends VerticalLayout {
 
     private boolean checkTracing() {
         try {
-            var restTemplate = new RestTemplate();
-            return restTemplate.getForEntity("http://localhost:16686/", Object.class).getStatusCode().value() == 200;
-        } catch (Exception e) { return false; }
+            return new RestTemplate().getForEntity("http://localhost:16686/", Object.class).getStatusCode().value() == 200;
+        } catch (Exception e) { return !(e instanceof ResourceAccessException);}
     }
 }
