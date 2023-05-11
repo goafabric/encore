@@ -8,9 +8,9 @@ import java.nio.file.Files;
 import java.util.List;
 
 @Component
-public class CoverageLogic {
+public class InsuranceCatalogLogic {
     final List<Insurance> insurances;
-    public CoverageLogic() {
+    public InsuranceCatalogLogic() {
         insurances = readInsurances();
     }
 
