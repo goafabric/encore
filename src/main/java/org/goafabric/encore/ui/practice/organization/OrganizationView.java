@@ -1,18 +1,18 @@
-package org.goafabric.encore.ui.practice.practitioner;
+package org.goafabric.encore.ui.practice.organization;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
-import org.goafabric.encore.masterdata.persistence.PractitionerAdapter;
+import org.goafabric.encore.masterdata.persistence.OrganizationAdapter;
 
-@PageTitle("practitioner")
-public class PractitionerView extends VerticalLayout {
-    private final PractitionerGrid grid = new PractitionerGrid();
+@PageTitle("patient")
+public class OrganizationView extends VerticalLayout {
+    private final OrganizationGrid grid = new OrganizationGrid();
     private final TextField filterText = new TextField("", "Filter by name ...");
-    private final PractitionerAdapter adapter;
+    private final OrganizationAdapter adapter;
 
-    public PractitionerView(PractitionerAdapter adapter) {
+    public OrganizationView(OrganizationAdapter adapter) {
         this.adapter = adapter;
         createView();
     }

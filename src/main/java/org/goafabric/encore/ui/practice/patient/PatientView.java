@@ -8,16 +8,12 @@ import org.goafabric.encore.masterdata.persistence.PatientAdapter;
 
 @PageTitle("patient")
 public class PatientView extends VerticalLayout {
-    private final PatientGrid grid;
-    private final TextField filterText;
+    private final PatientGrid grid = new PatientGrid();
+    private final TextField filterText = new TextField("", "Filter by name ...");
     private final PatientAdapter adapter;
 
     public PatientView(PatientAdapter adapter) {
         this.adapter = adapter;
-
-        grid = new PatientGrid();
-        filterText = new TextField("", "Filter by name ...");
-
         createView();
     }
 

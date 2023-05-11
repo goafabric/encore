@@ -4,9 +4,11 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.goafabric.encore.masterdata.persistence.OrganizationAdapter;
 import org.goafabric.encore.masterdata.persistence.PatientAdapter;
 import org.goafabric.encore.masterdata.persistence.PractitionerAdapter;
 import org.goafabric.encore.ui.main.MainLayout;
+import org.goafabric.encore.ui.practice.organization.OrganizationView;
 import org.goafabric.encore.ui.practice.patient.PatientView;
 import org.goafabric.encore.ui.practice.practitioner.PractitionerView;
 
@@ -14,7 +16,8 @@ import org.goafabric.encore.ui.practice.practitioner.PractitionerView;
 @PageTitle("Practice")
 public class PracticeView extends VerticalLayout {
 
-    public PracticeView(PatientAdapter patientAdapter, PractitionerAdapter practitionerAdapter) {
+    public PracticeView(
+            PatientAdapter patientAdapter, PractitionerAdapter practitionerAdapter, OrganizationAdapter organizationAdapter) {
         this.setSizeFull();
 
         TabSheet tabSheet = new TabSheet();
@@ -25,6 +28,9 @@ public class PracticeView extends VerticalLayout {
 
         tabSheet.add("Practitioner",
                 new PractitionerView(practitionerAdapter));
+
+        tabSheet.add("Organization",
+                new OrganizationView(organizationAdapter));
 
         add(tabSheet);
     }
