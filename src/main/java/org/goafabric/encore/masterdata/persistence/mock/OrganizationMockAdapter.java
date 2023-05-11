@@ -1,6 +1,5 @@
 package org.goafabric.encore.masterdata.persistence.mock;
 
-import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.persistence.OrganizationAdapter;
 import org.springframework.context.annotation.Profile;
@@ -28,16 +27,10 @@ public class OrganizationMockAdapter implements OrganizationAdapter {
 
     }
 
-    public Bundle search(String name) {
-        Bundle bundle = new Bundle<Organization>();
-
-        organizations.stream().filter(organization ->
-                                organization.getName().toLowerCase().startsWith(name.toLowerCase()))
-                .forEach(p -> bundle.addEntry(createBundleEntry(p, p.getId())));
-
-        return bundle;
+    public List<Organization> search(String name) {
+        return organizations.stream().filter(organization ->
+                                organization.getName().toLowerCase().startsWith(name.toLowerCase())).toList();
     }
-
 
     public Organization getById(String id) {
         return organizations.get(0);
@@ -49,11 +42,6 @@ public class OrganizationMockAdapter implements OrganizationAdapter {
                 .name("Practice Dr Hibbert")
                 .address(MockUtil.createAddress("Commonstreet 345"))
                 .build();
-    }
-
-    private Bundle.BundleEntryComponent createBundleEntry(Object resource, String id) {
-        return Bundle.BundleEntryComponent.builder().resource(resource)
-                .fullUrl(resource.getClass().getSimpleName() + "/" + id).build();
     }
 
 }

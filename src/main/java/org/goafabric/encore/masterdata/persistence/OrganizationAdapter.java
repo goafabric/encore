@@ -1,7 +1,8 @@
 package org.goafabric.encore.masterdata.persistence;
 
-import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
+
+import java.util.List;
 
 public interface OrganizationAdapter {
     void create(Organization organization);
@@ -10,6 +11,6 @@ public interface OrganizationAdapter {
 
     Organization getById(String id);
 
-    Bundle search(String name);
+    List<Organization> search(String name);
 
 }

@@ -3,6 +3,7 @@ package org.goafabric.encore.masterdata.controller;
 import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
 import org.goafabric.encore.masterdata.logic.PractitionerLogic;
+import org.goafabric.encore.masterdata.persistence.mock.MockUtil;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,8 +34,9 @@ public class PractitionerController {
 	@GetMapping
 	public Bundle search(@RequestParam(value = "family", required = false) String familyName,
 						 @RequestParam(value = "name", required = false) String name) {
-
-		return practitionerLogic.search(familyName);
+		var bundle = new Bundle<Practitioner>();
+		practitionerLogic.search(familyName).forEach(p -> bundle.addEntry(MockUtil.createBundleEntry(p, p.getId())));
+		return bundle;
 	}
 
 }

@@ -1,7 +1,6 @@
 package org.goafabric.encore.masterdata.persistence.mock;
 
 import net.datafaker.Faker;
-import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.persistence.PatientAdapter;
 import org.slf4j.Logger;
@@ -46,14 +45,9 @@ public class PatientMockAdapter implements PatientAdapter {
     }
 
     @Override
-    public Bundle search(String lastName) {
-        var bundle = new Bundle<Patient>();
-
-        patients.stream().filter(patient ->
-                patient.getName().get(0).getFamily().toLowerCase().startsWith(lastName.toLowerCase()))
-                .forEach(p -> bundle.addEntry(createBundleEntry(p, p.getId())));
-
-        return bundle;
+    public List<Patient> search(String lastName) {
+        return patients.stream().filter(patient ->
+                patient.getName().get(0).getFamily().toLowerCase().startsWith(lastName.toLowerCase())).toList();
     }
 
     public List<Patient> searchShortCut(String lastName) {
@@ -69,11 +63,6 @@ public class PatientMockAdapter implements PatientAdapter {
                 .address(MockUtil.createAddress(street))
                 .telecom(MockUtil.createTelecom(phone))
                 .build();
-    }
-
-    private Bundle.BundleEntryComponent createBundleEntry(Object resource, String id) {
-        return Bundle.BundleEntryComponent.builder().resource(resource)
-                .fullUrl(resource.getClass().getSimpleName() + "/" + id).build();
     }
 
 }

@@ -1,7 +1,8 @@
 package org.goafabric.encore.masterdata.persistence;
 
-import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
+
+import java.util.List;
 
 public interface PatientAdapter {
 
@@ -11,6 +12,6 @@ public interface PatientAdapter {
 
     Patient getById(String id);
 
-    Bundle search(String lastName);
+    List<Patient> search(String lastName);
 
 }

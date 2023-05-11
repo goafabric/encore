@@ -4,15 +4,15 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
-import org.goafabric.encore.masterdata.persistence.mock.PractitionerMockAdapter;
+import org.goafabric.encore.masterdata.persistence.PractitionerAdapter;
 
 @PageTitle("practitioner")
 public class PractitionerView extends VerticalLayout {
     private final PractitionerGrid grid;
     private final TextField filterText;
-    private final PractitionerMockAdapter adapter;
+    private final PractitionerAdapter adapter;
 
-    public PractitionerView(PractitionerMockAdapter adapter) {
+    public PractitionerView(PractitionerAdapter adapter) {
         this.adapter = adapter;
 
         grid = new PractitionerGrid();
@@ -33,6 +33,6 @@ public class PractitionerView extends VerticalLayout {
 
 
     private void updateList() {
-        grid.setItems(adapter.searchShortCut(filterText.getValue()));
+        grid.setItems(adapter.search(filterText.getValue()));
     }
 }

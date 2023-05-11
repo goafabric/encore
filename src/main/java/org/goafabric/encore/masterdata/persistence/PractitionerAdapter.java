@@ -1,7 +1,8 @@
 package org.goafabric.encore.masterdata.persistence;
 
-import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
+
+import java.util.List;
 
 public interface PractitionerAdapter {
     void create(Practitioner practitioner);
@@ -10,6 +11,6 @@ public interface PractitionerAdapter {
 
     Practitioner getById(String id);
 
-    public Bundle search(String familyName);
+    public List<Practitioner> search(String familyName);
 
 }

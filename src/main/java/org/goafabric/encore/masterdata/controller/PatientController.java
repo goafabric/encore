@@ -4,6 +4,7 @@ package org.goafabric.encore.masterdata.controller;
 import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.logic.PatientLogic;
+import org.goafabric.encore.masterdata.persistence.mock.MockUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -38,9 +39,9 @@ public class PatientController {
     @GetMapping
     public Bundle search(@RequestParam(value = "family", required = false) String familyName,
                                @RequestParam(value = "name", required = false) String name) {
-        log.info("name: {}, familyName: {}", name, familyName);
-
-        return patientLogic.search(familyName);
+        var bundle = new Bundle<Patient>();
+        patientLogic.search(familyName).forEach(p -> bundle.addEntry(MockUtil.createBundleEntry(p, p.getId())));
+        return bundle;
     }
 
 }

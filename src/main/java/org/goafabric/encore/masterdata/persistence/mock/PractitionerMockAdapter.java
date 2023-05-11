@@ -42,19 +42,15 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
 
 
     @Override
-    public Bundle search(String lastName) {
-        var bundle = new Bundle<Practitioner>();
-
-        practitioners.stream().filter(patient ->
-                        patient.getName().get(0).getFamily().toLowerCase().startsWith(lastName.toLowerCase()))
-                .forEach(p -> bundle.addEntry(createBundleEntry(p, p.getId())));
-
-        return bundle;
-    }
-
-    public List<Practitioner> searchShortCut(String lastName) {
+    public List<Practitioner> search(String lastName) {
         return practitioners.stream().filter(patient ->
                         patient.getName().get(0).getFamily().toLowerCase().startsWith(lastName.toLowerCase())).toList();
+    }
+
+    private Bundle<Practitioner> convertToBundle(List<Practitioner> lst) {
+        var bundle = new Bundle<Practitioner>();
+        lst.forEach(p -> bundle.addEntry(createBundleEntry(p, p.getId())));
+        return bundle;
     }
 
 

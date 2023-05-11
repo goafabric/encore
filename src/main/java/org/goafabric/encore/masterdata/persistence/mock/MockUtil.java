@@ -40,4 +40,9 @@ public class MockUtil {
                 .build());
     }
 
+    public static Bundle.BundleEntryComponent createBundleEntry(Object resource, String id) {
+        return Bundle.BundleEntryComponent.builder().resource(resource)
+                .fullUrl(resource.getClass().getSimpleName() + "/" + id).build();
+    }
+
 }

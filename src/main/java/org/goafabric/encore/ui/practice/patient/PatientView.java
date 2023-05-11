@@ -4,15 +4,15 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
-import org.goafabric.encore.masterdata.persistence.mock.PatientMockAdapter;
+import org.goafabric.encore.masterdata.persistence.PatientAdapter;
 
 @PageTitle("patient")
 public class PatientView extends VerticalLayout {
     private final PatientGrid grid;
     private final TextField filterText;
-    private final PatientMockAdapter adapter;
+    private final PatientAdapter adapter;
 
-    public PatientView(PatientMockAdapter adapter) {
+    public PatientView(PatientAdapter adapter) {
         this.adapter = adapter;
 
         grid = new PatientGrid();
@@ -33,6 +33,6 @@ public class PatientView extends VerticalLayout {
 
 
     private void updateList() {
-        grid.setItems(adapter.searchShortCut(filterText.getValue()));
+        grid.setItems(adapter.search(filterText.getValue()));
     }
 }
