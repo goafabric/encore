@@ -28,6 +28,7 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
     @Override
     public void create(Practitioner practitioner) {
         log.info("creating practitioner " + practitioner.toString());
+        practitioners.add(practitioner);
     }
 
     @Override

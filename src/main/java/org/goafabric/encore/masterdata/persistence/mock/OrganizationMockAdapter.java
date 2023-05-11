@@ -20,6 +20,7 @@ public class OrganizationMockAdapter implements OrganizationAdapter {
 
     @Override
     public void create(Organization organization) {
+        organizations.add(organization);
     }
 
     @Override

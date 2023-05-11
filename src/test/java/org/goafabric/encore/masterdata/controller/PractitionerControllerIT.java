@@ -1,11 +1,14 @@
 package org.goafabric.encore.masterdata.controller;
 
 import ca.uhn.fhir.rest.client.api.IGenericClient;
+import org.hl7.fhir.r4.model.HumanName;
 import org.hl7.fhir.r4.model.IdType;
 import org.hl7.fhir.r4.model.Practitioner;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+
+import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,7 +32,10 @@ class PractitionerControllerIT {
     @Test
     void create() {
         final IGenericClient client = ClientFactory.createClient(port);
-        client.create().resource(new Practitioner()).execute();
+        var practitioner = new Practitioner();
+        practitioner.setName(Collections.singletonList(new HumanName().setFamily("none")));
+
+        client.create().resource(practitioner).execute();
     }
 
     @Test
