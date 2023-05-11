@@ -15,7 +15,7 @@ public class DiagnosisCatalogLogic {
     }
 
     private List<Diagnosis> readDiagnosiss() {
-        final List<Diagnosis> Diagnosiss;
+        final List<Diagnosis> diagnosis;
         List<String> lines = null;
         try {
             lines = Files.readAllLines(new ClassPathResource("catalogs/icd10.csv").getFile().toPath());
@@ -23,10 +23,12 @@ public class DiagnosisCatalogLogic {
             throw new RuntimeException(e);
         }
 
-        Diagnosiss = lines.stream().map(line -> Diagnosis.builder()
+        diagnosis = lines.stream().map(line -> Diagnosis.builder()
                 .code(line.split(";")[0]).display(line.split(";")[1]).reference(line.split(";")[2])
                 .build()).toList();
-        return Diagnosiss;
+
+        //lines.stream().forEach(line -> System.out.println(line.split(";")[0] + line.split(";")[1] + line.split(";")[2]));
+        return diagnosis;
     }
 
     public List<Diagnosis> search(String display) {
