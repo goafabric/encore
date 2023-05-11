@@ -24,7 +24,6 @@ public class Application {
 
     @Bean
     public CommandLineRunner init(ApplicationContext context, List<HealthIndicator> healthIndicators) {
-        int x = 5;
         return args -> {if ((args.length > 0) && ("-check-integrity".equals(args[0]))) {SpringApplication.exit(context, () -> 0);}};
     }
 

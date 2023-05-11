@@ -48,9 +48,9 @@ public class MainLayout extends AppLayout {
 
     private void createDrawer() {
         addToDrawer(new VerticalLayout(
-                new RouterLink("Practice", PracticeView.class),
-                new RouterLink("Calendar", AppointmentView.class),
-                new RouterLink("Monitoring", MonitoringView.class)
+                new HorizontalLayout(new Icon(VaadinIcon.USER), new RouterLink("Practice", PracticeView.class)),
+                new HorizontalLayout(new Icon(VaadinIcon.CALENDAR), new RouterLink("Calendar", AppointmentView.class)),
+                new HorizontalLayout(new Icon(VaadinIcon.CHART), new RouterLink("Monitoring", MonitoringView.class))
         ));
     }
 
