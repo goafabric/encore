@@ -7,6 +7,6 @@ A08.4;Akute Gastritis;gast
 ;E61.1;Eisenmangel;
 ;Husten;gri
 ;Heiserkeit;gri
-Heuschnupfen;H10.1;all
-Migräne;G43.9;ks
+H10.1;Heuschnupfen;all
+G43.9;Migräne;ks
 F63.1;Pyromanie;psy

@@ -19,7 +19,7 @@ public class VaadinNativeConfiguration implements AppShellConfigurator {
         @Override
         public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
             hints.resources().registerPattern("en/*.yml"); //needed for stupid faker
-            //hints.resources().
+            hints.resources().registerPattern("catalogs/*.csv");
         }
     }
 
