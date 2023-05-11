@@ -1,4 +1,4 @@
-package org.goafabric.encore.ui.main;
+package org.goafabric.encore.ui;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -15,6 +15,7 @@ import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.goafabric.encore.ui.appointments.AppointmentView;
+import org.goafabric.encore.ui.catalogs.CatalogView;
 import org.goafabric.encore.ui.monitoring.MonitoringView;
 import org.goafabric.encore.ui.practice.PracticeView;
 
@@ -49,6 +50,7 @@ public class MainLayout extends AppLayout {
     private void createDrawer() {
         addToDrawer(new VerticalLayout(
                 new HorizontalLayout(new Icon(VaadinIcon.USER), new RouterLink("Practice", PracticeView.class)),
+                new HorizontalLayout(new Icon(VaadinIcon.BOOK), new RouterLink("Catalogs", CatalogView.class)),
                 new HorizontalLayout(new Icon(VaadinIcon.CALENDAR), new RouterLink("Calendar", AppointmentView.class)),
                 new HorizontalLayout(new Icon(VaadinIcon.CHART), new RouterLink("Monitoring", MonitoringView.class))
         ));

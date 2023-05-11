@@ -4,7 +4,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import org.goafabric.encore.ui.main.MainLayout;
+import org.goafabric.encore.ui.MainLayout;
 import org.springframework.boot.actuate.health.HealthEndpoint;
 
 @Route(value = "monitoring", layout = MainLayout.class)

@@ -7,7 +7,7 @@ import com.vaadin.flow.router.Route;
 import org.goafabric.encore.masterdata.persistence.OrganizationAdapter;
 import org.goafabric.encore.masterdata.persistence.PatientAdapter;
 import org.goafabric.encore.masterdata.persistence.PractitionerAdapter;
-import org.goafabric.encore.ui.main.MainLayout;
+import org.goafabric.encore.ui.MainLayout;
 import org.goafabric.encore.ui.practice.organization.OrganizationView;
 import org.goafabric.encore.ui.practice.patient.PatientView;
 import org.goafabric.encore.ui.practice.practitioner.PractitionerView;
