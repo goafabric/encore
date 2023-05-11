@@ -5,22 +5,23 @@ import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.goafabric.encore.ui.main.MainLayout;
+import org.springframework.boot.actuate.health.HealthEndpoint;
 
 @Route(value = "monitoring", layout = MainLayout.class)
 @PageTitle("Monitoring")
 public class MonitoringView extends VerticalLayout {
 
-    public MonitoringView() {
+    public MonitoringView(HealthEndpoint healthEndpoint) {
         this.setSizeFull();
 
         TabSheet tabSheet = new TabSheet();
         tabSheet.setSizeFull();
 
-        tabSheet.add("FHIR",
-                new FhirView());
+        tabSheet.add("Health", new HealthView(healthEndpoint));
 
-        tabSheet.add("Traceing",
-                new TracingView());
+        tabSheet.add("FHIR", new FhirView());
+
+        tabSheet.add("Tracing", new TracingView());
 
         add(tabSheet);
     }
