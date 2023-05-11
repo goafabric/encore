@@ -1,14 +1,11 @@
-package org.goafabric.encore.ui.practitioner;
+package org.goafabric.encore.ui.practice.practitioner;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
 import org.goafabric.encore.masterdata.persistence.mock.PractitionerMockAdapter;
-import org.goafabric.encore.ui.main.MainLayout;
 
-@Route(value = "practitioner", layout = MainLayout.class)
 @PageTitle("practitioner")
 public class PractitionerView extends VerticalLayout {
     private final PractitionerGrid grid;

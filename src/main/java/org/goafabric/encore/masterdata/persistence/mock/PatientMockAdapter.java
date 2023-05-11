@@ -26,7 +26,7 @@ public class PatientMockAdapter implements PatientAdapter {
 
         patients.add(createPatient("Homer", "Simpson", "Evergreen Terrace 742", "0245-33553"));
 
-        IntStream.range(0, 100).forEach(i -> patients.add(
+        IntStream.range(0, 50).forEach(i -> patients.add(
                 createPatient(faker.name().firstName(), faker.name().lastName(), faker.simpsons().location(), "0245-43553")));
     }
 

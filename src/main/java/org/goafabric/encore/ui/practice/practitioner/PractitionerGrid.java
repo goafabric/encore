@@ -1,4 +1,4 @@
-package org.goafabric.encore.ui.practitioner;
+package org.goafabric.encore.ui.practice.practitioner;
 
 
 import com.vaadin.flow.component.grid.Grid;

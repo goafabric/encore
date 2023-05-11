@@ -4,10 +4,7 @@ import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.IFrame;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
-import org.goafabric.encore.ui.main.MainLayout;
 
-@Route(value = "fhirview", layout = MainLayout.class)
 @PageTitle("FHIR")
 public class FhirView extends VerticalLayout {
     public FhirView() {
