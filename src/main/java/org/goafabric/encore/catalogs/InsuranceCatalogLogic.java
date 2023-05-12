@@ -4,6 +4,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class InsuranceCatalogLogic {
     private static List<String> loadFile(String fileName)  {
         try {
             return Arrays.asList(new String(new ClassPathResource(fileName).getInputStream()
-                    .readAllBytes()).split("\n"));
+                    .readAllBytes(), StandardCharsets.UTF_8).split("\n"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
