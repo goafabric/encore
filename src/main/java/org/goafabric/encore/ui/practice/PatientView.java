@@ -15,9 +15,9 @@ public class PatientView extends GridView<Patient> {
 
     @Override
     protected void addColumns(Grid<Patient> grid) {
-        grid.addColumn(p -> p.getName().get(0).getGiven().get(0)).setHeader("firstName");
-        grid.addColumn(p -> p.getName().get(0).getFamily()).setHeader("lastName");
-        grid.addColumn(p -> p.getAddress().get(0).getCity()).setHeader("city");
-        grid.addColumn(p -> p.getAddress().get(0).getLine().get(0)).setHeader("street");
+        grid.addColumn(p -> p.getName().get(0).getGiven().get(0)).setHeader("First Name");
+        grid.addColumn(p -> p.getName().get(0).getFamily()).setHeader("Last Name");
+        grid.addColumn(p -> p.getAddress().get(0).getCity()).setHeader("City");
+        grid.addColumn(p -> p.getAddress().get(0).getLine().get(0)).setHeader("Street");
     }
 }
