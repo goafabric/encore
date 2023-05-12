@@ -7,9 +7,9 @@ import com.vaadin.flow.router.Route;
 import org.goafabric.encore.masterdata.logic.OrganizationLogic;
 import org.goafabric.encore.masterdata.logic.PatientLogic;
 import org.goafabric.encore.masterdata.logic.PractitionerLogic;
-import org.goafabric.encore.ui.MainLayout;
+import org.goafabric.encore.ui.MainView;
 
-@Route(value = "practice", layout = MainLayout.class)
+@Route(value = "practice", layout = MainView.class)
 @PageTitle("Practice")
 public class PracticeView extends VerticalLayout {
 

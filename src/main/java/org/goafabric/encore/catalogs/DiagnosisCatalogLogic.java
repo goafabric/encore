@@ -11,9 +11,9 @@ import java.util.List;
 
 @Component
 public class DiagnosisCatalogLogic implements FhirLogic<Diagnosis> {
-    final List<Diagnosis> Diagnosiss;
+    final List<Diagnosis> diagnosis;
     public DiagnosisCatalogLogic() {
-        Diagnosiss = readDiagnosiss();
+        diagnosis = readDiagnosiss();
     }
 
     private List<Diagnosis> readDiagnosiss() {
@@ -25,7 +25,7 @@ public class DiagnosisCatalogLogic implements FhirLogic<Diagnosis> {
     }
 
     public List<Diagnosis> search(String display) {
-        return Diagnosiss.stream().filter(i -> i.getDisplay().toLowerCase().startsWith(display.toLowerCase())).toList();
+        return diagnosis.stream().filter(i -> i.getDisplay().toLowerCase().startsWith(display.toLowerCase())).toList();
     }
 
     private static List<String> loadFile(String fileName)  {

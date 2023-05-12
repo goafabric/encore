@@ -6,9 +6,9 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.goafabric.encore.catalogs.DiagnosisCatalogLogic;
 import org.goafabric.encore.catalogs.InsuranceCatalogLogic;
-import org.goafabric.encore.ui.MainLayout;
+import org.goafabric.encore.ui.MainView;
 
-@Route(value = "catalogs", layout = MainLayout.class)
+@Route(value = "catalogs", layout = MainView.class)
 @PageTitle("Catalogs")
 public class CatalogView extends VerticalLayout {
 

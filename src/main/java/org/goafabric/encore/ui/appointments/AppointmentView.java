@@ -4,10 +4,10 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import org.goafabric.encore.ui.MainLayout;
+import org.goafabric.encore.ui.MainView;
 
 @PageTitle("Appointments")
-@Route(value = "appointments", layout = MainLayout.class)
+@Route(value = "appointments", layout = MainView.class)
 public class AppointmentView extends VerticalLayout {
     public AppointmentView() {
         setSizeFull();

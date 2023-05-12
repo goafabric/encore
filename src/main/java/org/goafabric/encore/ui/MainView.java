@@ -6,11 +6,14 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.flow.theme.lumo.LumoUtility;
@@ -20,11 +23,11 @@ import org.goafabric.encore.ui.monitoring.MonitoringView;
 import org.goafabric.encore.ui.practice.PracticeView;
 
 //@Route(value = "")
-public class MainLayout extends AppLayout {
+public class MainView extends AppLayout {
 
     private boolean darkness = false;
 
-    public MainLayout() {
+    public MainView() {
         createHeader();
         createDrawer();
     }
@@ -69,5 +72,15 @@ public class MainLayout extends AppLayout {
         var button = new Button(VaadinIcon.HOME.create());
         button.addClickListener((ComponentEventListener<ClickEvent<Button>>) event -> getUI().get().getPage().setLocation("/"));
         return button;
+    }
+
+    @Route(value = "", layout = MainView.class)
+    @PageTitle("main")
+    static class SubView extends VerticalLayout {
+        public SubView() {
+            setSizeFull();
+            this.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+            this.add(new Image("images/logo.png", ""));
+        }
     }
 }
