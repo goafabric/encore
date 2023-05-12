@@ -6,10 +6,10 @@ import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.goafabric.encore.ui.GridView;
 
-@PageTitle("patient")
-public class MyPatientView extends GridView<Patient> {
+@PageTitle("Patient")
+public class PatientView extends GridView<Patient> {
 
-    public MyPatientView(FhirLogic<Patient> logic) {
+    public PatientView(FhirLogic<Patient> logic) {
         super(new Grid<>(Patient.class), logic);
     }
 

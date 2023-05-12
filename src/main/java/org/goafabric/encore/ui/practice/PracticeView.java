@@ -20,14 +20,11 @@ public class PracticeView extends VerticalLayout {
         TabSheet tabSheet = new TabSheet();
         tabSheet.setSizeFull();
 
-        tabSheet.add("Patient",
-                new MyPatientView(patientLogic));
+        tabSheet.add("Patient", new PatientView(patientLogic));
 
-        tabSheet.add("Practitioner",
-                new MyPractitionerView(practitionerAdapter));
+        tabSheet.add("Practitioner", new PractitionerView(practitionerAdapter));
 
-        tabSheet.add("Organization",
-                new MyOrganizationView(organizationAdapter));
+        tabSheet.add("Organization", new OrganizationView(organizationAdapter));
 
         add(tabSheet);
     }

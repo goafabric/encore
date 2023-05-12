@@ -6,10 +6,10 @@ import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.goafabric.encore.ui.GridView;
 
-@PageTitle("organization")
-public class MyOrganizationView extends GridView<Organization> {
+@PageTitle("Organization")
+public class OrganizationView extends GridView<Organization> {
 
-    public MyOrganizationView(FhirLogic<Organization> logic) {
+    public OrganizationView(FhirLogic<Organization> logic) {
         super(new Grid<>(Organization.class), logic);
     }
 
