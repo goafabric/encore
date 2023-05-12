@@ -9,6 +9,32 @@ import java.util.List;
 import java.util.UUID;
 
 public class MockUtil {
+    public static Patient createPatient(String given, String family, String street, String phone) {
+        return Patient.builder()
+                .id(UUID.randomUUID().toString())
+                .name(MockUtil.createName(given, family))
+                .address(MockUtil.createAddress(street))
+                .telecom(MockUtil.createTelecom(phone))
+                .build();
+    }
+
+    public static Practitioner createPractitioner(String given, String family, String street, String phone) {
+        return Practitioner.builder()
+                .id(UUID.randomUUID().toString())
+                .name(MockUtil.createName(given, family))
+                .address(MockUtil.createAddress(street))
+                .telecom(MockUtil.createTelecom(phone))
+                .build();
+    }
+
+    public static Organization createOrganization() {
+        return Organization.builder()
+                .id(UUID.randomUUID().toString())
+                .name("Practice Dr Hibbert")
+                .address(MockUtil.createAddress("Commonstreet 345"))
+                .build();
+    }
+
     public static List<Address> createAddress(String street) {
         return Collections.singletonList(
                 Address.builder()

@@ -10,8 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.IntStream;
+
+import static org.goafabric.encore.masterdata.persistence.mock.MockUtil.createPatient;
 
 @Profile("mock")
 @Component
@@ -51,13 +52,6 @@ public class PatientMockAdapter implements PatientAdapter {
                 patient.getName().get(0).getFamily().toLowerCase().startsWith(lastName.toLowerCase())).toList();
     }
     
-    private Patient createPatient(String given, String family, String street, String phone) {
-        return Patient.builder()
-                .id(UUID.randomUUID().toString())
-                .name(MockUtil.createName(given, family))
-                .address(MockUtil.createAddress(street))
-                .telecom(MockUtil.createTelecom(phone))
-                .build();
-    }
+
 
 }

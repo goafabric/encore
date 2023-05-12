@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
+import static org.goafabric.encore.masterdata.persistence.mock.MockUtil.createOrganization;
 
 @Profile("mock")
 @Component
@@ -37,12 +38,6 @@ public class OrganizationMockAdapter implements OrganizationAdapter {
         return organizations.get(0);
     }
 
-    private static Organization createOrganization() {
-        return Organization.builder()
-                .id(UUID.randomUUID().toString())
-                .name("Practice Dr Hibbert")
-                .address(MockUtil.createAddress("Commonstreet 345"))
-                .build();
-    }
+
 
 }

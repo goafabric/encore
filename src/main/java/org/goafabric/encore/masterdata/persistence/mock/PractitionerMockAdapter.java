@@ -1,6 +1,5 @@
 package org.goafabric.encore.masterdata.persistence.mock;
 
-import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
 import org.goafabric.encore.masterdata.persistence.PractitionerAdapter;
 import org.slf4j.Logger;
@@ -10,7 +9,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
+import static org.goafabric.encore.masterdata.persistence.mock.MockUtil.createPractitioner;
 
 @Profile("mock")
 @Component
@@ -48,24 +48,4 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
                         patient.getName().get(0).getFamily().toLowerCase().startsWith(lastName.toLowerCase())).toList();
     }
 
-    private Bundle<Practitioner> convertToBundle(List<Practitioner> lst) {
-        var bundle = new Bundle<Practitioner>();
-        lst.forEach(p -> bundle.addEntry(createBundleEntry(p, p.getId())));
-        return bundle;
-    }
-
-
-    private Practitioner createPractitioner(String given, String family, String street, String phone) {
-        return Practitioner.builder()
-                .id(UUID.randomUUID().toString())
-                .name(MockUtil.createName(given, family))
-                .address(MockUtil.createAddress(street))
-                .telecom(MockUtil.createTelecom(phone))
-                .build();
-    }
-
-    private Bundle.BundleEntryComponent createBundleEntry(Object resource, String id) {
-        return Bundle.BundleEntryComponent.builder().resource(resource)
-                .fullUrl(resource.getClass().getSimpleName() + "/" + id).build();
-    }
 }
