@@ -1,5 +1,6 @@
 package org.goafabric.encore.catalogs;
 
+import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class InsuranceCatalogLogic {
+public class InsuranceCatalogLogic implements FhirLogic<Insurance> {
     final List<Insurance> insurances;
     public InsuranceCatalogLogic() {
         insurances = readInsurances();

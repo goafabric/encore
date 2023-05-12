@@ -1,6 +1,5 @@
 package org.goafabric.encore;
 
-import io.micrometer.observation.ObservationPredicate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.health.HealthIndicator;
@@ -26,18 +25,5 @@ public class Application {
     public CommandLineRunner init(ApplicationContext context, List<HealthIndicator> healthIndicators) {
         return args -> {if ((args.length > 0) && ("-check-integrity".equals(args[0]))) {SpringApplication.exit(context, () -> 0);}};
     }
-
-    /*
-    @Bean
-    @ConditionalOnMissingClass("org.springframework.security.oauth2.client.OAuth2AuthorizationContext")
-    public SecurityFilterChain filterChain(HttpSecurity http, @Value("${security.authentication.enabled:true}") Boolean isAuthenticationEnabled) throws Exception {
-        return isAuthenticationEnabled ? http.authorizeHttpRequests().requestMatchers("/actuator/**").permitAll().anyRequest().authenticated().and().httpBasic().and().csrf().disable().build()
-                : http.authorizeHttpRequests().anyRequest().permitAll().and().build();
-    }
-
-     */
-
-    @Bean
-    ObservationPredicate disableHttpServerObservationsFromName() { return (name, context) -> !name.startsWith("spring.security."); }
 
 }
