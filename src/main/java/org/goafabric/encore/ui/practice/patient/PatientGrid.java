@@ -12,7 +12,7 @@ public class PatientGrid extends Grid<Patient> {
     }
 
     private void createView() {
-        addClassName("contact-grid");
+        //addClassName("contact-grid");
         setSizeFull();
         setColumns();
 

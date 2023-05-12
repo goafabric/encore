@@ -12,7 +12,7 @@ public class OrganizationGrid extends Grid<Organization> {
     }
 
     private void createView() {
-        addClassName("contact-grid");
+        //addClassName("contact-grid");
         setSizeFull();
         setColumns();
 
