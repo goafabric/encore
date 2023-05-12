@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class Insurance {
-    private String id;
+    private String code;
     private String display;
     private String reference;
 }

@@ -15,7 +15,7 @@ public class CoverageGrid extends Grid<Insurance> {
         setSizeFull();
         setColumns();
 
-        addColumn(Insurance::getId).setHeader("ikk");
+        addColumn(Insurance::getCode).setHeader("ikk");
         addColumn(Insurance::getDisplay).setHeader("description");
         addColumn(Insurance::getReference).setHeader("ref");
 
