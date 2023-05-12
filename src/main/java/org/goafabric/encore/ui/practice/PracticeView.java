@@ -4,12 +4,12 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.goafabric.encore.masterdata.logic.PatientLogic;
 import org.goafabric.encore.masterdata.persistence.OrganizationAdapter;
-import org.goafabric.encore.masterdata.persistence.PatientAdapter;
 import org.goafabric.encore.masterdata.persistence.PractitionerAdapter;
 import org.goafabric.encore.ui.MainLayout;
 import org.goafabric.encore.ui.practice.organization.OrganizationView;
-import org.goafabric.encore.ui.practice.patient.PatientView;
+import org.goafabric.encore.ui.practice.patient.MyPatientView;
 import org.goafabric.encore.ui.practice.practitioner.PractitionerView;
 
 @Route(value = "practice", layout = MainLayout.class)
@@ -17,14 +17,14 @@ import org.goafabric.encore.ui.practice.practitioner.PractitionerView;
 public class PracticeView extends VerticalLayout {
 
     public PracticeView(
-            PatientAdapter patientAdapter, PractitionerAdapter practitionerAdapter, OrganizationAdapter organizationAdapter) {
+            PatientLogic patientLogic, PractitionerAdapter practitionerAdapter, OrganizationAdapter organizationAdapter) {
         this.setSizeFull();
 
         TabSheet tabSheet = new TabSheet();
         tabSheet.setSizeFull();
 
         tabSheet.add("Patient",
-                new PatientView(patientAdapter));
+                new MyPatientView(patientLogic));
 
         tabSheet.add("Practitioner",
                 new PractitionerView(practitionerAdapter));
