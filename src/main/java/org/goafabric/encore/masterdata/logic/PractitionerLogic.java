@@ -2,13 +2,13 @@ package org.goafabric.encore.masterdata.logic;
 
 import lombok.experimental.Delegate;
 import org.goafabric.encore.crossfunctional.DurationLog;
-import org.goafabric.encore.masterdata.controller.dto.Bundle;
+import org.goafabric.encore.masterdata.controller.dto.Practitioner;
 import org.goafabric.encore.masterdata.persistence.PractitionerAdapter;
 import org.springframework.stereotype.Component;
 
 @Component
 @DurationLog
-public class PractitionerLogic {
+public class PractitionerLogic implements FhirLogic<Practitioner> {
     @Delegate
     private final PractitionerAdapter practitionerAdapter;
 

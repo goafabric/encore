@@ -2,12 +2,13 @@ package org.goafabric.encore.masterdata.logic;
 
 import lombok.experimental.Delegate;
 import org.goafabric.encore.crossfunctional.DurationLog;
+import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.persistence.OrganizationAdapter;
 import org.springframework.stereotype.Component;
 
 @Component
 @DurationLog
-public class OrganizationLogic {
+public class OrganizationLogic implements FhirLogic<Organization> {
     @Delegate
     private final OrganizationAdapter organizationAdapter;
 

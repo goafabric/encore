@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @DurationLog
-public class PatientLogic {
+public class PatientLogic implements FhirLogic<Patient> {
     @Delegate
     private final PatientAdapter patientAdapter;
 
