@@ -1,10 +1,12 @@
-package org.goafabric.encore.ui.practice.patient;
+package org.goafabric.encore.ui.practice;
 
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.router.PageTitle;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.goafabric.encore.ui.GridView;
 
+@PageTitle("patient")
 public class MyPatientView extends GridView<Patient> {
 
     public MyPatientView(FhirLogic<Patient> logic) {
