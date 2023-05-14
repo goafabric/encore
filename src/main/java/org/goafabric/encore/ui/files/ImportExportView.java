@@ -41,7 +41,7 @@ public class ImportExportView extends VerticalLayout {
     private void exportFiles(String path) {
         ProgressBar progressBar = createProgressBar();
         try {
-            exportLogic.export(path);
+            exportLogic.run(path);
             var notification = Notification.show("Export successful");
             notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         } catch (Exception e) {

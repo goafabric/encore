@@ -12,19 +12,19 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 @Component
-public class ExportLogic {
+public class ImportLogic {
     private final FhirLogic<Patient> patientLogic;
     private final FhirLogic<Practitioner> practitionerLogic;
     private final OrganizationLogic organizationLogic;
 
-    public ExportLogic(FhirLogic<Patient> patientLogic, FhirLogic<Practitioner> practitionerLogic, OrganizationLogic organizationLogic) {
+    public ImportLogic(FhirLogic<Patient> patientLogic, FhirLogic<Practitioner> practitionerLogic, OrganizationLogic organizationLogic) {
         this.patientLogic = patientLogic;
         this.practitionerLogic = practitionerLogic;
         this.organizationLogic = organizationLogic;
     }
 
     @SneakyThrows
-    public void run(String path) {
+    public void export(String path) {
         if (!Files.exists(Paths.get(path))) {
             throw new IllegalStateException("Path not available");
         }
