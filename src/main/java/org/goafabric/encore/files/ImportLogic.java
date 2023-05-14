@@ -11,6 +11,7 @@ import org.goafabric.encore.masterdata.logic.OrganizationLogic;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -33,15 +34,27 @@ public class ImportLogic {
             throw new IllegalStateException("Path not available");
         }
 
-        var patients = new ObjectMapper().readValue(new File(path + "/patient.json"), new TypeReference<List<Patient>>() {});
-        patients.forEach(patientLogic::create);
+        importPatients(path);
+        importPractitioners(path);
+        importOrganizations(path);
+    }
 
-        var practitioners = new ObjectMapper().readValue(new File(path + "/practitioner.json"), new TypeReference<List<Practitioner>>() {});
-        practitioners.forEach(practitionerLogic::create);
-
+    private void importOrganizations(String path) throws IOException {
         var organizations = new ObjectMapper().readValue(new File(path + "/organization.json"), new TypeReference<List<Organization>>() {});
+        organizationLogic.deleteAll();
         organizations.forEach(organizationLogic::create);
+    }
 
+    private void importPractitioners(String path) throws IOException {
+        var practitioners = new ObjectMapper().readValue(new File(path + "/practitioner.json"), new TypeReference<List<Practitioner>>() {});
+        practitionerLogic.deleteAll();
+        practitioners.forEach(practitionerLogic::create);
+    }
+
+    private void importPatients(String path) throws IOException {
+        var patients = new ObjectMapper().readValue(new File(path + "/patient.json"), new TypeReference<List<Patient>>() {});
+        patientLogic.deleteAll();
+        patients.forEach(patientLogic::create);
     }
 
 

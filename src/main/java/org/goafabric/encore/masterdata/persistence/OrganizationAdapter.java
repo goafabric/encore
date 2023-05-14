@@ -9,6 +9,8 @@ public interface OrganizationAdapter {
 
     void delete(String id);
 
+    void deleteAll();
+
     Organization getById(String id);
 
     List<Organization> search(String name);

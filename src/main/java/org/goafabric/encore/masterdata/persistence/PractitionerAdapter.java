@@ -9,6 +9,8 @@ public interface PractitionerAdapter {
 
     void delete(String id);
 
+    void deleteAll();
+
     Practitioner getById(String id);
 
     public List<Practitioner> search(String familyName);

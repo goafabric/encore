@@ -33,6 +33,11 @@ public class InsuranceCatalogLogic implements FhirLogic<Insurance> {
 
     }
 
+    @Override
+    public void deleteAll() {
+
+    }
+
     private static List<String> loadFile(String fileName)  {
         try {
             return Arrays.asList(new String(new ClassPathResource(fileName).getInputStream()

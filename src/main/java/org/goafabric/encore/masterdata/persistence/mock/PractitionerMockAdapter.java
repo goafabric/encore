@@ -37,6 +37,11 @@ public class PractitionerMockAdapter implements PractitionerAdapter {
     }
 
     @Override
+    public void deleteAll() {
+        practitioners.clear();
+    }
+
+    @Override
     public Practitioner getById(String id) {
         return practitioners.get(0);
     }

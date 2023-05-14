@@ -10,6 +10,8 @@ public interface PatientAdapter {
 
     void delete(String id);
 
+    void deleteAll();
+
     Patient getById(String id);
 
     List<Patient> search(String lastName);

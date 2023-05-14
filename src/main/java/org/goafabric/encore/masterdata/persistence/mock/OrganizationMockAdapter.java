@@ -29,6 +29,11 @@ public class OrganizationMockAdapter implements OrganizationAdapter {
 
     }
 
+    @Override
+    public void deleteAll() {
+        organizations.clear();
+    }
+
     public List<Organization> search(String name) {
         return organizations.stream().filter(organization ->
                                 organization.getName().toLowerCase().startsWith(name.toLowerCase())).toList();

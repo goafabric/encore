@@ -42,6 +42,11 @@ public class PatientMockAdapter implements PatientAdapter {
     }
 
     @Override
+    public void deleteAll() {
+        patients.clear();
+    }
+
+    @Override
     public Patient getById(String id) {
         return createPatient("Homer", "Simpson", "Evergreen Terrace 742", "0245-33553");
     }
