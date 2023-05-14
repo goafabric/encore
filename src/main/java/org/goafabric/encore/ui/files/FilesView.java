@@ -1,28 +1,29 @@
-package org.goafabric.encore.ui.practice;
+package org.goafabric.encore.ui.files;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import org.goafabric.encore.masterdata.logic.OrganizationLogic;
-import org.goafabric.encore.masterdata.logic.PatientLogic;
-import org.goafabric.encore.masterdata.logic.PractitionerLogic;
+import org.goafabric.encore.files.ExportLogic;
 import org.goafabric.encore.ui.MainView;
 
-@Route(value = "practice", layout = MainView.class)
-@PageTitle("Practice")
-public class PracticeView extends VerticalLayout {
+@Route(value = "files", layout = MainView.class)
+@PageTitle("Files")
+public class FilesView extends VerticalLayout {
 
-    public PracticeView(
-            PatientLogic patientLogic, PractitionerLogic practitionerLogic, OrganizationLogic organizationLogic) {
+    public FilesView(ExportLogic exportLogic) {
         this.setSizeFull();
 
         TabSheet tabSheet = new TabSheet();
         tabSheet.setSizeFull();
 
+        tabSheet.add("Import & Export", new ImportExportView(exportLogic));
+        /*
         tabSheet.add("Patient", new PatientView(patientLogic));
         tabSheet.add("Practitioner", new PractitionerView(practitionerLogic));
         tabSheet.add("Organization", new OrganizationView(organizationLogic));
+
+         */
 
         add(tabSheet);
     }

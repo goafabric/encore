@@ -19,6 +19,7 @@ import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.goafabric.encore.ui.appointments.AppointmentView;
 import org.goafabric.encore.ui.catalogs.CatalogView;
+import org.goafabric.encore.ui.files.FilesView;
 import org.goafabric.encore.ui.monitoring.MonitoringView;
 import org.goafabric.encore.ui.practice.PracticeView;
 
@@ -55,6 +56,7 @@ public class MainView extends AppLayout {
                 new HorizontalLayout(new Icon(VaadinIcon.USER), new RouterLink("Practice", PracticeView.class)),
                 new HorizontalLayout(new Icon(VaadinIcon.BOOK), new RouterLink("Catalogs", CatalogView.class)),
                 new HorizontalLayout(new Icon(VaadinIcon.CALENDAR), new RouterLink("Calendar", AppointmentView.class)),
+                new HorizontalLayout(new Icon(VaadinIcon.FILE), new RouterLink("Files", FilesView.class)),
                 new HorizontalLayout(new Icon(VaadinIcon.CHART), new RouterLink("Monitoring", MonitoringView.class))
         ));
     }
