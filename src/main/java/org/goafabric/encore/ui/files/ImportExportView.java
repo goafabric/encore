@@ -5,6 +5,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import org.goafabric.encore.files.ExportLogic;
@@ -46,6 +47,7 @@ public class ImportExportView extends VerticalLayout {
     }
 
     private void exportFiles(String path) {
+        ProgressBar progressBar = createProgressBar();
         try {
             exportLogic.export(path);
             var notification = Notification.show("Export successful");
@@ -53,7 +55,19 @@ public class ImportExportView extends VerticalLayout {
         } catch (Exception e) {
             var notification = Notification.show("Error during export : " + e.getMessage());
             notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+        } finally {
+            progressBar.setVisible(false);
         }
+
+    }
+
+    private ProgressBar createProgressBar() {
+        var progressBar = new ProgressBar();
+        progressBar.setIndeterminate(true);
+        //Div progressBarLabel = new Div();
+        //progressBarLabel.setText("Exporting data ...");
+        add(progressBar);
+        return progressBar;
     }
 
 }
