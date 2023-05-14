@@ -82,7 +82,7 @@ public class MainView extends AppLayout {
         public SubView() {
             setSizeFull();
             this.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-            this.add(new Image("images/logo.png", ""));
+            this.add(new Image("/images/logo.png", ""));
         }
     }
 }
