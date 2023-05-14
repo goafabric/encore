@@ -23,20 +23,12 @@ public class ImportExportView extends VerticalLayout {
     private void createView() {
         setSizeFull();
 
-        createPathField();
-
-        createButtons();
-    }
-
-    private void createPathField() {
         pathField.setValue("/Users/andreas/Downloads");
         this.add(pathField);
-    }
 
-    private void createButtons() {
         var importButton = new Button("import");
         var exportButton = new Button("export");
-        this.add(new HorizontalLayout(importButton, exportButton));
+        this.add(new HorizontalLayout(pathField, importButton, exportButton));
 
         importButton.addClickListener(event -> importFiles(pathField.getValue()));
         exportButton.addClickListener(event -> exportFiles(pathField.getValue()));
