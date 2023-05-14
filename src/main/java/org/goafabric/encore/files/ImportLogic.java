@@ -1,15 +1,19 @@
 package org.goafabric.encore.files;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
+import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
 import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.goafabric.encore.masterdata.logic.OrganizationLogic;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 @Component
 public class ImportLogic {
@@ -24,22 +28,21 @@ public class ImportLogic {
     }
 
     @SneakyThrows
-    public void export(String path) {
+    public void run(String path) {
         if (!Files.exists(Paths.get(path))) {
             throw new IllegalStateException("Path not available");
         }
 
-        var patients = patientLogic.search("");
-        Files.writeString(Paths.get(path + "/patient.json"),
-                new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(patients));
+        var patients = new ObjectMapper().readValue(new File(path + "/patient.json"), new TypeReference<List<Patient>>() {});
+        patients.forEach(patientLogic::create);
 
-        var practitioners = practitionerLogic.search("");
-        Files.writeString(Paths.get(path + "/practitioner.json"),
-                new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(practitioners));
+        var practitioners = new ObjectMapper().readValue(new File(path + "/practitioner.json"), new TypeReference<List<Practitioner>>() {});
+        practitioners.forEach(practitionerLogic::create);
 
-        var organizations = organizationLogic.search("");
-        Files.writeString(Paths.get(path + "/organization.json"),
-                new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(organizations));
+        var organizations = new ObjectMapper().readValue(new File(path + "/organization.json"), new TypeReference<List<Organization>>() {});
+        organizations.forEach(organizationLogic::create);
 
     }
+
+
 }

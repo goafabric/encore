@@ -9,8 +9,14 @@ public class ExportLogicIT {
     @Autowired
     private ExportLogic exportLogic;
 
+    @Autowired
+    private ImportLogic importLogic;
+
     @Test
     void export() {
-        //exportLogic.export("/Users/andreas/Downloads");
+        var tempDir = System.getProperty("java.io.tmpdir");
+
+        exportLogic.run(tempDir);
+        importLogic.run(tempDir);
     }
 }
