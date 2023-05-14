@@ -25,5 +25,13 @@ public class FhirView extends VerticalLayout {
         practitioner.setWidth("1000px");
         practitioner.setHeight("200px");
         this.add(practitioner);
+        
+        /*
+        IFrame iFrame = new IFrame();
+        iFrame.setSrc("/swagger-ui/index.html");
+        iFrame.setSizeFull();
+        this.add(iFrame);
+        */
+
     }
 }
