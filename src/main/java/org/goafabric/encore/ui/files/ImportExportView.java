@@ -10,9 +10,13 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import org.goafabric.encore.files.ExportLogic;
 import org.goafabric.encore.files.ImportLogic;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @PageTitle("Import & Export")
 public class ImportExportView extends VerticalLayout {
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
     private final TextField pathField = new TextField();
     private final ImportLogic importLogic;
     private final ExportLogic exportLogic;
@@ -44,6 +48,7 @@ public class ImportExportView extends VerticalLayout {
             var notification = Notification.show("Import successful");
             notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         } catch (Exception e) {
+            log.error(e.getMessage(), e);
             var notification = Notification.show("Error during import : " + e.getMessage());
             notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
         } finally {
@@ -61,6 +66,7 @@ public class ImportExportView extends VerticalLayout {
             var notification = Notification.show("Export successful");
             notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         } catch (Exception e) {
+            log.error(e.getMessage(), e);
             var notification = Notification.show("Error during export : " + e.getMessage());
             notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
         } finally {
