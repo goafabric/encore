@@ -5,19 +5,20 @@ import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.goafabric.encore.files.ExportLogic;
+import org.goafabric.encore.files.ImportLogic;
 import org.goafabric.encore.ui.MainView;
 
 @Route(value = "files", layout = MainView.class)
 @PageTitle("Files")
 public class FilesView extends VerticalLayout {
 
-    public FilesView(ExportLogic exportLogic) {
+    public FilesView(ImportLogic importLogic, ExportLogic exportLogic) {
         this.setSizeFull();
 
         TabSheet tabSheet = new TabSheet();
         tabSheet.setSizeFull();
 
-        tabSheet.add("Import & Export", new ImportExportView(exportLogic));
+        tabSheet.add("Import & Export", new ImportExportView(importLogic, exportLogic));
         /*
         tabSheet.add("Patient", new PatientView(patientLogic));
         tabSheet.add("Practitioner", new PractitionerView(practitionerLogic));

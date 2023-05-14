@@ -9,13 +9,16 @@ import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import org.goafabric.encore.files.ExportLogic;
+import org.goafabric.encore.files.ImportLogic;
 
 @PageTitle("Import & Export")
 public class ImportExportView extends VerticalLayout {
     private final TextField pathField = new TextField();
+    private final ImportLogic importLogic;
     private final ExportLogic exportLogic;
 
-    public ImportExportView(ExportLogic exportLogic) {
+    public ImportExportView(ImportLogic importLogic, ExportLogic exportLogic) {
+        this.importLogic = importLogic;
         this.exportLogic = exportLogic;
         createView();
     }
@@ -34,9 +37,22 @@ public class ImportExportView extends VerticalLayout {
         exportButton.addClickListener(event -> exportFiles(pathField.getValue()));
     }
 
-    private void importFiles(String value) {
-        System.out.println("import ...");
+    private void importFiles(String path) {
+        ProgressBar progressBar = createProgressBar();
+        try {
+            importLogic.run(path);
+            var notification = Notification.show("Import successful");
+            notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+        } catch (Exception e) {
+            var notification = Notification.show("Error during import : " + e.getMessage());
+            notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+        } finally {
+            //progressBar.setVisible(false);
+            this.remove(progressBar);
+
+        }
     }
+
 
     private void exportFiles(String path) {
         ProgressBar progressBar = createProgressBar();
@@ -48,9 +64,8 @@ public class ImportExportView extends VerticalLayout {
             var notification = Notification.show("Error during export : " + e.getMessage());
             notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
         } finally {
-            progressBar.setVisible(false);
+            this.remove(progressBar);
         }
-
     }
 
     private ProgressBar createProgressBar() {
