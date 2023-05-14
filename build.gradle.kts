@@ -63,7 +63,7 @@ dependencies {
 	testImplementation("ca.uhn.hapi.fhir:hapi-fhir-structures-r4:6.4.4")
 
 	//vaadin
-	implementation("com.vaadin:vaadin-spring-boot-starter:24.0.2")
+	implementation("com.vaadin:vaadin-spring-boot-starter:24.0.5")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
 	implementation("net.datafaker:datafaker:1.8.1") { exclude("org.yaml", "snakeyaml") }
