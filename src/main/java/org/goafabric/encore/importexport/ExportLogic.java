@@ -1,4 +1,4 @@
-package org.goafabric.encore.files;
+package org.goafabric.encore.importexport;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;

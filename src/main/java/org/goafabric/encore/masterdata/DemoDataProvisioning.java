@@ -2,7 +2,7 @@ package org.goafabric.encore.masterdata;
 
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
-import org.goafabric.encore.archive.dto.ObjectEntry;
+import org.goafabric.encore.objectstorage.dto.ObjectEntry;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;

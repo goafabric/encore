@@ -8,8 +8,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
-import org.goafabric.encore.files.ExportLogic;
-import org.goafabric.encore.files.ImportLogic;
+import org.goafabric.encore.importexport.ExportLogic;
+import org.goafabric.encore.importexport.ImportLogic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

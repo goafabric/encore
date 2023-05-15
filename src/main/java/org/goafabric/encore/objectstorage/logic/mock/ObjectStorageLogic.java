@@ -1,6 +1,6 @@
-package org.goafabric.encore.archive.logic.mock;
+package org.goafabric.encore.objectstorage.logic.mock;
 
-import org.goafabric.encore.archive.dto.ObjectEntry;
+import org.goafabric.encore.objectstorage.dto.ObjectEntry;
 import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 @Profile("mock")
-public class ArchiveLogic implements FhirLogic<ObjectEntry> {
+public class ObjectStorageLogic implements FhirLogic<ObjectEntry> {
     private final List<ObjectEntry> objectEntries = new ArrayList<>();
 
     @Override

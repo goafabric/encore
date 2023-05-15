@@ -1,4 +1,4 @@
-package org.goafabric.encore.archive.dto;
+package org.goafabric.encore.objectstorage.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
