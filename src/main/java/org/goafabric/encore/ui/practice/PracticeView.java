@@ -9,6 +9,9 @@ import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
 import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.goafabric.encore.ui.MainView;
+import org.goafabric.encore.ui.practice.tabs.OrganizationView;
+import org.goafabric.encore.ui.practice.tabs.PatientView;
+import org.goafabric.encore.ui.practice.tabs.PractitionerView;
 
 @Route(value = "practice", layout = MainView.class)
 @PageTitle("Practice")

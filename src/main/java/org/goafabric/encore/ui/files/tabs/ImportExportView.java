@@ -1,4 +1,4 @@
-package org.goafabric.encore.ui.files;
+package org.goafabric.encore.ui.files.tabs;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;

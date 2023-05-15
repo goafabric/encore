@@ -1,4 +1,4 @@
-package org.goafabric.encore.ui.files;
+package org.goafabric.encore.ui.files.tabs;
 
 import com.vaadin.flow.component.grid.Grid;
 import org.goafabric.encore.archive.dto.ObjectEntry;
@@ -13,7 +13,7 @@ public class ArchiveView extends GridView<ObjectEntry> {
     @Override
     protected void addColumns(Grid<ObjectEntry> grid) {
         grid.addColumn(o -> o.getObjectName()).setHeader("Name");
+        grid.addColumn(o -> o.getContentType()).setHeader("Type");
         grid.addColumn(o -> o.getObjectSize()).setHeader("Size");
-
     }
 }

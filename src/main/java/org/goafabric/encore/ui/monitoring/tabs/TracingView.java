@@ -1,4 +1,4 @@
-package org.goafabric.encore.ui.monitoring;
+package org.goafabric.encore.ui.monitoring.tabs;
 
 import com.vaadin.flow.component.html.IFrame;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;

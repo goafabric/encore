@@ -9,6 +9,8 @@ import org.goafabric.encore.files.ExportLogic;
 import org.goafabric.encore.files.ImportLogic;
 import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.goafabric.encore.ui.MainView;
+import org.goafabric.encore.ui.files.tabs.ArchiveView;
+import org.goafabric.encore.ui.files.tabs.ImportExportView;
 
 @Route(value = "files", layout = MainView.class)
 @PageTitle("Files")

@@ -18,15 +18,17 @@ public class ArchiveLogic implements FhirLogic<ObjectEntry> {
         create(ObjectEntry.builder()
                 .id(UUID.randomUUID().toString())
                 .objectName("hello_world.txt")
-                .data("hello world".getBytes())
                 .objectSize("hello world".length())
+                .contentType("text")
+                .data("hello world".getBytes())
                 .build());
 
         create(ObjectEntry.builder()
                 .id(UUID.randomUUID().toString())
                 .objectName("top_secret.txt")
-                .data("top secret".getBytes())
                 .objectSize("top secret".length())
+                .contentType("text")
+                .data("top secret".getBytes())
                 .build());
     }
 

@@ -1,4 +1,4 @@
-package org.goafabric.encore.ui.catalogs;
+package org.goafabric.encore.ui.catalogs.tabs;
 
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.router.PageTitle;

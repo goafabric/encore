@@ -7,6 +7,8 @@ import com.vaadin.flow.router.Route;
 import org.goafabric.encore.catalogs.logic.DiagnosisCatalogLogic;
 import org.goafabric.encore.catalogs.logic.InsuranceCatalogLogic;
 import org.goafabric.encore.ui.MainView;
+import org.goafabric.encore.ui.catalogs.tabs.DiagnosisView;
+import org.goafabric.encore.ui.catalogs.tabs.InsuranceVIew;
 
 @Route(value = "catalogs", layout = MainView.class)
 @PageTitle("Catalogs")

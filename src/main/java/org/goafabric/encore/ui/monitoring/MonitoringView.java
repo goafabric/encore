@@ -5,6 +5,9 @@ import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.goafabric.encore.ui.MainView;
+import org.goafabric.encore.ui.monitoring.tabs.FhirView;
+import org.goafabric.encore.ui.monitoring.tabs.HealthView;
+import org.goafabric.encore.ui.monitoring.tabs.TracingView;
 import org.springframework.boot.actuate.health.HealthEndpoint;
 
 @Route(value = "monitoring", layout = MainView.class)
