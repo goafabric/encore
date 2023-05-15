@@ -37,6 +37,7 @@ public class ObjectStorageLogic implements FhirLogic<ObjectEntry> {
                         .bucket(bucketName)
                         .key(objectEntry.getObjectName())
                         .contentLength(objectEntry.getObjectSize())
+                        .contentType(objectEntry.getContentType())
                         .build(),
                 RequestBody.fromBytes(objectEntry.getData()));
     }

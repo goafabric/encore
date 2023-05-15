@@ -89,7 +89,7 @@ public class DemoDataProvisioning implements CommandLineRunner {
                 .id(UUID.randomUUID().toString())
                 .objectName("hello_world.txt")
                 .objectSize("hello world".length())
-                .contentType("text")
+                .contentType("text/plain")
                 .data("hello world".getBytes())
                 .build());
 
@@ -97,7 +97,7 @@ public class DemoDataProvisioning implements CommandLineRunner {
                 .id(UUID.randomUUID().toString())
                 .objectName("top_secret.txt")
                 .objectSize("top secret".length())
-                .contentType("text")
+                .contentType("text/plain")
                 .data("top secret".getBytes())
                 .build());
     }
