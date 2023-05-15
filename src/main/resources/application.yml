@@ -29,7 +29,10 @@ security.authentication.enabled: false
 spring.security.user.name: "admin"
 spring.security.user.password: "admin"
 
+#profile
 spring.profiles.active: "mock"
+
+database.provisioning.goals: "-import-demo-data"
 
 #logging
 logging.level.root: "WARN"
