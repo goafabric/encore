@@ -1,4 +1,4 @@
-package org.goafabric.encore.crossfunctional;
+package org.goafabric.encore.xfunctional;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

@@ -1,4 +1,4 @@
-package org.goafabric.encore.crossfunctional;
+package org.goafabric.encore.xfunctional;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

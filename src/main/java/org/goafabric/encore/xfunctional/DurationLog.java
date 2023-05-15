@@ -1,4 +1,4 @@
-package org.goafabric.encore.crossfunctional;
+package org.goafabric.encore.xfunctional;
 
 
 import java.lang.annotation.*;

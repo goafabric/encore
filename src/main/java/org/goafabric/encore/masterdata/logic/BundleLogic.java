@@ -1,6 +1,6 @@
 package org.goafabric.encore.masterdata.logic;
 
-import org.goafabric.encore.crossfunctional.DurationLog;
+import org.goafabric.encore.xfunctional.DurationLog;
 import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
