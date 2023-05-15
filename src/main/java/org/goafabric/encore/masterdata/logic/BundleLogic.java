@@ -2,6 +2,8 @@ package org.goafabric.encore.masterdata.logic;
 
 import org.goafabric.encore.crossfunctional.DurationLog;
 import org.goafabric.encore.masterdata.controller.dto.Bundle;
+import org.goafabric.encore.masterdata.controller.dto.Patient;
+import org.goafabric.encore.masterdata.controller.dto.Practitioner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -11,11 +13,11 @@ import org.springframework.stereotype.Component;
 public class BundleLogic {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private final PatientLogic patientLogic;
+    private final FhirLogic<Patient> patientLogic;
 
-    private final PractitionerLogic practitionerLogic;
+    private final FhirLogic<Practitioner> practitionerLogic;
 
-    public BundleLogic(PatientLogic patientLogic, PractitionerLogic practitionerLogic) {
+    public BundleLogic(FhirLogic<Patient> patientLogic, FhirLogic<Practitioner> practitionerLogic) {
         this.patientLogic = patientLogic;
         this.practitionerLogic = practitionerLogic;
     }

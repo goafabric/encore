@@ -2,17 +2,17 @@ package org.goafabric.encore.masterdata.controller;
 
 import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
-import org.goafabric.encore.masterdata.logic.PractitionerLogic;
-import org.goafabric.encore.masterdata.persistence.mock.MockUtil;
+import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.mock.MockUtil;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "fhir/Practitioner", produces = {MediaType.APPLICATION_JSON_VALUE, "application/fhir+json"})
 public class PractitionerController {
-	private final PractitionerLogic practitionerLogic;
+	private final FhirLogic<Practitioner> practitionerLogic;
 
-	public PractitionerController(PractitionerLogic practitionerLogic) {
+	public PractitionerController(FhirLogic<Practitioner> practitionerLogic) {
 		this.practitionerLogic = practitionerLogic;
 	}
 

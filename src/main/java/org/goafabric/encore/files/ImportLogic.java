@@ -7,7 +7,6 @@ import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
 import org.goafabric.encore.masterdata.logic.FhirLogic;
-import org.goafabric.encore.masterdata.logic.OrganizationLogic;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -20,9 +19,9 @@ import java.util.List;
 public class ImportLogic {
     private final FhirLogic<Patient> patientLogic;
     private final FhirLogic<Practitioner> practitionerLogic;
-    private final OrganizationLogic organizationLogic;
+    private final FhirLogic<Organization> organizationLogic;
 
-    public ImportLogic(FhirLogic<Patient> patientLogic, FhirLogic<Practitioner> practitionerLogic, OrganizationLogic organizationLogic) {
+    public ImportLogic(FhirLogic<Patient> patientLogic, FhirLogic<Practitioner> practitionerLogic, FhirLogic<Organization> organizationLogic) {
         this.patientLogic = patientLogic;
         this.practitionerLogic = practitionerLogic;
         this.organizationLogic = organizationLogic;

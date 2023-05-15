@@ -3,8 +3,8 @@ package org.goafabric.encore.masterdata.controller;
 
 import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
-import org.goafabric.encore.masterdata.logic.PatientLogic;
-import org.goafabric.encore.masterdata.persistence.mock.MockUtil;
+import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.mock.MockUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.*;
 public class PatientController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private final PatientLogic patientLogic;
+    private final FhirLogic<Patient> patientLogic;
 
-    public PatientController(PatientLogic patientLogic) {
+    public PatientController(FhirLogic<Patient> patientLogic) {
         this.patientLogic = patientLogic;
     }
 

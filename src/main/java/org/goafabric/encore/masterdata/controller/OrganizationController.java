@@ -2,17 +2,17 @@ package org.goafabric.encore.masterdata.controller;
 
 import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
-import org.goafabric.encore.masterdata.logic.OrganizationLogic;
-import org.goafabric.encore.masterdata.persistence.mock.MockUtil;
+import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.mock.MockUtil;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "fhir/Organization", produces = {MediaType.APPLICATION_JSON_VALUE, "application/fhir+json"})
 public class OrganizationController  {
-    private final OrganizationLogic organizationLogic;
+    private final FhirLogic<Organization> organizationLogic;
 
-    public OrganizationController(OrganizationLogic organizationLogic) {
+    public OrganizationController(FhirLogic<Organization> organizationLogic) {
         this.organizationLogic = organizationLogic;
     }
 

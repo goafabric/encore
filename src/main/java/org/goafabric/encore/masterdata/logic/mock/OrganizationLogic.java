@@ -1,21 +1,21 @@
-package org.goafabric.encore.masterdata.persistence.mock;
+package org.goafabric.encore.masterdata.logic.mock;
 
 import org.goafabric.encore.masterdata.controller.dto.Organization;
-import org.goafabric.encore.masterdata.persistence.OrganizationAdapter;
+import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.goafabric.encore.masterdata.persistence.mock.MockUtil.createOrganization;
+import static org.goafabric.encore.masterdata.logic.mock.MockUtil.createOrganization;
 
 @Profile("mock")
 @Component
-public class OrganizationMockAdapter implements OrganizationAdapter {
+public class OrganizationLogic implements FhirLogic<Organization> {
     private final List<Organization> organizations = new ArrayList<>();
 
-    public OrganizationMockAdapter() {
+    public OrganizationLogic() {
         organizations.add(createOrganization());
     }
 

@@ -3,9 +3,13 @@ package org.goafabric.encore.masterdata.logic;
 import java.util.List;
 
 public interface FhirLogic<T> {
-    List<T> search(String search);
 
     void create(T t);
 
+    void delete(String id);
     void deleteAll();
+
+    T getById(String id);
+
+    List<T> search(String search);
 }

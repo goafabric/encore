@@ -1,4 +1,4 @@
-package org.goafabric.encore.masterdata.persistence.mock;
+package org.goafabric.encore.masterdata.logic.mock;
 
 import org.goafabric.encore.masterdata.controller.dto.*;
 import org.goafabric.encore.masterdata.controller.dto.types.AdressUse;

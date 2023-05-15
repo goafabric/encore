@@ -34,8 +34,18 @@ public class InsuranceCatalogLogic implements FhirLogic<Insurance> {
     }
 
     @Override
+    public void delete(String id) {
+
+    }
+
+    @Override
     public void deleteAll() {
 
+    }
+
+    @Override
+    public Insurance getById(String id) {
+        return null;
     }
 
     private static List<String> loadFile(String fileName)  {
