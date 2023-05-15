@@ -24,12 +24,6 @@ public class FilesView extends VerticalLayout {
 
         tabSheet.add("Archive", new ArchiveView(archiveLogic));
         tabSheet.add("Import & Export", new ImportExportView(importLogic, exportLogic));
-        /*
-        tabSheet.add("Patient", new PatientView(patientLogic));
-        tabSheet.add("Practitioner", new PractitionerView(practitionerLogic));
-        tabSheet.add("Organization", new OrganizationView(organizationLogic));
-
-         */
 
         add(tabSheet);
     }
