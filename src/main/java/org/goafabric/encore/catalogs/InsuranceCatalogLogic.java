@@ -16,17 +16,6 @@ public class InsuranceCatalogLogic implements FhirLogic<Insurance> {
         insurances = readInsurances();
     }
 
-    private List<Insurance> readInsurances() {
-        List<String> lines = loadFile("catalogs/insurance_pkv.csv");
-
-        return lines.stream().map(line -> Insurance.builder()
-                .code(line.split(";")[0]).display(line.split(";")[1]).reference(line.split(";")[2])
-                .build()).toList();
-    }
-
-    public List<Insurance> search(String display) {
-        return insurances.stream().filter(i -> i.getDisplay().toLowerCase().startsWith(display.toLowerCase())).toList();
-    }
 
     @Override
     public void create(Insurance insurance) {
@@ -35,17 +24,21 @@ public class InsuranceCatalogLogic implements FhirLogic<Insurance> {
 
     @Override
     public void delete(String id) {
-
+        throw new IllegalStateException("NYI");
     }
 
     @Override
     public void deleteAll() {
-
+        insurances.clear();
     }
 
     @Override
     public Insurance getById(String id) {
-        return null;
+        throw new IllegalStateException("NYI");
+    }
+
+    public List<Insurance> search(String display) {
+        return insurances.stream().filter(i -> i.getDisplay().toLowerCase().startsWith(display.toLowerCase())).toList();
     }
 
     private static List<String> loadFile(String fileName)  {
@@ -55,6 +48,14 @@ public class InsuranceCatalogLogic implements FhirLogic<Insurance> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private List<Insurance> readInsurances() {
+        List<String> lines = loadFile("catalogs/insurance_pkv.csv");
+
+        return lines.stream().map(line -> Insurance.builder()
+                .code(line.split(";")[0]).display(line.split(";")[1]).reference(line.split(";")[2])
+                .build()).toList();
     }
 
 }

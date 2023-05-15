@@ -12,20 +12,9 @@ import java.util.List;
 @Component
 public class DiagnosisCatalogLogic implements FhirLogic<Diagnosis> {
     final List<Diagnosis> diagnosis;
+
     public DiagnosisCatalogLogic() {
         diagnosis = readDiagnosiss();
-    }
-
-    private List<Diagnosis> readDiagnosiss() {
-        List<String> lines = loadFile("catalogs/icd10.csv");
-
-        return lines.stream().map(line -> Diagnosis.builder()
-                .code(line.split(";")[0]).display(line.split(";")[1]).reference(line.split(";")[2])
-                .build()).toList();
-    }
-
-    public List<Diagnosis> search(String display) {
-        return diagnosis.stream().filter(i -> i.getDisplay().toLowerCase().startsWith(display.toLowerCase())).toList();
     }
 
     @Override
@@ -35,17 +24,30 @@ public class DiagnosisCatalogLogic implements FhirLogic<Diagnosis> {
 
     @Override
     public void delete(String id) {
-
+        throw new IllegalStateException("NYI");
     }
 
     @Override
     public void deleteAll() {
-
+        diagnosis.clear();
     }
 
     @Override
     public Diagnosis getById(String id) {
-        return null;
+        throw new IllegalStateException("NYI");
+    }
+
+    public List<Diagnosis> search(String display) {
+        return diagnosis.stream().filter(i -> i.getDisplay().toLowerCase().startsWith(display.toLowerCase())).toList();
+    }
+
+
+    private List<Diagnosis> readDiagnosiss() {
+        List<String> lines = loadFile("catalogs/icd10.csv");
+
+        return lines.stream().map(line -> Diagnosis.builder()
+                .code(line.split(";")[0]).display(line.split(";")[1]).reference(line.split(";")[2])
+                .build()).toList();
     }
 
     private static List<String> loadFile(String fileName)  {
