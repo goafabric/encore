@@ -34,15 +34,13 @@ public class OrganizationLogic implements FhirLogic<Organization> {
         organizations.clear();
     }
 
-    public List<Organization> search(String name) {
-        return organizations.stream().filter(organization ->
-                                organization.getName().toLowerCase().startsWith(name.toLowerCase())).toList();
-    }
-
     public Organization getById(String id) {
         return organizations.get(0);
     }
 
-
+    public List<Organization> search(String name) {
+        return organizations.stream().filter(organization ->
+                organization.getName().toLowerCase().startsWith(name.toLowerCase())).toList();
+    }
 
 }

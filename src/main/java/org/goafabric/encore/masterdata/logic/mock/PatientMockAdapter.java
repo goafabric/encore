@@ -56,7 +56,5 @@ public class PatientMockAdapter implements FhirLogic<Patient> {
         return patients.stream().filter(patient ->
                 patient.getName().get(0).getFamily().toLowerCase().startsWith(lastName.toLowerCase())).toList();
     }
-    
-
 
 }
