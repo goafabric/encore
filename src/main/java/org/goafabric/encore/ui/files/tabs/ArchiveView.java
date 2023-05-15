@@ -42,8 +42,8 @@ public class ArchiveView extends GridView<ObjectEntry> {
 
     @Override
     protected void addColumns(Grid<ObjectEntry> grid) {
-        grid.addColumn(o -> o.getObjectName()).setHeader("Name");
-        grid.addColumn(o -> o.getContentType()).setHeader("Type");
-        grid.addColumn(o -> o.getObjectSize()).setHeader("Size");
+        grid.addColumn(ObjectEntry::getObjectName).setHeader("Name");
+        grid.addColumn(ObjectEntry::getContentType).setHeader("Type");
+        grid.addColumn(ObjectEntry::getObjectSize).setHeader("Size");
     }
 }
