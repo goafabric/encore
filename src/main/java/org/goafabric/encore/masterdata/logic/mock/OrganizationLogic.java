@@ -8,15 +8,12 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.goafabric.encore.masterdata.logic.mock.MockUtil.createOrganization;
-
 @Profile("mock")
 @Component
 public class OrganizationLogic implements FhirLogic<Organization> {
     private final List<Organization> organizations = new ArrayList<>();
 
     public OrganizationLogic() {
-        organizations.add(createOrganization());
     }
 
     @Override
@@ -26,7 +23,7 @@ public class OrganizationLogic implements FhirLogic<Organization> {
 
     @Override
     public void delete(String id) {
-
+        //throw new IllegalStateException("NYI");
     }
 
     @Override

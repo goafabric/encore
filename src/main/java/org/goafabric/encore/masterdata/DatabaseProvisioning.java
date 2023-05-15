@@ -6,6 +6,7 @@ import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
 import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.mock.MockUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -52,15 +53,27 @@ public class DatabaseProvisioning implements CommandLineRunner {
     }
 
     private void importDemoData() {
+
+        createPatientData();
+        createPractitionerData();
+        createOrganization();
+    }
+
+    private void createPatientData() {
         Faker faker = new Faker();
-
-        patientLogic.create(createPatient("Homer", "Simpson", "Evergreen Terrace 742", "0245-33553"));
-
+        patientLogic.create(MockUtil.createPatient("Homer", "Simpson", "Evergreen Terrace 742", "0245-33553"));
         IntStream.range(0, 50).forEach(i -> patientLogic.create(
                 createPatient(faker.name().firstName(), faker.name().lastName(), faker.simpsons().location(), "0245-43553")
         ));
+    }
 
-
+    private void createPractitionerData() {
+        practitionerLogic.create(MockUtil.createPractitioner("Dr Julius", "Hibbert", "Commonstreet 345", "555-520"));
+        practitionerLogic.create(MockUtil.createPractitioner("Dr Marvin", "Monroe", "Psychestreet 104", "555-525"));
+        practitionerLogic.create(MockUtil.createPractitioner("Dr Nick", "Riveria", "Nickstreet 221", "555-501"));
+    }
+    private void createOrganization() {
+        organizationLogic.create(MockUtil.createOrganization());
     }
 
 

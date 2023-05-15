@@ -27,7 +27,7 @@ public class PatientLogic implements FhirLogic<Patient> {
 
     @Override
     public void delete(String id) {
-        log.info("deleting patient" + id);
+        //throw new IllegalStateException("NYI");
     }
 
     @Override

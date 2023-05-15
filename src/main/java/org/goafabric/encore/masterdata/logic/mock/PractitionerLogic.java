@@ -31,7 +31,7 @@ public class PractitionerLogic implements FhirLogic<Practitioner> {
 
     @Override
     public void delete(String id) {
-        log.info("deleting practitioner " + id);
+        //throw new IllegalStateException("NYI");
     }
 
     @Override
