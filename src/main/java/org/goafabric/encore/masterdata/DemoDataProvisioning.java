@@ -2,6 +2,7 @@ package org.goafabric.encore.masterdata;
 
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
+import org.goafabric.encore.archive.dto.ObjectEntry;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
@@ -13,6 +14,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
 import java.util.stream.IntStream;
 
 import static org.goafabric.encore.masterdata.logic.mock.MockUtil.createPatient;
@@ -27,15 +29,18 @@ public class DemoDataProvisioning implements CommandLineRunner {
     private final FhirLogic<Patient> patientLogic;
     private final FhirLogic<Practitioner> practitionerLogic;
     private final FhirLogic<Organization> organizationLogic;
+    private final FhirLogic<ObjectEntry> archiveLogic;
 
 
     public DemoDataProvisioning(
             ApplicationContext applcationContext,
-            FhirLogic<Patient> patientLogic, FhirLogic<Practitioner> practitionerLogic, FhirLogic<Organization> organizationLogic) {
+            FhirLogic<Patient> patientLogic, FhirLogic<Practitioner> practitionerLogic, FhirLogic<Organization> organizationLogic
+            ,FhirLogic<ObjectEntry> archiveLogic) {
         this.applicationContext = applcationContext;
         this.patientLogic = patientLogic;
         this.practitionerLogic = practitionerLogic;
         this.organizationLogic = organizationLogic;
+        this.archiveLogic = archiveLogic;
     }
 
     @Override
@@ -57,6 +62,8 @@ public class DemoDataProvisioning implements CommandLineRunner {
         createPatientData();
         createPractitionerData();
         createOrganization();
+
+        createArchiveFiles();
     }
 
     private void createPatientData() {
@@ -72,9 +79,27 @@ public class DemoDataProvisioning implements CommandLineRunner {
         practitionerLogic.create(MockUtil.createPractitioner("Dr Marvin", "Monroe", "Psychestreet 104", "555-525"));
         practitionerLogic.create(MockUtil.createPractitioner("Dr Nick", "Riveria", "Nickstreet 221", "555-501"));
     }
+
     private void createOrganization() {
         organizationLogic.create(MockUtil.createOrganization());
     }
 
+    private void createArchiveFiles() {
+        archiveLogic.create(ObjectEntry.builder()
+                .id(UUID.randomUUID().toString())
+                .objectName("hello_world.txt")
+                .objectSize("hello world".length())
+                .contentType("text")
+                .data("hello world".getBytes())
+                .build());
+
+        archiveLogic.create(ObjectEntry.builder()
+                .id(UUID.randomUUID().toString())
+                .objectName("top_secret.txt")
+                .objectSize("top secret".length())
+                .contentType("text")
+                .data("top secret".getBytes())
+                .build());
+    }
 
 }

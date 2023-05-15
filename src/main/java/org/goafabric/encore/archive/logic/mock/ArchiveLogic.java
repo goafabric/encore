@@ -7,30 +7,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Component
 @Profile("mock")
 public class ArchiveLogic implements FhirLogic<ObjectEntry> {
     private final List<ObjectEntry> objectEntries = new ArrayList<>();
-
-    public ArchiveLogic() {
-        create(ObjectEntry.builder()
-                .id(UUID.randomUUID().toString())
-                .objectName("hello_world.txt")
-                .objectSize("hello world".length())
-                .contentType("text")
-                .data("hello world".getBytes())
-                .build());
-
-        create(ObjectEntry.builder()
-                .id(UUID.randomUUID().toString())
-                .objectName("top_secret.txt")
-                .objectSize("top secret".length())
-                .contentType("text")
-                .data("top secret".getBytes())
-                .build());
-    }
 
     @Override
     public void create(ObjectEntry objectEntry) {
