@@ -16,13 +16,13 @@ import org.goafabric.encore.ui.files.tabs.ImportExportView;
 @PageTitle("Files")
 public class FilesView extends VerticalLayout {
 
-    public FilesView(FhirLogic<ObjectEntry> archiveLogic, ImportLogic importLogic, ExportLogic exportLogic) {
+    public FilesView(FhirLogic<ObjectEntry> objectStorageLogic, ImportLogic importLogic, ExportLogic exportLogic) {
         this.setSizeFull();
 
         TabSheet tabSheet = new TabSheet();
         tabSheet.setSizeFull();
 
-        tabSheet.add("Archive", new ArchiveView(archiveLogic));
+        tabSheet.add("Archive", new ArchiveView(objectStorageLogic));
         tabSheet.add("Import & Export", new ImportExportView(importLogic, exportLogic));
 
         add(tabSheet);
