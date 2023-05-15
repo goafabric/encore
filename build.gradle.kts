@@ -46,7 +46,6 @@ dependencies {
 
 	implementation("io.micrometer:micrometer-tracing-bridge-brave")
 	implementation("io.zipkin.reporter2:zipkin-reporter-brave")
-
 	//implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui")
 
 	//crosscuting
@@ -57,16 +56,19 @@ dependencies {
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
 
-	//test
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:6.4.4")
-	testImplementation("ca.uhn.hapi.fhir:hapi-fhir-structures-r4:6.4.4")
+	//s3
+	implementation("io.awspring.cloud:spring-cloud-aws-starter-s3:3.0.1")
+
 
 	//vaadin
 	implementation("com.vaadin:vaadin-spring-boot-starter:24.0.5")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-
 	implementation("net.datafaker:datafaker:1.8.1") { exclude("org.yaml", "snakeyaml") }
+
+	//test
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:6.4.4")
+	testImplementation("ca.uhn.hapi.fhir:hapi-fhir-structures-r4:6.4.4")
 }
 
 tasks.withType<Test> {

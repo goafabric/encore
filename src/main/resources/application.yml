@@ -29,9 +29,17 @@ security.authentication.enabled: false
 spring.security.user.name: "admin"
 spring.security.user.password: "admin"
 
+#s3
+spring.cloud.aws.s3.enabled: "false"
+spring.cloud.aws.s3.path-style-access-enabled: "true"
+spring.cloud.aws.s3.endpoint: "http://localhost:9100"
+spring.cloud.aws.credentials.access-key: "minioadmin"
+spring.cloud.aws.credentials.secret-key: "minioadmin"
+spring.cloud.aws.region.static: "eu"
+
+
 #profile
 spring.profiles.active: "mock"
-
 database.provisioning.goals: "-import-demo-data -import-catalog-data"
 
 #logging
