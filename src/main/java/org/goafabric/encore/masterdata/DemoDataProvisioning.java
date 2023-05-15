@@ -19,7 +19,7 @@ import static org.goafabric.encore.masterdata.logic.mock.MockUtil.createPatient;
 
 @Component
 @Slf4j
-public class DatabaseProvisioning implements CommandLineRunner {
+public class DemoDataProvisioning implements CommandLineRunner {
     @Value("${database.provisioning.goals:}")
     String goals;
 
@@ -29,7 +29,7 @@ public class DatabaseProvisioning implements CommandLineRunner {
     private final FhirLogic<Organization> organizationLogic;
 
 
-    public DatabaseProvisioning(
+    public DemoDataProvisioning(
             ApplicationContext applcationContext,
             FhirLogic<Patient> patientLogic, FhirLogic<Practitioner> practitionerLogic, FhirLogic<Organization> organizationLogic) {
         this.applicationContext = applcationContext;

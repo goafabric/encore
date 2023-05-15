@@ -32,7 +32,7 @@ spring.security.user.password: "admin"
 #profile
 spring.profiles.active: "mock"
 
-database.provisioning.goals: "-import-demo-data"
+database.provisioning.goals: "-import-demo-data -import-catalog-data"
 
 #logging
 logging.level.root: "WARN"

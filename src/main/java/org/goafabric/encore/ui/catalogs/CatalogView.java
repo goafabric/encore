@@ -4,8 +4,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import org.goafabric.encore.catalogs.DiagnosisCatalogLogic;
-import org.goafabric.encore.catalogs.InsuranceCatalogLogic;
+import org.goafabric.encore.catalogs.logic.DiagnosisCatalogLogic;
+import org.goafabric.encore.catalogs.logic.InsuranceCatalogLogic;
 import org.goafabric.encore.ui.MainView;
 
 @Route(value = "catalogs", layout = MainView.class)

@@ -1,4 +1,4 @@
-package org.goafabric.encore.catalogs;
+package org.goafabric.encore.catalogs.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Insurance {
+public class Diagnosis {
     private String code;
     private String display;
     private String reference;

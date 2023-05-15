@@ -2,7 +2,7 @@ package org.goafabric.encore.ui.catalogs;
 
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.router.PageTitle;
-import org.goafabric.encore.catalogs.Diagnosis;
+import org.goafabric.encore.catalogs.dto.Diagnosis;
 import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.goafabric.encore.ui.GridView;
 
