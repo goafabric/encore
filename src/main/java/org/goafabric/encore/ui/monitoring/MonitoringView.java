@@ -8,19 +8,20 @@ import org.goafabric.encore.ui.MainView;
 import org.goafabric.encore.ui.monitoring.tabs.FhirView;
 import org.goafabric.encore.ui.monitoring.tabs.HealthView;
 import org.goafabric.encore.ui.monitoring.tabs.TracingView;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.health.HealthEndpoint;
 
 @Route(value = "monitoring", layout = MainView.class)
 @PageTitle("Monitoring")
 public class MonitoringView extends VerticalLayout {
 
-    public MonitoringView(HealthEndpoint healthEndpoint) {
+    public MonitoringView(HealthEndpoint healthEndpoint, @Value("${spring.cloud.aws.s3.endpoint:}") String s3Endpoint) {
         this.setSizeFull();
 
         TabSheet tabSheet = new TabSheet();
         tabSheet.setSizeFull();
 
-        tabSheet.add("Health", new HealthView(healthEndpoint));
+        tabSheet.add("Health", new HealthView(healthEndpoint, s3Endpoint));
 
         tabSheet.add("FHIR", new FhirView());
 
