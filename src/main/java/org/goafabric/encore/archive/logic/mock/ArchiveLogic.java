@@ -54,6 +54,7 @@ public class ArchiveLogic implements FhirLogic<ObjectEntry> {
 
     @Override
     public List<ObjectEntry> search(String search) {
-        return objectEntries;
+        return objectEntries.stream()
+                .filter(o -> o.getObjectName().toLowerCase().startsWith(search.toLowerCase())).toList();
     }
 }

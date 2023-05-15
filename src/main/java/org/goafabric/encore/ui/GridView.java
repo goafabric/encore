@@ -43,9 +43,12 @@ public abstract class GridView<T> extends VerticalLayout {
 
     protected abstract void addColumns(Grid<T> grid);
 
-    private void updateList() {
+    protected void updateList() {
         grid.setItems(logic.search(filterText.getValue()));
     }
 
+    protected FhirLogic<T> getLogic() {
+        return logic;
+    }
 
 }
