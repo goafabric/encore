@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ObjectEntry {
-    public String id;
+    private String id;
 
-    public String objectName;
+    private String objectName;
 
-    public String contentType;
+    private String contentType;
 
-    public long objectSize;
+    private long objectSize;
 
-    public byte[] data;
+    private byte[] data;
 }

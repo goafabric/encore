@@ -1,16 +1,14 @@
 package org.goafabric.encore.objectstorage.logic.mock;
 
-import org.goafabric.encore.objectstorage.dto.ObjectEntry;
 import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.objectstorage.dto.ObjectEntry;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@Profile("mock")
 @ConditionalOnProperty(value = "spring.cloud.aws.s3.enabled", havingValue = "false")
 public class ObjectStorageLogic implements FhirLogic<ObjectEntry> {
     private final List<ObjectEntry> objectEntries = new ArrayList<>();
