@@ -1,4 +1,4 @@
-package org.goafabric.encore.ui.practice.tabs;
+package org.goafabric.encore.ui.patient.practice.tabs;
 
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.router.PageTitle;

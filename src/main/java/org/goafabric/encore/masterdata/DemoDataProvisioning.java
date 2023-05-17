@@ -2,12 +2,13 @@ package org.goafabric.encore.masterdata;
 
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
-import org.goafabric.encore.objectstorage.dto.ObjectEntry;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
 import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.goafabric.encore.masterdata.logic.mock.MockUtil;
+import org.goafabric.encore.objectstorage.dto.ObjectEntry;
+import org.goafabric.encore.security.dto.Role;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,17 +31,19 @@ public class DemoDataProvisioning implements CommandLineRunner {
     private final FhirLogic<Practitioner> practitionerLogic;
     private final FhirLogic<Organization> organizationLogic;
     private final FhirLogic<ObjectEntry> archiveLogic;
+    private final FhirLogic<Role> rolesLogic;
 
 
     public DemoDataProvisioning(
             ApplicationContext applcationContext,
             FhirLogic<Patient> patientLogic, FhirLogic<Practitioner> practitionerLogic, FhirLogic<Organization> organizationLogic
-            ,FhirLogic<ObjectEntry> archiveLogic) {
+            , FhirLogic<ObjectEntry> archiveLogic, FhirLogic<Role> rolesLogic) {
         this.applicationContext = applcationContext;
         this.patientLogic = patientLogic;
         this.practitionerLogic = practitionerLogic;
         this.organizationLogic = organizationLogic;
         this.archiveLogic = archiveLogic;
+        this.rolesLogic = rolesLogic;
     }
 
     @Override
@@ -60,11 +63,15 @@ public class DemoDataProvisioning implements CommandLineRunner {
     private void importDemoData() {
 
         createPatientData();
+
         createPractitionerData();
         createOrganization();
 
+        createRoles();
+
         createArchiveFiles();
     }
+
 
     private void createPatientData() {
         Faker faker = new Faker();
@@ -78,6 +85,11 @@ public class DemoDataProvisioning implements CommandLineRunner {
         practitionerLogic.create(MockUtil.createPractitioner("Dr Julius", "Hibbert", "Commonstreet 345", "555-520"));
         practitionerLogic.create(MockUtil.createPractitioner("Dr Marvin", "Monroe", "Psychestreet 104", "555-525"));
         practitionerLogic.create(MockUtil.createPractitioner("Dr Nick", "Riveria", "Nickstreet 221", "555-501"));
+    }
+
+    private void createRoles() {
+        rolesLogic.create(Role.builder().role("admin").build());
+        rolesLogic.create(Role.builder().role("user").build());
     }
 
     private void createOrganization() {
