@@ -1,19 +1,18 @@
-package org.goafabric.encore.catalogs.logic;
+package org.goafabric.encore.catalogs.logic.mock;
 
 import org.goafabric.encore.catalogs.dto.Diagnosis;
 import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.goafabric.encore.xfunctional.DurationLog;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Profile("mock")
 @Component
 public class DiagnosisCatalogLogic implements FhirLogic<Diagnosis> {
     final List<Diagnosis> diagnosis = new ArrayList<>();
-
-    public DiagnosisCatalogLogic() {
-    }
 
     @Override
     public void create(Diagnosis diagnosis) {

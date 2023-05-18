@@ -1,6 +1,6 @@
 package org.goafabric.encore.masterdata.controller;
 
-import org.goafabric.encore.catalogs.logic.DiagnosisCatalogLogic;
+import org.goafabric.encore.catalogs.logic.mock.DiagnosisCatalogLogic;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
