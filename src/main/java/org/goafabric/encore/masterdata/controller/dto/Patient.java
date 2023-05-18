@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -22,6 +23,8 @@ public class Patient {
     @Id
     private String id;
     public Meta meta;
+
+    @Transient
     private final String resourceType = "Patient";
 
     private String gender;
