@@ -29,6 +29,9 @@ security.authentication.enabled: false
 spring.security.user.name: "admin"
 spring.security.user.password: "admin"
 
+#persistence
+de.flapdoodle.mongodb.embedded.version: 6.0.4
+
 #s3
 spring.cloud.aws.s3.enabled: "false"
 spring.cloud.aws.s3.path-style-access-enabled: "true"
@@ -39,7 +42,7 @@ spring.cloud.aws.region.static: "eu"
 
 
 #profile
-spring.profiles.active: "mock"
+spring.profiles.active: "mongodb" #"mock"
 database.provisioning.goals: "-import-demo-data -import-catalog-data"
 
 #logging
