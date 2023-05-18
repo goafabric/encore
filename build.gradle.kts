@@ -59,6 +59,9 @@ dependencies {
 	//s3
 	implementation("io.awspring.cloud:spring-cloud-aws-starter-s3:3.0.1")
 
+	//persistence
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+	developmentOnly("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
 
 	//vaadin
 	implementation("com.vaadin:vaadin-spring-boot-starter:24.0.5")

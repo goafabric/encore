@@ -2,13 +2,12 @@ package org.goafabric.encore.security.logic.mock;
 
 import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.goafabric.encore.security.dto.Role;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Profile("mock")
+//@Profile("mock")
 @Component
 public class RolesLogic implements FhirLogic<Role> {
     private List<Role> roles = new ArrayList<>();
