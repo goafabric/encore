@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Profile("mongodb")
@@ -40,7 +39,8 @@ public class PatientLogic implements FhirLogic<Patient> {
 
     @Override
     public List<Patient> search(String search) {
-        return StreamSupport.stream(repository.findAll().spliterator(), false)
-                .collect(Collectors.toList());
+        var patients =  StreamSupport.stream(repository.findAll().spliterator(), false).toList();
+        return patients.stream().filter(patient ->
+                patient.getName().get(0).getFamily().toLowerCase().startsWith(search.toLowerCase())).toList();
     }
 }

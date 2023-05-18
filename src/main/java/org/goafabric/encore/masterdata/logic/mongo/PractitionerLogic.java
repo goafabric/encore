@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Profile("mongodb")
@@ -40,7 +39,9 @@ public class PractitionerLogic implements FhirLogic<Practitioner> {
 
     @Override
     public List<Practitioner> search(String search) {
-        return StreamSupport.stream(repository.findAll().spliterator(), false)
-                .collect(Collectors.toList());
+        var practitioners =  StreamSupport.stream(repository.findAll().spliterator(), false).toList();
+        return practitioners.stream().filter(p ->
+                p.getName().get(0).getFamily().toLowerCase().startsWith(search.toLowerCase())).toList();
+
     }
 }
