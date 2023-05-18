@@ -20,7 +20,7 @@ public class Practitioner {
     @Id
     private String id;
     public Meta meta;
-    private String resourceType = "Practitioner";
+    private final String resourceType = "Practitioner";
 
     public Boolean active;
     private String gender;

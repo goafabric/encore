@@ -14,10 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 public class Organization {
 
-
     private String id;
     public Meta meta;
-    private String resourceType = "Organization";
+    private final String resourceType = "Organization";
 
     public Boolean active;
     private String name;

@@ -22,7 +22,7 @@ public class Patient {
     @Id
     private String id;
     public Meta meta;
-    private String resourceType = "Patient";
+    private final String resourceType = "Patient";
 
     private String gender;
     private String birthDate;
