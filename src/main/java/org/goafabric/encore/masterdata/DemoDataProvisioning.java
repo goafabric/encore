@@ -88,8 +88,9 @@ public class DemoDataProvisioning implements CommandLineRunner {
     }
 
     private void createRoles() {
-        rolesLogic.create(Role.builder().role("admin").build());
-        rolesLogic.create(Role.builder().role("user").build());
+        rolesLogic.create(Role.builder().role("Administrator").build());
+        rolesLogic.create(Role.builder().role("Practitioner").build());
+        rolesLogic.create(Role.builder().role("Assistant").build());
     }
 
     private void createOrganization() {
