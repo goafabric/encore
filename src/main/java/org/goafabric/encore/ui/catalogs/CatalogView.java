@@ -4,8 +4,9 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import org.goafabric.encore.catalogs.logic.mock.DiagnosisCatalogLogic;
-import org.goafabric.encore.catalogs.logic.mock.InsuranceCatalogLogic;
+import org.goafabric.encore.catalogs.dto.Diagnosis;
+import org.goafabric.encore.catalogs.dto.Insurance;
+import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.goafabric.encore.ui.MainView;
 import org.goafabric.encore.ui.catalogs.tabs.DiagnosisView;
 import org.goafabric.encore.ui.catalogs.tabs.InsuranceVIew;
@@ -14,13 +15,13 @@ import org.goafabric.encore.ui.catalogs.tabs.InsuranceVIew;
 @PageTitle("Catalogs")
 public class CatalogView extends VerticalLayout {
 
-    public CatalogView(InsuranceCatalogLogic coverageLogic, DiagnosisCatalogLogic diagnosisCatalogLogic) {
+    public CatalogView(FhirLogic<Insurance> insuranceLogic, FhirLogic<Diagnosis> diagnosisCatalogLogic) {
         this.setSizeFull();
 
         TabSheet tabSheet = new TabSheet();
         tabSheet.setSizeFull();
 
-        tabSheet.add("Insurance", new InsuranceVIew(coverageLogic));
+        tabSheet.add("Insurance", new InsuranceVIew(insuranceLogic));
         tabSheet.add("Diagnosis", new DiagnosisView(diagnosisCatalogLogic));
 
         add(tabSheet);

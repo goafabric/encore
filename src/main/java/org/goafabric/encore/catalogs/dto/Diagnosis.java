@@ -4,11 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Document("diagnosis")
 public class Diagnosis {
     private String code;
     private String display;

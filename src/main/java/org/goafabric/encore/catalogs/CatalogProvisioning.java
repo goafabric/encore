@@ -3,8 +3,7 @@ package org.goafabric.encore.catalogs;
 import lombok.extern.slf4j.Slf4j;
 import org.goafabric.encore.catalogs.dto.Diagnosis;
 import org.goafabric.encore.catalogs.dto.Insurance;
-import org.goafabric.encore.catalogs.logic.mock.DiagnosisCatalogLogic;
-import org.goafabric.encore.catalogs.logic.mock.InsuranceCatalogLogic;
+import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,11 +23,11 @@ public class CatalogProvisioning implements CommandLineRunner {
     String goals;
 
     private final ApplicationContext applicationContext;
-    private final DiagnosisCatalogLogic diagnosisCatalogLogic;
-    private final InsuranceCatalogLogic insuranceCatalogLogic;
+    private final FhirLogic<Diagnosis> diagnosisCatalogLogic;
+    private final FhirLogic<Insurance> insuranceCatalogLogic;
 
     public CatalogProvisioning(ApplicationContext applicationContext,
-                               DiagnosisCatalogLogic diagnosisCatalogLogic, InsuranceCatalogLogic insuranceCatalogLogic) {
+                               FhirLogic<Diagnosis> diagnosisCatalogLogic, FhirLogic<Insurance> insuranceCatalogLogic) {
         this.applicationContext = applicationContext;
         this.diagnosisCatalogLogic = diagnosisCatalogLogic;
         this.insuranceCatalogLogic = insuranceCatalogLogic;
