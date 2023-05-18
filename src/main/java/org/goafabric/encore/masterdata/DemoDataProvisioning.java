@@ -47,7 +47,9 @@ public class DemoDataProvisioning implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
+        if ((args.length > 0) && ("-check-integrity".equals(args[0]))) { return; }
+
         if (goals.contains("-import-demo-data")) {
             log.info("Importing demo data ...");
             importDemoData();

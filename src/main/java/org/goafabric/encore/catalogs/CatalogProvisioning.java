@@ -36,6 +36,8 @@ public class CatalogProvisioning implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        if ((args.length > 0) && ("-check-integrity".equals(args[0]))) { return; }
+
         if (goals.contains("-import-catalog-data")) {
             log.info("Importing catalog data ...");
             importDemoData();
