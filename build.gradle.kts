@@ -61,7 +61,9 @@ dependencies {
 
 	//persistence
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-	developmentOnly("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
+	if (!gradle.startParameter.taskNames.contains("nativeCompile") && (!gradle.startParameter.taskNames.contains("dockerImageNative"))) {
+		developmentOnly("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
+	}
 
 	//vaadin
 	implementation("com.vaadin:vaadin-spring-boot-starter:24.0.5")
