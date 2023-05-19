@@ -1,7 +1,7 @@
 
 package org.goafabric.encore.masterdata.persistence.bo;
 
-import com.vaadin.flow.component.template.Id;
+import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,12 +13,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document("telecom")
+//@Entity @Table(name = "telecom")
+@Embeddable
 public class TelecomBo {
-    @Id
+    /*
+    @org.springframework.data.annotation.Id
+    @jakarta.persistence.Id @GeneratedValue(generator = "uuid") @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
-    private String system;
-    private String value;
-    private String use;
+     */
 
+    private String system;
+    private String tvalue;
+    private String use;
 }

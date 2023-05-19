@@ -8,11 +8,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Profile("mongodb")
+@Profile({"mongodb", "jpa"})
 @Component
+@Transactional
 public class OrganizationLogic implements CrudLogic<Organization> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
     interface BoMapper {

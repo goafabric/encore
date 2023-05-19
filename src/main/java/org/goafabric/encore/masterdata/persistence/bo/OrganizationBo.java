@@ -1,13 +1,14 @@
 
 package org.goafabric.encore.masterdata.persistence.bo;
 
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.goafabric.encore.masterdata.controller.dto.Address;
-import org.goafabric.encore.masterdata.controller.dto.Telecom;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document("organization")
-//@Entity @Table(name = "organization")
+@Entity @Table(name = "organization")
 public class OrganizationBo {
 
     @org.springframework.data.annotation.Id
@@ -28,7 +29,10 @@ public class OrganizationBo {
     public Boolean active;
     private String name;
 
-    private List<Telecom> telecom;
-    private List<Address> address;
+    @ElementCollection
+    private List<TelecomBo> telecom;
+
+    @ElementCollection
+    private List<AddressBo> address;
 
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Profile({"mock", "jpa"})
+@Profile({"mock"})
 @Component
 public class OrganizationLogic implements CrudLogic<Organization> {
     private final List<Organization> organizations = new ArrayList<>();

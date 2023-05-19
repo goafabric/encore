@@ -6,9 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.goafabric.encore.masterdata.controller.dto.Address;
 import org.goafabric.encore.masterdata.controller.dto.HumanName;
-import org.goafabric.encore.masterdata.controller.dto.Telecom;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -28,7 +26,7 @@ public class PractitionerBo {
     private String birthDate;
 
     private List<HumanName> name;
-    private List<Telecom> telecom;
-    private List<Address> address;
+    private List<TelecomBo> telecom;
+    private List<AddressBo> address;
 
 }
