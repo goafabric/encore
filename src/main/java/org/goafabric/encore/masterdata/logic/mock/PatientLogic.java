@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.goafabric.encore.masterdata.logic.mock.MockUtil.createPatient;
 
-@Profile("mock")
+@Profile({"mock", "jpa"})
 @Component
 public class PatientLogic implements CrudLogic<Patient> {
     private final Logger log = LoggerFactory.getLogger(this.getClass());

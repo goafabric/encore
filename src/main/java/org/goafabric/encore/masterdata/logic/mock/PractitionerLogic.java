@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Profile("mock")
+@Profile({"mock", "jpa"})
 @Component
 public class PractitionerLogic implements CrudLogic<Practitioner> {
     private final Logger log = LoggerFactory.getLogger(this.getClass());

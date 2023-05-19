@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Profile("mongodb")
+@Profile({"mongodb", "jpa"})
 @Component
 public class DiagnosisCatalogLogic implements CrudLogic<Diagnosis> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
