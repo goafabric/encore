@@ -2,8 +2,10 @@ package org.goafabric.encore.catalogs.logic.mongo;
 
 import org.goafabric.encore.catalogs.dto.Insurance;
 import org.goafabric.encore.catalogs.repository.InsuranceRepository;
+import org.goafabric.encore.catalogs.repository.bo.InsuranceBo;
 import org.goafabric.encore.masterdata.logic.CrudLogic;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -12,12 +14,24 @@ import java.util.List;
 @Profile("mongodb")
 @Component
 public class InsuranceCatalogLogic implements CrudLogic<Insurance> {
-    @Autowired
+    @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+    interface BoMapper {
+        Insurance map(InsuranceBo o);
+        InsuranceBo map(Insurance o);
+        List<Insurance> map(List<InsuranceBo> l);
+    }
+
+    private BoMapper mapper;
     private InsuranceRepository repository;
-    
+
+    public InsuranceCatalogLogic(BoMapper mapper, InsuranceRepository repository) {
+        this.mapper = mapper;
+        this.repository = repository;
+    }
+
     @Override
     public void create(Insurance Insurance) {
-        repository.save(Insurance);    
+        repository.save(mapper.map(Insurance));
     }
 
     @Override
@@ -32,11 +46,11 @@ public class InsuranceCatalogLogic implements CrudLogic<Insurance> {
 
     @Override
     public Insurance getById(String id) {
-        return repository.findById(id).get();
+        return mapper.map(repository.findById(id).get());
     }
 
     @Override
     public List<Insurance> search(String search) {
-        return repository.findByDisplayStartsWithIgnoreCase(search);
+        return mapper.map(repository.findByDisplayStartsWithIgnoreCase(search));
     }
 }

@@ -22,6 +22,7 @@ public class OrganizationLogic implements CrudLogic<Organization> {
     }
 
     private final BoMapper mapper;
+
     private final OrganizationRepository repository;
 
     public OrganizationLogic(BoMapper mapper, OrganizationRepository repository) {
