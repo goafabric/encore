@@ -42,7 +42,7 @@ spring.cloud.aws.region.static: "eu"
 
 
 #profile
-spring.profiles.active: "mongodb" #"mock"
+spring.profiles.active: "mock" #"mock"
 database.provisioning.goals: "-import-demo-data -import-catalog-data"
 
 #logging
