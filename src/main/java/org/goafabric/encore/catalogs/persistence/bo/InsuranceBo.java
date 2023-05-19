@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Data
 @Document("insurance")
-@Table(name = "insurance") @Entity
+@Entity @Table(name = "insurance")
 public class InsuranceBo {
 
     @org.springframework.data.annotation.Id

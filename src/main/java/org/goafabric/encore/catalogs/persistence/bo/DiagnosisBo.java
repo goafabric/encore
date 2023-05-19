@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Data
 @Document("diagnosis")
-@Table(name = "diagnosis") @Entity
+@Entity @Table(name = "diagnosis")
 public class DiagnosisBo {
     @org.springframework.data.annotation.Id
     @jakarta.persistence.Id @GeneratedValue(generator = "uuid") @GenericGenerator(name = "uuid", strategy = "uuid2")

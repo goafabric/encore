@@ -1,13 +1,14 @@
 
 package org.goafabric.encore.masterdata.persistence.bo;
 
+import jakarta.persistence.GeneratedValue;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.goafabric.encore.masterdata.controller.dto.Address;
 import org.goafabric.encore.masterdata.controller.dto.Telecom;
-import org.springframework.data.annotation.Id;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -17,9 +18,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document("organization")
+//@Entity @Table(name = "organization")
 public class OrganizationBo {
 
-    @Id
+    @org.springframework.data.annotation.Id
+    @jakarta.persistence.Id @GeneratedValue(generator = "uuid") @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
     public Boolean active;
