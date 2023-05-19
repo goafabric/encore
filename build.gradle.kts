@@ -65,6 +65,11 @@ dependencies {
 		developmentOnly("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
 	}
 
+	//code generation
+	implementation("org.mapstruct:mapstruct")
+	annotationProcessor("org.mapstruct:mapstruct-processor")
+
+
 	//vaadin
 	implementation("com.vaadin:vaadin-spring-boot-starter:24.0.5")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
