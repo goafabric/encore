@@ -1,12 +1,15 @@
 
 package org.goafabric.encore.masterdata.persistence.bo;
 
-import com.vaadin.flow.component.template.Id;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.goafabric.encore.masterdata.controller.dto.*;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -16,16 +19,23 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document("patient")
+@Entity @Table(name = "patient")
 public class PatientBo {
 
-    @Id
+    @org.springframework.data.annotation.Id
+    @jakarta.persistence.Id @GeneratedValue(generator = "uuid") @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
     private String gender;
     private String birthDate;
 
-    private List<HumanName> name;
+    @ElementCollection
+    private List<HumanNameBo> name;
+
+    @ElementCollection
     private List<TelecomBo> telecom;
+
+    @ElementCollection
     private List<AddressBo> address;
 
 }

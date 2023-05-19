@@ -16,12 +16,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 //@Entity @Table(name = "telecom")
 @Embeddable
 public class TelecomBo {
-    /*
-    @org.springframework.data.annotation.Id
-    @jakarta.persistence.Id @GeneratedValue(generator = "uuid") @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
-
-     */
 
     private String system;
     private String tvalue;
