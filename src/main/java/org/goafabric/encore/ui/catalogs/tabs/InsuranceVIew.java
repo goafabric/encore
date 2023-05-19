@@ -3,13 +3,13 @@ package org.goafabric.encore.ui.catalogs.tabs;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.router.PageTitle;
 import org.goafabric.encore.catalogs.dto.Insurance;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.ui.GridView;
 
 @PageTitle("Insurance")
 public class InsuranceVIew extends GridView<Insurance> {
 
-    public InsuranceVIew(FhirLogic<Insurance> logic) {
+    public InsuranceVIew(CrudLogic<Insurance> logic) {
         super(new Grid<>(Insurance.class), logic);
     }
 

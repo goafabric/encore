@@ -7,7 +7,7 @@ import com.vaadin.flow.router.Route;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.security.dto.Role;
 import org.goafabric.encore.ui.MainView;
 import org.goafabric.encore.ui.practice.tabs.OrganizationView;
@@ -19,7 +19,7 @@ import org.goafabric.encore.ui.practice.tabs.RolesView;
 public class PracticeView extends VerticalLayout {
 
     public PracticeView(
-            FhirLogic<Patient> patientLogic, FhirLogic<Practitioner> practitionerLogic, FhirLogic<Organization> organizationLogic, FhirLogic<Role> rolesLogic) {
+            CrudLogic<Patient> patientLogic, CrudLogic<Practitioner> practitionerLogic, CrudLogic<Organization> organizationLogic, CrudLogic<Role> rolesLogic) {
         this.setSizeFull();
 
         TabSheet tabSheet = new TabSheet();

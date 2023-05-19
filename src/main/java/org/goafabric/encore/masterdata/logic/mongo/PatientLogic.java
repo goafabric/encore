@@ -1,7 +1,7 @@
 package org.goafabric.encore.masterdata.logic.mongo;
 
 import org.goafabric.encore.masterdata.controller.dto.Patient;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.masterdata.repository.PatientRepository;
 import org.goafabric.encore.masterdata.repository.bo.PatientBo;
 import org.mapstruct.Mapper;
@@ -14,7 +14,7 @@ import java.util.stream.StreamSupport;
 
 @Profile("mongodb")
 @Component
-public class PatientLogic implements FhirLogic<Patient> {
+public class PatientLogic implements CrudLogic<Patient> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
     interface BoMapper {
         Patient map(PatientBo o);

@@ -6,7 +6,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.goafabric.encore.catalogs.dto.Diagnosis;
 import org.goafabric.encore.catalogs.dto.Insurance;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.ui.MainView;
 import org.goafabric.encore.ui.catalogs.tabs.DiagnosisView;
 import org.goafabric.encore.ui.catalogs.tabs.InsuranceVIew;
@@ -15,7 +15,7 @@ import org.goafabric.encore.ui.catalogs.tabs.InsuranceVIew;
 @PageTitle("Catalogs")
 public class CatalogView extends VerticalLayout {
 
-    public CatalogView(FhirLogic<Insurance> insuranceLogic, FhirLogic<Diagnosis> diagnosisCatalogLogic) {
+    public CatalogView(CrudLogic<Insurance> insuranceLogic, CrudLogic<Diagnosis> diagnosisCatalogLogic) {
         this.setSizeFull();
 
         TabSheet tabSheet = new TabSheet();

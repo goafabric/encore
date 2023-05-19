@@ -1,7 +1,7 @@
 package org.goafabric.encore.masterdata.logic.mock;
 
 import org.goafabric.encore.masterdata.controller.dto.Patient;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
@@ -14,7 +14,7 @@ import static org.goafabric.encore.masterdata.logic.mock.MockUtil.createPatient;
 
 @Profile("mock")
 @Component
-public class PatientLogic implements FhirLogic<Patient> {
+public class PatientLogic implements CrudLogic<Patient> {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private final List<Patient> patients = new ArrayList<>();

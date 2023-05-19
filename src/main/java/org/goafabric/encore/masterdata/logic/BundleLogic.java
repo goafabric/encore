@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 public class BundleLogic {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private final FhirLogic<Patient> patientLogic;
+    private final CrudLogic<Patient> patientLogic;
 
-    private final FhirLogic<Practitioner> practitionerLogic;
+    private final CrudLogic<Practitioner> practitionerLogic;
 
-    public BundleLogic(FhirLogic<Patient> patientLogic, FhirLogic<Practitioner> practitionerLogic) {
+    public BundleLogic(CrudLogic<Patient> patientLogic, CrudLogic<Practitioner> practitionerLogic) {
         this.patientLogic = patientLogic;
         this.practitionerLogic = practitionerLogic;
     }

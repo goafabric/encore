@@ -1,6 +1,6 @@
 package org.goafabric.encore.security.logic.mock;
 
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.security.dto.Role;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 //@Profile("mock")
 @Component
-public class RolesLogic implements FhirLogic<Role> {
+public class RolesLogic implements CrudLogic<Role> {
     private List<Role> roles = new ArrayList<>();
 
     @Override

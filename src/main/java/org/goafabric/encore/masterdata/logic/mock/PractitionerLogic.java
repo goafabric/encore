@@ -1,7 +1,7 @@
 package org.goafabric.encore.masterdata.logic.mock;
 
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Profile("mock")
 @Component
-public class PractitionerLogic implements FhirLogic<Practitioner> {
+public class PractitionerLogic implements CrudLogic<Practitioner> {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private final List<Practitioner> practitioners = new ArrayList<>();

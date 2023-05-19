@@ -1,7 +1,7 @@
 package org.goafabric.encore.masterdata.logic.mongo;
 
 import org.goafabric.encore.masterdata.controller.dto.Organization;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.masterdata.repository.OrganizationRepository;
 import org.goafabric.encore.masterdata.repository.bo.OrganizationBo;
 import org.mapstruct.Mapper;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Profile("mongodb")
 @Component
-public class OrganizationLogic implements FhirLogic<Organization> {
+public class OrganizationLogic implements CrudLogic<Organization> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
     interface BoMapper {
         Organization map(OrganizationBo o);

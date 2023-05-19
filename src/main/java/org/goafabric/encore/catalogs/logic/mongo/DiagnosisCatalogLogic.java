@@ -2,7 +2,7 @@ package org.goafabric.encore.catalogs.logic.mongo;
 
 import org.goafabric.encore.catalogs.dto.Diagnosis;
 import org.goafabric.encore.catalogs.repository.DiagnosisRepository;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Profile("mongodb")
 @Component
-public class DiagnosisCatalogLogic implements FhirLogic<Diagnosis> {
+public class DiagnosisCatalogLogic implements CrudLogic<Diagnosis> {
     @Autowired
     private DiagnosisRepository repository;
 

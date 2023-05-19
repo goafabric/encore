@@ -5,13 +5,13 @@ import com.vaadin.flow.component.upload.SucceededEvent;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
 import org.goafabric.encore.objectstorage.dto.ObjectEntry;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.ui.GridView;
 
 import java.io.IOException;
 
 public class ArchiveView extends GridView<ObjectEntry> {
-    public ArchiveView(FhirLogic<ObjectEntry> logic) {
+    public ArchiveView(CrudLogic<ObjectEntry> logic) {
         super(new Grid<>(ObjectEntry.class), logic);
 
         addUpload();

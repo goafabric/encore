@@ -5,7 +5,7 @@ import net.datafaker.Faker;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.masterdata.logic.mock.MockUtil;
 import org.goafabric.encore.objectstorage.dto.ObjectEntry;
 import org.goafabric.encore.security.dto.Role;
@@ -27,17 +27,17 @@ public class DemoDataProvisioning implements CommandLineRunner {
     String goals;
 
     private final ApplicationContext applicationContext;
-    private final FhirLogic<Patient> patientLogic;
-    private final FhirLogic<Practitioner> practitionerLogic;
-    private final FhirLogic<Organization> organizationLogic;
-    private final FhirLogic<ObjectEntry> archiveLogic;
-    private final FhirLogic<Role> rolesLogic;
+    private final CrudLogic<Patient> patientLogic;
+    private final CrudLogic<Practitioner> practitionerLogic;
+    private final CrudLogic<Organization> organizationLogic;
+    private final CrudLogic<ObjectEntry> archiveLogic;
+    private final CrudLogic<Role> rolesLogic;
 
 
     public DemoDataProvisioning(
             ApplicationContext applcationContext,
-            FhirLogic<Patient> patientLogic, FhirLogic<Practitioner> practitionerLogic, FhirLogic<Organization> organizationLogic
-            , FhirLogic<ObjectEntry> archiveLogic, FhirLogic<Role> rolesLogic) {
+            CrudLogic<Patient> patientLogic, CrudLogic<Practitioner> practitionerLogic, CrudLogic<Organization> organizationLogic
+            , CrudLogic<ObjectEntry> archiveLogic, CrudLogic<Role> rolesLogic) {
         this.applicationContext = applcationContext;
         this.patientLogic = patientLogic;
         this.practitionerLogic = practitionerLogic;

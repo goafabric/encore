@@ -2,7 +2,7 @@ package org.goafabric.encore.objectstorage.logic.s3;
 
 import io.awspring.cloud.autoconfigure.core.AwsAutoConfiguration;
 import lombok.SneakyThrows;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.objectstorage.dto.ObjectEntry;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Import;
@@ -18,7 +18,7 @@ import java.util.List;
 @Component
 @ConditionalOnProperty(value = "spring.cloud.aws.s3.enabled", havingValue = "true")
 @Import(AwsAutoConfiguration.class)
-public class ObjectStorageLogic implements FhirLogic<ObjectEntry> {
+public class ObjectStorageLogic implements CrudLogic<ObjectEntry> {
 
     private final S3Client s3Client;
     private static final String bucketName = "objects";

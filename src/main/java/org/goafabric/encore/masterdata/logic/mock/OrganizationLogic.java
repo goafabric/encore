@@ -1,7 +1,7 @@
 package org.goafabric.encore.masterdata.logic.mock;
 
 import org.goafabric.encore.masterdata.controller.dto.Organization;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Profile("mock")
 @Component
-public class OrganizationLogic implements FhirLogic<Organization> {
+public class OrganizationLogic implements CrudLogic<Organization> {
     private final List<Organization> organizations = new ArrayList<>();
 
     public OrganizationLogic() {

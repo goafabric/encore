@@ -1,7 +1,7 @@
 package org.goafabric.encore.catalogs.logic.mock;
 
 import org.goafabric.encore.catalogs.dto.Insurance;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.xfunctional.DurationLog;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Profile("mock")
 @Component
-public class InsuranceCatalogLogic implements FhirLogic<Insurance> {
+public class InsuranceCatalogLogic implements CrudLogic<Insurance> {
     final List<Insurance> insurances = new ArrayList<>();
 
     @Override

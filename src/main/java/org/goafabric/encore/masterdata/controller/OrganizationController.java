@@ -2,7 +2,7 @@ package org.goafabric.encore.masterdata.controller;
 
 import org.goafabric.encore.masterdata.controller.dto.Bundle;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.masterdata.logic.mock.MockUtil;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "fhir/Organization", produces = {MediaType.APPLICATION_JSON_VALUE, "application/fhir+json"})
 public class OrganizationController  {
-    private final FhirLogic<Organization> organizationLogic;
+    private final CrudLogic<Organization> organizationLogic;
 
-    public OrganizationController(FhirLogic<Organization> organizationLogic) {
+    public OrganizationController(CrudLogic<Organization> organizationLogic) {
         this.organizationLogic = organizationLogic;
     }
 
