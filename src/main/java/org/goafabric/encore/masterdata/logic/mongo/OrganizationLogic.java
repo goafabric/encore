@@ -39,7 +39,6 @@ public class OrganizationLogic implements FhirLogic<Organization> {
     @Override
     public List<Organization> search(String search) {
         return repository.findByNameStartsWithIgnoreCase(search);
-        //return StreamSupport.stream(repository.findAll().spliterator(), false)
-          //      .collect(Collectors.toList());
+
     }
 }
