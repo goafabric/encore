@@ -1,8 +1,8 @@
 package org.goafabric.encore.catalogs.logic.mongo;
 
 import org.goafabric.encore.catalogs.dto.Diagnosis;
-import org.goafabric.encore.catalogs.repository.DiagnosisRepository;
-import org.goafabric.encore.catalogs.repository.bo.DiagnosisBo;
+import org.goafabric.encore.catalogs.persistence.DiagnosisRepository;
+import org.goafabric.encore.catalogs.persistence.bo.DiagnosisBo;
 import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

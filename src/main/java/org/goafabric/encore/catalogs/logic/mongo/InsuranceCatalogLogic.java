@@ -1,8 +1,8 @@
 package org.goafabric.encore.catalogs.logic.mongo;
 
 import org.goafabric.encore.catalogs.dto.Insurance;
-import org.goafabric.encore.catalogs.repository.InsuranceRepository;
-import org.goafabric.encore.catalogs.repository.bo.InsuranceBo;
+import org.goafabric.encore.catalogs.persistence.InsuranceRepository;
+import org.goafabric.encore.catalogs.persistence.bo.InsuranceBo;
 import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

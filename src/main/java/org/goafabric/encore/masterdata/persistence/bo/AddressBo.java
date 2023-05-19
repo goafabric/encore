@@ -1,5 +1,5 @@
 
-package org.goafabric.encore.masterdata.repository.bo;
+package org.goafabric.encore.masterdata.persistence.bo;
 
 import com.vaadin.flow.component.template.Id;
 import lombok.AllArgsConstructor;

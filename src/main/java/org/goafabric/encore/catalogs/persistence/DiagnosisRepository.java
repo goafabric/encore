@@ -1,6 +1,6 @@
-package org.goafabric.encore.catalogs.repository;
+package org.goafabric.encore.catalogs.persistence;
 
-import org.goafabric.encore.catalogs.repository.bo.DiagnosisBo;
+import org.goafabric.encore.catalogs.persistence.bo.DiagnosisBo;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

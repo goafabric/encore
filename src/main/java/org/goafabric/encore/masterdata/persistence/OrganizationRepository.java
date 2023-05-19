@@ -1,6 +1,6 @@
-package org.goafabric.encore.masterdata.repository;
+package org.goafabric.encore.masterdata.persistence;
 
-import org.goafabric.encore.masterdata.repository.bo.OrganizationBo;
+import org.goafabric.encore.masterdata.persistence.bo.OrganizationBo;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

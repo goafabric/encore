@@ -1,4 +1,4 @@
-package org.goafabric.encore.catalogs.repository.bo;
+package org.goafabric.encore.catalogs.persistence.bo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

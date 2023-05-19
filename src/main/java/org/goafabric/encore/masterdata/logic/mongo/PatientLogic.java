@@ -2,8 +2,8 @@ package org.goafabric.encore.masterdata.logic.mongo;
 
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.logic.CrudLogic;
-import org.goafabric.encore.masterdata.repository.PatientRepository;
-import org.goafabric.encore.masterdata.repository.bo.PatientBo;
+import org.goafabric.encore.masterdata.persistence.PatientRepository;
+import org.goafabric.encore.masterdata.persistence.bo.PatientBo;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.context.annotation.Profile;
