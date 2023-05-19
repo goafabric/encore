@@ -3,7 +3,9 @@ package org.goafabric.encore.masterdata.logic.mongo;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.logic.FhirLogic;
 import org.goafabric.encore.masterdata.repository.OrganizationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.goafabric.encore.masterdata.repository.bo.OrganizationBo;
+import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -12,13 +14,24 @@ import java.util.List;
 @Profile("mongodb")
 @Component
 public class OrganizationLogic implements FhirLogic<Organization> {
+    @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+    interface BoMapper {
+        Organization map(OrganizationBo o);
+        OrganizationBo map(Organization o);
+        List<Organization> map(List<OrganizationBo> l);
+    }
 
-    @Autowired
-    private OrganizationRepository repository;
-    
+    private final BoMapper mapper;
+    private final OrganizationRepository repository;
+
+    public OrganizationLogic(BoMapper mapper, OrganizationRepository repository) {
+        this.mapper = mapper;
+        this.repository = repository;
+    }
+
     @Override
     public void create(Organization Organization) {
-        repository.save(Organization);    
+        repository.save(mapper.map(Organization));
     }
 
     @Override
@@ -33,12 +46,12 @@ public class OrganizationLogic implements FhirLogic<Organization> {
 
     @Override
     public Organization getById(String id) {
-        return repository.findById(id).get();
+        return mapper.map(repository.findById(id).get());
     }
 
     @Override
     public List<Organization> search(String search) {
-        return repository.findByNameStartsWithIgnoreCase(search);
+        return mapper.map(repository.findByNameStartsWithIgnoreCase(search));
 
     }
 }
