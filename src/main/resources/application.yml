@@ -69,5 +69,5 @@ logging.level.org.flywaydb.core: "INFO"
 logging.level.org.hibernate.SQL: "INFO"
 
 #profile
-spring.profiles.active: "mongodb" #"mock"
+spring.profiles.active: "mongodb" #"jpa"
 database.provisioning.goals: "-import-demo-data -import-catalog-data"
