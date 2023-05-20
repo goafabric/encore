@@ -1,39 +1,37 @@
-package org.goafabric.encore.catalogs.logic.mongo;
+package org.goafabric.encore.catalogs.logic;
 
-import org.goafabric.encore.catalogs.dto.Insurance;
-import org.goafabric.encore.catalogs.persistence.InsuranceRepository;
-import org.goafabric.encore.catalogs.persistence.bo.InsuranceBo;
+import org.goafabric.encore.catalogs.dto.Diagnosis;
+import org.goafabric.encore.catalogs.persistence.DiagnosisRepository;
+import org.goafabric.encore.catalogs.persistence.bo.DiagnosisBo;
 import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Profile({"mongodb", "jpa"})
 @Component
 @Transactional
-public class InsuranceCatalogLogic implements CrudLogic<Insurance> {
+public class DiagnosisCatalogLogic implements CrudLogic<Diagnosis> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
     interface BoMapper {
-        Insurance map(InsuranceBo o);
-        InsuranceBo map(Insurance o);
-        List<Insurance> map(List<InsuranceBo> l);
+        Diagnosis map(DiagnosisBo o);
+        DiagnosisBo map(Diagnosis o);
+        List<Diagnosis> map(List<DiagnosisBo> l);
     }
 
     private BoMapper mapper;
-    private InsuranceRepository repository;
+    private DiagnosisRepository repository;
 
-    public InsuranceCatalogLogic(BoMapper mapper, InsuranceRepository repository) {
+    public DiagnosisCatalogLogic(BoMapper mapper, DiagnosisRepository repository) {
         this.mapper = mapper;
         this.repository = repository;
     }
 
     @Override
-    public void create(Insurance Insurance) {
-        repository.save(mapper.map(Insurance));
+    public void create(Diagnosis diagnosis) {
+        repository.save(mapper.map(diagnosis));
     }
 
     @Override
@@ -47,12 +45,12 @@ public class InsuranceCatalogLogic implements CrudLogic<Insurance> {
     }
 
     @Override
-    public Insurance getById(String id) {
+    public Diagnosis getById(String id) {
         return mapper.map(repository.findById(id).get());
     }
 
     @Override
-    public List<Insurance> search(String search) {
+    public List<Diagnosis> search(String search) {
         return mapper.map(repository.findByDisplayStartsWithIgnoreCase(search));
     }
 }

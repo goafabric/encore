@@ -1,19 +1,16 @@
-package org.goafabric.encore.masterdata.logic.mongo;
+package org.goafabric.encore.masterdata.logic;
 
 import org.goafabric.encore.masterdata.controller.dto.Patient;
-import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.masterdata.persistence.PatientRepository;
 import org.goafabric.encore.masterdata.persistence.bo.PatientBo;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.StreamSupport;
 
-@Profile({"mongodb", "jpa"})
 @Component
 @Transactional
 public class PatientLogic implements CrudLogic<Patient> {
