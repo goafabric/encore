@@ -64,6 +64,15 @@ dependencies {
 	if (!gradle.startParameter.taskNames.contains("nativeCompile") && (!gradle.startParameter.taskNames.contains("dockerImageNative"))) {
 		developmentOnly("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
 	}
+	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
+
+	implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
+
+	/*
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa") {exclude("org.glassfish.jaxb", "jaxb-runtime")}
+	implementation("com.h2database:h2")
+	implementation("org.postgresql:postgresql")
+	*/
 
 	//code generation
 	implementation("org.mapstruct:mapstruct")

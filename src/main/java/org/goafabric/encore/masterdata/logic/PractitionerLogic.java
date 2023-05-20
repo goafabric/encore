@@ -1,19 +1,18 @@
-package org.goafabric.encore.masterdata.logic.mongo;
+package org.goafabric.encore.masterdata.logic;
 
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
-import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.masterdata.persistence.PractitionerRepository;
 import org.goafabric.encore.masterdata.persistence.bo.PractitionerBo;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.StreamSupport;
 
-@Profile("mongodb")
 @Component
+@Transactional
 public class PractitionerLogic implements CrudLogic<Practitioner> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
     interface BoMapper {

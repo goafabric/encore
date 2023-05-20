@@ -1,18 +1,17 @@
-package org.goafabric.encore.masterdata.logic.mongo;
+package org.goafabric.encore.masterdata.logic;
 
 import org.goafabric.encore.masterdata.controller.dto.Organization;
-import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.masterdata.persistence.OrganizationRepository;
 import org.goafabric.encore.masterdata.persistence.bo.OrganizationBo;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Profile("mongodb")
 @Component
+@Transactional
 public class OrganizationLogic implements CrudLogic<Organization> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
     interface BoMapper {

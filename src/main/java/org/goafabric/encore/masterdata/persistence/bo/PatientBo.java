@@ -1,12 +1,11 @@
 
 package org.goafabric.encore.masterdata.persistence.bo;
 
-import com.vaadin.flow.component.template.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.goafabric.encore.masterdata.controller.dto.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -16,16 +15,23 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document("patient")
+@Entity @Table(name = "patient")
 public class PatientBo {
 
-    @Id
+    @org.springframework.data.annotation.Id
+    @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     private String gender;
     private String birthDate;
 
-    private List<HumanName> name;
+    @ElementCollection
+    private List<HumanNameBo> name;
+
+    @ElementCollection
     private List<TelecomBo> telecom;
+
+    @ElementCollection
     private List<AddressBo> address;
 
 }

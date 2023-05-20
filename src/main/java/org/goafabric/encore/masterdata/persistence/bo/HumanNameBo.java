@@ -14,17 +14,12 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document("address")
-//@Entity @Table(name = "address")
+@Document("humanname")
 @Embeddable
-public class AddressBo {
+public class HumanNameBo {
 
-    private String city;
-    private String state;
-    private String postalCode;
-    private String country;
     private String use;
-
-    private List<String> line;
+    private String family;
+    private List<String> given;
 
 }

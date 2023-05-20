@@ -1,14 +1,11 @@
 
 package org.goafabric.encore.masterdata.persistence.bo;
 
-import com.vaadin.flow.component.template.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.goafabric.encore.masterdata.controller.dto.Address;
-import org.goafabric.encore.masterdata.controller.dto.HumanName;
-import org.goafabric.encore.masterdata.controller.dto.Telecom;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -18,17 +15,24 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document("practitioner")
+@Entity @Table(name = "practitioner")
 public class PractitionerBo {
 
-    @Id
+    @org.springframework.data.annotation.Id
+    @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     public Boolean active;
     private String gender;
     private String birthDate;
 
-    private List<HumanName> name;
-    private List<Telecom> telecom;
-    private List<Address> address;
+    @ElementCollection
+    private List<HumanNameBo> name;
+
+    @ElementCollection
+    private List<TelecomBo> telecom;
+
+    @ElementCollection
+    private List<AddressBo> address;
 
 }
