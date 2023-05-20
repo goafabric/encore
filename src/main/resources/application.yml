@@ -29,11 +29,6 @@ security.authentication.enabled: false
 spring.security.user.name: "admin"
 spring.security.user.password: "admin"
 
-#persistence
-spring.datasource.url: jdbc:h2:mem:person;DATABASE_TO_UPPER=FALSE
-
-de.flapdoodle.mongodb.embedded.version: 6.0.4
-
 #s3
 spring.cloud.aws.s3.enabled: "false"
 spring.cloud.aws.s3.path-style-access-enabled: "true"
@@ -42,9 +37,19 @@ spring.cloud.aws.credentials.access-key: "minioadmin"
 spring.cloud.aws.credentials.secret-key: "minioadmin"
 spring.cloud.aws.region.static: "eu"
 
+#mongo
+de.flapdoodle.mongodb.embedded.version: 6.0.4
+
+#jpa
+spring.jpa.hibernate.ddl-auto: "create-drop"
+spring.datasource.url: jdbc:h2:mem:person;DATABASE_TO_UPPER=FALSE
+#spring.datasource.url: jdbc:postgresql://localhost:5432/postgres
+spring.datasource.username: postgres
+spring.datasource.password: postgres
+
 
 #profile
-spring.profiles.active: "mongodb" #"mock"
+spring.profiles.active: "jpa" #"mock"
 database.provisioning.goals: "-import-demo-data -import-catalog-data"
 
 #logging
