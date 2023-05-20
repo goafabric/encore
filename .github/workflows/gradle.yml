@@ -19,12 +19,19 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17'
-
+        
+    - name: Test
+      uses: gradle/gradle-build-action@v2
+      with:
+        gradle-version: 8.1
+        arguments: test
+        
     - name: Multiarch Image
       uses: gradle/gradle-build-action@v2
       with:
         gradle-version: 8.1
-        arguments: test vaadinBuildFrontend jib jib
+        arguments: vaadinBuildFrontend jib jib
+        
     - name: Native Image
       uses: gradle/gradle-build-action@v2
       with:
