@@ -1,4 +1,4 @@
-package org.goafabric.encore;
+package org.goafabric.encore.xfunctional.auto;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
