@@ -62,7 +62,7 @@ dependencies {
 	//persistence
 	implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-	if (!gradle.startParameter.taskNames.contains("native") && (!gradle.startParameter.taskNames.contains("dockerImageNative"))) {
+	if (!gradle.startParameter.taskNames.contains("native") && !gradle.startParameter.taskNames.contains("dockerImageNative") && !gradle.startParameter.taskNames.contains("jib") ) {
 		developmentOnly("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
 		testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
 	}
