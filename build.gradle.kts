@@ -66,9 +66,13 @@ dependencies {
 	}
 
 	implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
+
+	/*
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa") {exclude("org.glassfish.jaxb", "jaxb-runtime")}
 	implementation("com.h2database:h2")
 	implementation("org.postgresql:postgresql")
+
+	 */
 
 
 	//code generation
