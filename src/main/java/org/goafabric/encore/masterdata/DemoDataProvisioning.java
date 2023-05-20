@@ -63,15 +63,16 @@ public class DemoDataProvisioning implements CommandLineRunner {
     }
 
     private void importDemoData() {
+        if (patientLogic.search("").size() == 0) {
+            createPatientData();
 
-        createPatientData();
+            createPractitionerData();
+            createOrganization();
 
-        createPractitionerData();
-        createOrganization();
+            createRoles();
 
-        createRoles();
-
-        createArchiveFiles();
+            createArchiveFiles();
+        }
     }
 
 

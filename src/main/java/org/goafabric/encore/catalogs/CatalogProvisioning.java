@@ -51,8 +51,10 @@ public class CatalogProvisioning implements CommandLineRunner {
     }
 
     private void importDemoData() {
-        readDiagnosiss();
-        readInsurances();
+        if (diagnosisCatalogLogic.search("").size() == 0 ) {
+            readDiagnosiss();
+            readInsurances();
+        }
     }
 
     private void readDiagnosiss() {
