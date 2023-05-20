@@ -1,6 +1,7 @@
 
 package org.goafabric.encore.masterdata.persistence.bo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +19,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class TelecomBo {
 
     private String system;
-    private String tvalue;
+
+    @Column(name = "t_value")
+    private String value;
     private String use;
 }
