@@ -1,10 +1,7 @@
 
 package org.goafabric.encore.masterdata.persistence.bo;
 
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +19,7 @@ import java.util.List;
 public class PractitionerBo {
 
     @org.springframework.data.annotation.Id
-    @jakarta.persistence.Id @jakarta.persistence.GeneratedValue(strategy = GenerationType.UUID)
+    @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     public Boolean active;

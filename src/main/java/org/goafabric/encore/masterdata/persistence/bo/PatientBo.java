@@ -19,7 +19,7 @@ import java.util.List;
 public class PatientBo {
 
     @org.springframework.data.annotation.Id
-    @jakarta.persistence.Id @jakarta.persistence.GeneratedValue(strategy = GenerationType.UUID)
+    @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     private String gender;
