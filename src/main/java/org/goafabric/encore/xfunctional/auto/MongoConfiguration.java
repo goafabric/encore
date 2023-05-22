@@ -27,8 +27,8 @@ public class MongoConfiguration {
         @Value("${spring.data.mongodb.authentication-database}") private String db;
         @Value("${spring.data.mongodb.username}") private String user;
         @Value("${spring.data.mongodb.password}") private String password;
-        @Value("${spring.data.mongodb.host}") private String host;
-        @Value("${spring.data.mongodb.port}") private Integer port;
+        @Value("${spring.data.mongodb.host:}") private String host;
+        @Value("${spring.data.mongodb.port:}") private Integer port;
 
         @Override
         protected String getDatabaseName() {
@@ -37,10 +37,12 @@ public class MongoConfiguration {
 
         @Override
         protected void configureClientSettings(MongoClientSettings.Builder builder) {
-            builder.credential(MongoCredential.createCredential(user, authDb, password.toCharArray()))
-            .applyToClusterSettings(settings  -> {
-                settings.hosts(singletonList(new ServerAddress(host, port)));
-            });
+            var b = builder.credential(MongoCredential.createCredential(user, authDb, password.toCharArray()));
+            if ((port != null) && (!host.equals(""))) {
+                b.applyToClusterSettings(settings -> {
+                    settings.hosts(singletonList(new ServerAddress(host, port)));
+                });
+            }
         }
     }
 }
