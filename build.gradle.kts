@@ -59,19 +59,20 @@ dependencies {
 	//s3
 	implementation("io.awspring.cloud:spring-cloud-aws-starter-s3:3.0.1")
 
-	//persistence
-	implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
+	//persistence mongo
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 	if (!gradle.startParameter.taskNames.contains("native") && !gradle.startParameter.taskNames.contains("dockerImageNative") && !gradle.startParameter.taskNames.contains("jib") ) {
 		developmentOnly("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
 	}
 	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
 
-	/*
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa") {exclude("org.glassfish.jaxb", "jaxb-runtime")}
-	implementation("com.h2database:h2")
-	implementation("org.postgresql:postgresql")
-	*/
+	//perstistence jpa
+	implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
+	if (gradle.startParameter.taskNames.contains("jib")) {
+		implementation("org.springframework.boot:spring-boot-starter-data-jpa") {exclude("org.glassfish.jaxb", "jaxb-runtime")}
+		implementation("com.h2database:h2")
+		implementation("org.postgresql:postgresql")
+	}
 
 	//code generation
 	implementation("org.mapstruct:mapstruct")

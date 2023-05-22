@@ -5,10 +5,14 @@ services:
         condition: service_started
 
     environment:
-      spring.data.mongodb.host: "mongodb"
-
       spring.profiles.active: mongodb
 
+      #secrets
+      spring.data.mongodb.host: "mongodb"
+      spring.data.mongodb.username: "mongodb"
+      spring.data.mongodb.password: "mongodb"
+      authentication-database: "admin"
+      database: "core"
 
   mongodb:
     mem_limit: 96m
