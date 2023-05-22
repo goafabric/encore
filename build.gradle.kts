@@ -11,9 +11,9 @@ val baseImage = "ibm-semeru-runtimes:open-17.0.6_10-jre-focal@sha256:739eab970ff
 plugins {
 	java
 	jacoco
-	id("org.springframework.boot") version "3.1.0"
+	id("org.springframework.boot") version "3.0.6"
 	id("io.spring.dependency-management") version "1.1.0"
-	id("org.graalvm.buildtools.native") version "0.9.22"
+	id("org.graalvm.buildtools.native") version "0.9.20"
 	id("com.google.cloud.tools.jib") version "3.3.1"
 
 	id("com.vaadin") version "24.0.5"
@@ -61,10 +61,6 @@ dependencies {
 
 	//persistence mongo
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-	if (!gradle.startParameter.taskNames.contains("native") && !gradle.startParameter.taskNames.contains("dockerImageNative") && !gradle.startParameter.taskNames.contains("jib") ) {
-		developmentOnly("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
-	}
-	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
 
 	//perstistence jpa
 	implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
