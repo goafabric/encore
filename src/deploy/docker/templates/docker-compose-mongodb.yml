@@ -8,6 +8,7 @@ services:
       spring.profiles.active: mongodb
 
       #secrets
+      spring.data.mongodb.port: "27017"
       spring.data.mongodb.host: "mongodb"
       spring.data.mongodb.username: "mongodb"
       spring.data.mongodb.password: "mongodb"
