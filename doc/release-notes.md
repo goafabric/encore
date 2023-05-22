@@ -1,3 +1,6 @@
+# 1.0.4
+- version upgrade
+
 # 1.0.3
 - database integration
 
