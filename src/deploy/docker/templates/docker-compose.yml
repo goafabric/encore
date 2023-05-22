@@ -46,30 +46,10 @@ services:
       spring.cloud.aws.s3.endpoint: "http://s3minio:9000"
       spring.cloud.aws.s3.enabled: "true"
 
-      #mongo
-      spring.data.mongodb.host: "mongodb"
-
       #log levels
       logging.level.root: "WARN"
       logging.level.org.goafabric: "INFO"
       logging.level.org.springframework: "INFO"
-
-  mongodb:
-    mem_limit: 96m
-    image: mongo:6.0.4
-    container_name: ${_Values_root_name}-mongodb
-    restart: 'no'
-    ports:
-      - 27017:27017
-    volumes:
-      - mongoconfig:/data/configdb
-      - mongodata:/data/db
-    networks:
-      - ${_Values_root_name}-net
-    environment:
-      TZ: "Europe/Berlin"
-      MONGO_INITDB_ROOT_USERNAME: "mongodb"
-      MONGO_INITDB_ROOT_PASSWORD: "mongodb"
 
   s3minio:
     container_name: s3minio
@@ -166,6 +146,7 @@ volumes:
     miniodata:
     mongoconfig:
     mongodata:
+    pgdata:
 
 networks:
   encore-net:
