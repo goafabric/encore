@@ -1,4 +1,5 @@
 # 1.0.3
+- database integration
 
 # 1.0.2
 - added master data import / export 
