@@ -15,7 +15,7 @@ services:
       database: "core"
 
   mongodb:
-    mem_limit: 96m
+    mem_limit: 128m
     image: mongo:6.0.4
     container_name: ${_Values_root_name}-mongodb
     restart: 'no'
