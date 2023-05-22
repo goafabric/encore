@@ -3,8 +3,7 @@ package org.goafabric.encore.catalogs;
 import lombok.extern.slf4j.Slf4j;
 import org.goafabric.encore.catalogs.dto.Diagnosis;
 import org.goafabric.encore.catalogs.dto.Insurance;
-import org.goafabric.encore.catalogs.logic.DiagnosisCatalogLogic;
-import org.goafabric.encore.catalogs.logic.InsuranceCatalogLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,11 +23,11 @@ public class CatalogProvisioning implements CommandLineRunner {
     String goals;
 
     private final ApplicationContext applicationContext;
-    private final DiagnosisCatalogLogic diagnosisCatalogLogic;
-    private final InsuranceCatalogLogic insuranceCatalogLogic;
+    private final CrudLogic<Diagnosis> diagnosisCatalogLogic;
+    private final CrudLogic<Insurance> insuranceCatalogLogic;
 
     public CatalogProvisioning(ApplicationContext applicationContext,
-                               DiagnosisCatalogLogic diagnosisCatalogLogic, InsuranceCatalogLogic insuranceCatalogLogic) {
+                               CrudLogic<Diagnosis> diagnosisCatalogLogic, CrudLogic<Insurance> insuranceCatalogLogic) {
         this.applicationContext = applicationContext;
         this.diagnosisCatalogLogic = diagnosisCatalogLogic;
         this.insuranceCatalogLogic = insuranceCatalogLogic;
@@ -37,6 +36,8 @@ public class CatalogProvisioning implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        if ((args.length > 0) && ("-check-integrity".equals(args[0]))) { return; }
+
         if (goals.contains("-import-catalog-data")) {
             log.info("Importing catalog data ...");
             importDemoData();
@@ -50,8 +51,10 @@ public class CatalogProvisioning implements CommandLineRunner {
     }
 
     private void importDemoData() {
-        readDiagnosiss();
-        readInsurances();
+        if (diagnosisCatalogLogic.search("").size() == 0 ) {
+            readDiagnosiss();
+            readInsurances();
+        }
     }
 
     private void readDiagnosiss() {

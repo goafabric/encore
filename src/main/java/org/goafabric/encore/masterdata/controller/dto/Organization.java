@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Transient;
 
 import java.util.List;
 
@@ -14,9 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 public class Organization {
 
-
     private String id;
     public Meta meta;
+
+    @Transient
     private final String resourceType = "Organization";
 
     public Boolean active;

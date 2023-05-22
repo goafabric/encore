@@ -1,7 +1,7 @@
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
 group = "org.goafabric"
-version = "1.0.2-SNAPSHOT"
+version = "1.0.3-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 val dockerRegistry = "goafabric"
@@ -16,7 +16,7 @@ plugins {
 	id("org.graalvm.buildtools.native") version "0.9.20"
 	id("com.google.cloud.tools.jib") version "3.3.1"
 
-	id("com.vaadin") version "24.0.2"
+	id("com.vaadin") version "24.0.5"
 }
 
 jacoco { toolVersion = "0.8.9" }
@@ -58,6 +58,25 @@ dependencies {
 
 	//s3
 	implementation("io.awspring.cloud:spring-cloud-aws-starter-s3:3.0.1")
+
+	//persistence mongo
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+	if (!gradle.startParameter.taskNames.contains("native") && !gradle.startParameter.taskNames.contains("dockerImageNative") && !gradle.startParameter.taskNames.contains("jib") ) {
+		developmentOnly("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
+	}
+	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
+
+	//perstistence jpa
+	implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
+	if (gradle.startParameter.taskNames.contains("jib")) {
+		implementation("org.springframework.boot:spring-boot-starter-data-jpa") {exclude("org.glassfish.jaxb", "jaxb-runtime")}
+		implementation("com.h2database:h2")
+		implementation("org.postgresql:postgresql")
+	}
+
+	//code generation
+	implementation("org.mapstruct:mapstruct")
+	annotationProcessor("org.mapstruct:mapstruct-processor")
 
 
 	//vaadin

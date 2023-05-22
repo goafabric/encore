@@ -3,13 +3,13 @@ package org.goafabric.encore.ui.catalogs.tabs;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.router.PageTitle;
 import org.goafabric.encore.catalogs.dto.Diagnosis;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.ui.GridView;
 
 @PageTitle("Diagnosis")
 public class DiagnosisView extends GridView<Diagnosis> {
 
-    public DiagnosisView(FhirLogic<Diagnosis> logic) {
+    public DiagnosisView(CrudLogic<Diagnosis> logic) {
         super(new Grid<>(Diagnosis.class), logic);
     }
 

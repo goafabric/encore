@@ -2,12 +2,13 @@ package org.goafabric.encore.masterdata;
 
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
-import org.goafabric.encore.objectstorage.dto.ObjectEntry;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.masterdata.logic.mock.MockUtil;
+import org.goafabric.encore.objectstorage.dto.ObjectEntry;
+import org.goafabric.encore.security.dto.Role;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,25 +27,29 @@ public class DemoDataProvisioning implements CommandLineRunner {
     String goals;
 
     private final ApplicationContext applicationContext;
-    private final FhirLogic<Patient> patientLogic;
-    private final FhirLogic<Practitioner> practitionerLogic;
-    private final FhirLogic<Organization> organizationLogic;
-    private final FhirLogic<ObjectEntry> archiveLogic;
+    private final CrudLogic<Patient> patientLogic;
+    private final CrudLogic<Practitioner> practitionerLogic;
+    private final CrudLogic<Organization> organizationLogic;
+    private final CrudLogic<ObjectEntry> archiveLogic;
+    private final CrudLogic<Role> rolesLogic;
 
 
     public DemoDataProvisioning(
             ApplicationContext applcationContext,
-            FhirLogic<Patient> patientLogic, FhirLogic<Practitioner> practitionerLogic, FhirLogic<Organization> organizationLogic
-            ,FhirLogic<ObjectEntry> archiveLogic) {
+            CrudLogic<Patient> patientLogic, CrudLogic<Practitioner> practitionerLogic, CrudLogic<Organization> organizationLogic
+            , CrudLogic<ObjectEntry> archiveLogic, CrudLogic<Role> rolesLogic) {
         this.applicationContext = applcationContext;
         this.patientLogic = patientLogic;
         this.practitionerLogic = practitionerLogic;
         this.organizationLogic = organizationLogic;
         this.archiveLogic = archiveLogic;
+        this.rolesLogic = rolesLogic;
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
+        if ((args.length > 0) && ("-check-integrity".equals(args[0]))) { return; }
+
         if (goals.contains("-import-demo-data")) {
             log.info("Importing demo data ...");
             importDemoData();
@@ -58,18 +63,23 @@ public class DemoDataProvisioning implements CommandLineRunner {
     }
 
     private void importDemoData() {
+        if (patientLogic.search("").size() == 0) {
+            createPatientData();
 
-        createPatientData();
-        createPractitionerData();
-        createOrganization();
+            createPractitionerData();
+            createOrganization();
 
-        createArchiveFiles();
+            createRoles();
+
+            createArchiveFiles();
+        }
     }
+
 
     private void createPatientData() {
         Faker faker = new Faker();
         patientLogic.create(MockUtil.createPatient("Homer", "Simpson", "Evergreen Terrace 742", "0245-33553"));
-        IntStream.range(0, 50).forEach(i -> patientLogic.create(
+        IntStream.range(0, 20).forEach(i -> patientLogic.create(
                 createPatient(faker.name().firstName(), faker.name().lastName(), faker.simpsons().location(), "0245-43553")
         ));
     }
@@ -78,6 +88,12 @@ public class DemoDataProvisioning implements CommandLineRunner {
         practitionerLogic.create(MockUtil.createPractitioner("Dr Julius", "Hibbert", "Commonstreet 345", "555-520"));
         practitionerLogic.create(MockUtil.createPractitioner("Dr Marvin", "Monroe", "Psychestreet 104", "555-525"));
         practitionerLogic.create(MockUtil.createPractitioner("Dr Nick", "Riveria", "Nickstreet 221", "555-501"));
+    }
+
+    private void createRoles() {
+        rolesLogic.create(Role.builder().role("Administrator").build());
+        rolesLogic.create(Role.builder().role("Practitioner").build());
+        rolesLogic.create(Role.builder().role("Assistant").build());
     }
 
     private void createOrganization() {

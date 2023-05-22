@@ -21,6 +21,7 @@ import org.goafabric.encore.ui.appointments.AppointmentView;
 import org.goafabric.encore.ui.catalogs.CatalogView;
 import org.goafabric.encore.ui.files.FilesView;
 import org.goafabric.encore.ui.monitoring.MonitoringView;
+import org.goafabric.encore.ui.patient.practice.PatientMainView;
 import org.goafabric.encore.ui.practice.PracticeView;
 
 //@Route(value = "")
@@ -53,10 +54,12 @@ public class MainView extends AppLayout {
 
     private void createDrawer() {
         addToDrawer(new VerticalLayout(
-                new HorizontalLayout(new Icon(VaadinIcon.USER), new RouterLink("Practice", PracticeView.class)),
+                new HorizontalLayout(new Icon(VaadinIcon.USER), new RouterLink("Patient", PatientMainView.class)),
+                new HorizontalLayout(new Icon(VaadinIcon.HOSPITAL), new RouterLink("Practice", PracticeView.class)),
                 new HorizontalLayout(new Icon(VaadinIcon.BOOK), new RouterLink("Catalogs", CatalogView.class)),
-                new HorizontalLayout(new Icon(VaadinIcon.CALENDAR), new RouterLink("Calendar", AppointmentView.class)),
-                new HorizontalLayout(new Icon(VaadinIcon.FILE), new RouterLink("Files", FilesView.class)),
+                //new HorizontalLayout(new Icon(VaadinIcon.CHAT), new RouterLink("Chat", ChatView.class)),
+                new HorizontalLayout(new Icon(VaadinIcon.CALENDAR_USER), new RouterLink("Appointments", AppointmentView.class)),
+                new HorizontalLayout(new Icon(VaadinIcon.ARCHIVE), new RouterLink("Files", FilesView.class)),
                 new HorizontalLayout(new Icon(VaadinIcon.CHART), new RouterLink("Monitoring", MonitoringView.class))
         ));
     }

@@ -1,43 +1,56 @@
 package org.goafabric.encore.catalogs.logic;
 
 import org.goafabric.encore.catalogs.dto.Diagnosis;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
-import org.goafabric.encore.xfunctional.DurationLog;
+import org.goafabric.encore.catalogs.persistence.DiagnosisRepository;
+import org.goafabric.encore.catalogs.persistence.bo.DiagnosisBo;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
+import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class DiagnosisCatalogLogic implements FhirLogic<Diagnosis> {
-    final List<Diagnosis> diagnosis = new ArrayList<>();
+@Transactional
+public class DiagnosisCatalogLogic implements CrudLogic<Diagnosis> {
+    @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+    interface BoMapper {
+        Diagnosis map(DiagnosisBo o);
+        DiagnosisBo map(Diagnosis o);
+        List<Diagnosis> map(List<DiagnosisBo> l);
+    }
 
-    public DiagnosisCatalogLogic() {
+    private BoMapper mapper;
+    private DiagnosisRepository repository;
+
+    public DiagnosisCatalogLogic(BoMapper mapper, DiagnosisRepository repository) {
+        this.mapper = mapper;
+        this.repository = repository;
     }
 
     @Override
     public void create(Diagnosis diagnosis) {
-        this.diagnosis.add(diagnosis);
+        repository.save(mapper.map(diagnosis));
     }
 
     @Override
     public void delete(String id) {
-        throw new IllegalStateException("NYI");
+        repository.deleteById(id);
     }
 
     @Override
     public void deleteAll() {
-        diagnosis.clear();
+
     }
 
     @Override
     public Diagnosis getById(String id) {
-        throw new IllegalStateException("NYI");
+        return mapper.map(repository.findById(id).get());
     }
 
-    @DurationLog
-    public List<Diagnosis> search(String display) {
-        return diagnosis.stream().filter(i -> i.getDisplay().toLowerCase().startsWith(display.toLowerCase())).toList();
+    @Override
+    public List<Diagnosis> search(String search) {
+        return mapper.map(repository.findByDisplayStartsWithIgnoreCase(search));
     }
-
 }

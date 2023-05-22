@@ -4,14 +4,14 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 
 public abstract class GridView<T> extends VerticalLayout {
     private final Grid<T> grid;
     private final TextField filterText = new TextField("", "search ...");
-    private final FhirLogic<T> logic;
+    private final CrudLogic<T> logic;
 
-    public GridView(Grid<T> grid, FhirLogic<T> logic) {
+    public GridView(Grid<T> grid, CrudLogic<T> logic) {
         this.grid = grid;
         this.logic = logic;
         createView();
@@ -47,7 +47,7 @@ public abstract class GridView<T> extends VerticalLayout {
         grid.setItems(logic.search(filterText.getValue()));
     }
 
-    protected FhirLogic<T> getLogic() {
+    protected CrudLogic<T> getLogic() {
         return logic;
     }
 

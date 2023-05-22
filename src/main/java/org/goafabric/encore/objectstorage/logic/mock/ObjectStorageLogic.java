@@ -1,6 +1,6 @@
 package org.goafabric.encore.objectstorage.logic.mock;
 
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.objectstorage.dto.ObjectEntry;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 @ConditionalOnProperty(value = "spring.cloud.aws.s3.enabled", havingValue = "false")
-public class ObjectStorageLogic implements FhirLogic<ObjectEntry> {
+public class ObjectStorageLogic implements CrudLogic<ObjectEntry> {
     private final List<ObjectEntry> objectEntries = new ArrayList<>();
 
     @Override

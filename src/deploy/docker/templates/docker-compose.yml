@@ -144,6 +144,9 @@ volumes:
     tmp:
     applogs:
     miniodata:
+    mongoconfig:
+    mongodata:
+    pgdata:
 
 networks:
   encore-net:

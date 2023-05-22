@@ -6,7 +6,7 @@ import lombok.SneakyThrows;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
-import org.goafabric.encore.masterdata.logic.FhirLogic;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -17,11 +17,11 @@ import java.util.List;
 
 @Component
 public class ImportLogic {
-    private final FhirLogic<Patient> patientLogic;
-    private final FhirLogic<Practitioner> practitionerLogic;
-    private final FhirLogic<Organization> organizationLogic;
+    private final CrudLogic<Patient> patientLogic;
+    private final CrudLogic<Practitioner> practitionerLogic;
+    private final CrudLogic<Organization> organizationLogic;
 
-    public ImportLogic(FhirLogic<Patient> patientLogic, FhirLogic<Practitioner> practitionerLogic, FhirLogic<Organization> organizationLogic) {
+    public ImportLogic(CrudLogic<Patient> patientLogic, CrudLogic<Practitioner> practitionerLogic, CrudLogic<Organization> organizationLogic) {
         this.patientLogic = patientLogic;
         this.practitionerLogic = practitionerLogic;
         this.organizationLogic = organizationLogic;

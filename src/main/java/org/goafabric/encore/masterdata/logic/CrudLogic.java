@@ -2,7 +2,7 @@ package org.goafabric.encore.masterdata.logic;
 
 import java.util.List;
 
-public interface FhirLogic<T> {
+public interface CrudLogic<T> {
 
     void create(T t);
 
