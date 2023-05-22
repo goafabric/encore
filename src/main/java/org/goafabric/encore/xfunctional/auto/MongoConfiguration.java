@@ -2,6 +2,7 @@ package org.goafabric.encore.xfunctional.auto;
 
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
@@ -11,6 +12,8 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
+
+import static java.util.Collections.singletonList;
 
 @Configuration
 @Profile("mongodb")
@@ -24,6 +27,8 @@ public class MongoConfiguration {
         @Value("${spring.data.mongodb.authentication-database}") private String db;
         @Value("${spring.data.mongodb.username}") private String user;
         @Value("${spring.data.mongodb.password}") private String password;
+        @Value("${spring.data.mongodb.host}") private String host;
+        @Value("${spring.data.mongodb.port}") private Integer port;
 
         @Override
         protected String getDatabaseName() {
@@ -32,7 +37,10 @@ public class MongoConfiguration {
 
         @Override
         protected void configureClientSettings(MongoClientSettings.Builder builder) {
-            builder.credential(MongoCredential.createCredential(user, authDb, password.toCharArray()));
+            builder.credential(MongoCredential.createCredential(user, authDb, password.toCharArray()))
+            .applyToClusterSettings(settings  -> {
+                settings.hosts(singletonList(new ServerAddress(host, port)));
+            });
         }
     }
 }
