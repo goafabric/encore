@@ -25,7 +25,7 @@ public class PatientBo {
     private String gender;
     private String birthDate;
 
-    @ElementCollection
+    @Embedded
     private HumanNameBo name;
 
     @ElementCollection
