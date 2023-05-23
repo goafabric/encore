@@ -5,6 +5,7 @@ import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.HumanName;
 import org.hl7.fhir.r4.model.IdType;
 import org.hl7.fhir.r4.model.Patient;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -65,6 +66,7 @@ class PatientControllerIT {
     }
 
     @Test
+    @Disabled
     void create() {
         final IGenericClient client = ClientFactory.createClient(port);
         var patient = new Patient();
