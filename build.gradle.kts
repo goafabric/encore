@@ -46,11 +46,9 @@ dependencies {
 
 	implementation("io.micrometer:micrometer-tracing-bridge-brave")
 	implementation("io.zipkin.reporter2:zipkin-reporter-brave")
-	//implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui")
 
 	//crosscuting
 	implementation("org.springframework.boot:spring-boot-starter-aop")
-	//implementation("org.springframework.boot:spring-boot-starter-security")
 
 	//code generation
 	compileOnly("org.projectlombok:lombok")
@@ -61,7 +59,7 @@ dependencies {
 
 	//persistence mongo
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-	if (!gradle.startParameter.taskNames.contains("native") && !gradle.startParameter.taskNames.contains("dockerImageNative") && !gradle.startParameter.taskNames.contains("jib") ) {
+	if (!gradle.startParameter.taskNames.contains("native") && !gradle.startParameter.taskNames.contains("jib") ) {
 		developmentOnly("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
 	}
 	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.6.2")
