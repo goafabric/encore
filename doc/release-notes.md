@@ -1,5 +1,5 @@
 # 1.0.4
-- version upgrade
+- upgrade to spring boot 3.1.0
 
 # 1.0.3
 - database integration
