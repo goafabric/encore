@@ -26,7 +26,7 @@ public class PatientBo {
     private String birthDate;
 
     @ElementCollection
-    private List<HumanNameBo> name;
+    private HumanNameBo name;
 
     @ElementCollection
     private List<TelecomBo> telecom;
