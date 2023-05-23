@@ -1,9 +1,10 @@
 package org.goafabric.encore.masterdata.controller;
 
 import ca.uhn.fhir.rest.client.api.IGenericClient;
+import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.IdType;
+import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Practitioner;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -16,18 +17,35 @@ class PractitionerControllerIT {
     @LocalServerPort
     private String port;
 
+
     @Test
-    @Disabled
-    void getPractitioner() {
+    void findAndGetPractitioner() {
         final IGenericClient client = ClientFactory.createClient(port);
 
-        final Practitioner practitioner =
+        final Bundle bundle =
+                client.search()
+                        .forResource(Practitioner.class)
+                        .where(Patient.FAMILY.matches().value("Hibbert"))
+                        .returnBundle(Bundle.class)
+                        .execute();
+
+        assertThat(bundle).isNotNull();
+
+        var practitioner = (Practitioner) bundle.getEntry().get(0).getResource();
+        assertThat(practitioner).isNotNull();
+        assertThat(practitioner.getName()).hasSize(1);
+        assertThat(practitioner.getName().get(0).getFamily()).isEqualTo("Hibbert");
+
+        var practitioner2 =
                 client.read()
                         .resource(Practitioner.class)
-                        .withId("1").execute();
+                        .withId(practitioner.getId()).execute();
+        assertThat(practitioner2).isNotNull();
+        assertThat(practitioner2.getName().get(0).getFamily()).isEqualTo("Hibbert");
 
-        assertThat(practitioner).isNotNull();
     }
+
+
 
     /*
     @Test
