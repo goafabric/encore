@@ -37,8 +37,8 @@ public class MongoConfiguration {
 
         @Override
         protected void configureClientSettings(MongoClientSettings.Builder builder) {
-            var b = builder.credential(MongoCredential.createCredential(user, authDb, password.toCharArray()));
-            b.applyToClusterSettings(settings -> {
+            builder.credential(MongoCredential.createCredential(user, authDb, password.toCharArray()))
+            .applyToClusterSettings(settings -> {
                 settings.hosts(singletonList(new ServerAddress(host, port)));
             });
         }
