@@ -1,6 +1,7 @@
 package org.goafabric.encore.masterdata.logic;
 
 import org.goafabric.encore.masterdata.controller.dto.Practitioner;
+import org.goafabric.encore.masterdata.logic.mapper.HumanNameMapper;
 import org.goafabric.encore.masterdata.persistence.PractitionerRepository;
 import org.goafabric.encore.masterdata.persistence.bo.PractitionerBo;
 import org.mapstruct.Mapper;
@@ -9,13 +10,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.StreamSupport;
 
 @Component
 @Transactional
 public class PractitionerLogic implements CrudLogic<Practitioner> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-    interface BoMapper {
+    interface BoMapper extends HumanNameMapper {
         Practitioner map(PractitionerBo o);
         PractitionerBo map(Practitioner o);
         List<Practitioner> map(List<PractitionerBo> l);
@@ -52,9 +52,6 @@ public class PractitionerLogic implements CrudLogic<Practitioner> {
 
     @Override
     public List<Practitioner> search(String search) {
-        var practitioners =  StreamSupport.stream(repository.findAll().spliterator(), false).toList();
-        return mapper.map(practitioners.stream().filter(p ->
-                p.getName().get(0).getFamily().toLowerCase().startsWith(search.toLowerCase())).toList());
-
+        return mapper.map(repository.findByName_FamilyStartsWithIgnoreCase(search));
     }
 }

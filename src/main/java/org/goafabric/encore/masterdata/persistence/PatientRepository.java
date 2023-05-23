@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface PatientRepository extends CrudRepository<PatientBo, String> {
-    List<PatientBo> findByName_Family(String family);
+    List<PatientBo> findByName_FamilyStartsWithIgnoreCase(String family);
 }

@@ -52,6 +52,6 @@ public class PatientLogic implements CrudLogic<Patient> {
 
     @Override
     public List<Patient> search(String search) {
-        return mapper.map(repository.findByName_Family(search));
+        return mapper.map(repository.findByName_FamilyStartsWithIgnoreCase(search));
     }
 }
