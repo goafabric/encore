@@ -1,6 +1,7 @@
 package org.goafabric.encore.masterdata.logic;
 
 import org.goafabric.encore.masterdata.controller.dto.Patient;
+import org.goafabric.encore.masterdata.logic.mapper.HumanNameMapper;
 import org.goafabric.encore.masterdata.persistence.PatientRepository;
 import org.goafabric.encore.masterdata.persistence.bo.PatientBo;
 import org.mapstruct.Mapper;
