@@ -6,11 +6,11 @@ import com.vaadin.flow.router.PageTitle;
 
 @PageTitle("Jaeger")
 public class TracingView extends VerticalLayout {
-    public TracingView() {
+    public TracingView(String tracingEndpoint) {
         setSizeFull();
 
         IFrame iFrame = new IFrame();
-        iFrame.setSrc("http://localhost:16686/search");
+        iFrame.setSrc(tracingEndpoint + "/search");
         iFrame.setSizeFull();
         this.add(iFrame);
     }

@@ -15,17 +15,21 @@ import org.springframework.boot.actuate.health.HealthEndpoint;
 @PageTitle("Monitoring")
 public class MonitoringView extends VerticalLayout {
 
-    public MonitoringView(HealthEndpoint healthEndpoint, @Value("${spring.cloud.aws.s3.endpoint:}") String s3Endpoint) {
+    public MonitoringView(HealthEndpoint healthEndpoint,
+                          @Value("${spring.cloud.aws.s3.endpoint:}") String s3Endpoint,
+                          @Value("${management.zipkin.tracing.endpoint}") String tracingEndpoint) {
         this.setSizeFull();
+
+        tracingEndpoint = tracingEndpoint.replaceAll(":9411/api/v2/spans", ":16686");
 
         TabSheet tabSheet = new TabSheet();
         tabSheet.setSizeFull();
 
-        tabSheet.add("Health", new HealthView(healthEndpoint, s3Endpoint));
+        tabSheet.add("Health", new HealthView(healthEndpoint, s3Endpoint, tracingEndpoint));
 
         tabSheet.add("FHIR", new FhirView());
 
-        tabSheet.add("Tracing", new TracingView());
+        tabSheet.add("Tracing", new TracingView(tracingEndpoint));
 
         add(tabSheet);
     }
