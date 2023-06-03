@@ -1,6 +1,7 @@
 package org.goafabric.encore.catalogs;
 
 import lombok.extern.slf4j.Slf4j;
+import net.datafaker.Faker;
 import org.goafabric.encore.catalogs.dto.Diagnosis;
 import org.goafabric.encore.catalogs.dto.Insurance;
 import org.goafabric.encore.masterdata.logic.CrudLogic;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Component
 @Slf4j
@@ -73,6 +75,15 @@ public class CatalogProvisioning implements CommandLineRunner {
         ));
     }
 
+    @Value("${demo-data.size}") Integer demoDataSize;
+    private void readInsurancesFaked() {
+        Faker faker = new Faker();
+        IntStream.range(0, 1000).forEach(line -> insuranceCatalogLogic.create(Insurance.builder()
+                .code(String.valueOf(System.currentTimeMillis()))
+                .display(faker.address().streetName())
+                .reference(faker.address().city()).build()
+        ));
+    }
 
     private static List<String> loadFile(String fileName)  {
         try {
