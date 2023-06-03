@@ -71,4 +71,4 @@ logging.level.org.hibernate.SQL: "DEBUG"
 #profile
 spring.profiles.active: "mongodb" #"jpa"
 database.provisioning.goals: "-import-demo-data -import-catalog-data"
-demo-data.size: "1000"
+demo-data.size: "100"
