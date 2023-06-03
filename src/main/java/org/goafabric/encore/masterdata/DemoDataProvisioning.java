@@ -26,6 +26,9 @@ public class DemoDataProvisioning implements CommandLineRunner {
     @Value("${database.provisioning.goals:}")
     String goals;
 
+    @Value("${demo-data.size}")
+    Integer demoDataSize;
+
     private final ApplicationContext applicationContext;
     private final CrudLogic<Patient> patientLogic;
     private final CrudLogic<Practitioner> practitionerLogic;
@@ -79,7 +82,7 @@ public class DemoDataProvisioning implements CommandLineRunner {
     private void createPatientData() {
         Faker faker = new Faker();
         patientLogic.create(MockUtil.createPatient("Homer", "Simpson", "Evergreen Terrace 742", "0245-33553"));
-        IntStream.range(0, 20).forEach(i -> patientLogic.create(
+        IntStream.range(0, demoDataSize).forEach(i -> patientLogic.create(
                 createPatient(faker.name().firstName(), faker.name().lastName(), faker.simpsons().location(), "0245-43553")
         ));
     }
