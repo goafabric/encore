@@ -54,4 +54,9 @@ public class PatientLogic implements CrudLogic<Patient> {
     public List<Patient> search(String search) {
         return mapper.map(repository.findByName_FamilyStartsWithIgnoreCase(search));
     }
+
+    public List<String> searchLastNames(String search) {
+        return repository.findByName_FamilyStartsWithIgnoreCase(search)
+                .stream().map(p -> p.getName().getFamily()).toList();
+    }
 }

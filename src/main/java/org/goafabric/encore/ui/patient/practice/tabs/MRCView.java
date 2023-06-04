@@ -30,7 +30,7 @@ public class MRCView extends VerticalLayout {
         masterFilter.setItems((CallbackDataProvider.FetchCallback<String, String>) query -> {
             query.getOffset();
             var filter = query.getFilter().get();
-            return findByLastName(filter).stream().limit(query.getLimit()).map(p -> p.getName().get(0).getFamily());
+            return patientLogic.searchLastNames(filter).stream().limit(query.getLimit());
         });
 
         this.add(masterFilter);
