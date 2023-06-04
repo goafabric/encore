@@ -4,21 +4,22 @@ import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.provider.CallbackDataProvider;
-import org.goafabric.encore.masterdata.controller.dto.Patient;
+import org.goafabric.encore.catalogs.dto.Diagnosis;
+import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.masterdata.logic.PatientLogic;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MRCView extends VerticalLayout {
     private final PatientLogic patientLogic;
+    private final CrudLogic<Diagnosis> diagnosisLogic;
 
-    public MRCView(PatientLogic patientLogic) {
+    public MRCView(PatientLogic patientLogic, CrudLogic<Diagnosis> diagnosisLogic) {
         this.patientLogic = patientLogic;
+        this.diagnosisLogic = diagnosisLogic;
 
         setSizeFull();
         addMasterFilter();
@@ -28,9 +29,11 @@ public class MRCView extends VerticalLayout {
     private void addMasterFilter() {
         var masterFilter = new ComboBox<>("", "Filter ...");
         masterFilter.setItems((CallbackDataProvider.FetchCallback<String, String>) query -> {
-            query.getOffset();
+            query.getLimit(); query.getOffset();
             var filter = query.getFilter().get();
-            return patientLogic.searchLastNames(filter).stream().limit(query.getLimit());
+            return filter.equals("")
+                    ? new ArrayList<String>().stream()
+                    : patientLogic.searchLastNames(filter).stream().limit(query.getLimit());
         });
 
         this.add(masterFilter);
@@ -59,17 +62,11 @@ public class MRCView extends VerticalLayout {
         filterCombo.setItems((CallbackDataProvider.FetchCallback<String, String>) query -> {
             query.getLimit(); query.getOffset();
             var filter = query.getFilter().get();
-            return findByLastName(filter).stream().limit(query.getLimit()).map(p -> p.getName().get(0).getFamily());
+
+            return filter.equals("")
+                ? new ArrayList<String>().stream()
+                : diagnosisLogic.search(filter).stream().map(d -> d.getDisplay()).limit(query.getLimit());
         });
-
-    }
-
-    private List<Patient> findByLastName(String filter) {
-        long start = System.currentTimeMillis();
-        var  items = filter.equals("") ? new ArrayList<Patient>() : patientLogic.search(filter);
-        long end = System.currentTimeMillis();
-        Notification.show("Search took : "  +  (end - start) + " ms");
-        return items;
     }
 
 }
