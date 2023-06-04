@@ -7,6 +7,7 @@ import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.provider.CallbackDataProvider;
+import org.goafabric.encore.catalogs.dto.ChargeItem;
 import org.goafabric.encore.catalogs.dto.Diagnosis;
 import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.goafabric.encore.masterdata.logic.PatientLogic;
@@ -16,10 +17,12 @@ import java.util.ArrayList;
 public class MRCView extends VerticalLayout {
     private final PatientLogic patientLogic;
     private final CrudLogic<Diagnosis> diagnosisLogic;
+    private final CrudLogic<ChargeItem> chargeItemLogic;
 
-    public MRCView(PatientLogic patientLogic, CrudLogic<Diagnosis> diagnosisLogic) {
+    public MRCView(PatientLogic patientLogic, CrudLogic<Diagnosis> diagnosisLogic, CrudLogic<ChargeItem> chargeItemLogic) {
         this.patientLogic = patientLogic;
         this.diagnosisLogic = diagnosisLogic;
+        this.chargeItemLogic = chargeItemLogic;
 
         setSizeFull();
         addMasterFilter();
@@ -52,20 +55,25 @@ public class MRCView extends VerticalLayout {
     }
 
     private void addFilterEntry() {
-        var typeCombo = new ComboBox<>("", "");
-        typeCombo.setItems("Diagnosis");
-        typeCombo.setValue("Diagnosis");
-
+        var typeCombo = new ComboBox<>("", "Diagnosis", "GOÄ");
         var filterCombo = new ComboBox<>("", "Filter ...");
-
         add(new HorizontalLayout(typeCombo, filterCombo));
+        
+        typeCombo.addValueChangeListener(event -> setItems(typeCombo, filterCombo));
+        typeCombo.setValue("Diagnosis");
+    }
+
+    private void setItems(ComboBox<String> typeCombo, ComboBox<String> filterCombo) {
         filterCombo.setItems((CallbackDataProvider.FetchCallback<String, String>) query -> {
             query.getLimit(); query.getOffset();
             var filter = query.getFilter().get();
-
-            return filter.equals("")
-                ? new ArrayList<String>().stream()
-                : diagnosisLogic.search(filter).stream().map(d -> d.getDisplay()).limit(query.getLimit());
+            if (typeCombo.getValue().equals("Diagnosis")) {
+                return diagnosisLogic.search(filter).stream().map(d -> d.getDisplay()).limit(query.getLimit());
+            }
+            if (typeCombo.getValue().equals("GOÄ")) {
+                return chargeItemLogic.search(filter).stream().map(d -> d.getDisplay()).limit(query.getLimit());
+            }
+            return new ArrayList<String>().stream();
         });
     }
 
