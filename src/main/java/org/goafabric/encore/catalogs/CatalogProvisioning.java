@@ -1,7 +1,7 @@
 package org.goafabric.encore.catalogs;
 
 import lombok.extern.slf4j.Slf4j;
-import net.datafaker.Faker;
+import org.goafabric.encore.catalogs.dto.ChargeItem;
 import org.goafabric.encore.catalogs.dto.Diagnosis;
 import org.goafabric.encore.catalogs.dto.Insurance;
 import org.goafabric.encore.masterdata.logic.CrudLogic;
@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
 
 @Component
 @Slf4j
@@ -27,12 +26,14 @@ public class CatalogProvisioning implements CommandLineRunner {
     private final ApplicationContext applicationContext;
     private final CrudLogic<Diagnosis> diagnosisCatalogLogic;
     private final CrudLogic<Insurance> insuranceCatalogLogic;
+    private final CrudLogic<ChargeItem> chargeItemCatalogLogic;
 
     public CatalogProvisioning(ApplicationContext applicationContext,
-                               CrudLogic<Diagnosis> diagnosisCatalogLogic, CrudLogic<Insurance> insuranceCatalogLogic) {
+                               CrudLogic<Diagnosis> diagnosisCatalogLogic, CrudLogic<Insurance> insuranceCatalogLogic, CrudLogic<ChargeItem> chargeItemCatalogLogic) {
         this.applicationContext = applicationContext;
         this.diagnosisCatalogLogic = diagnosisCatalogLogic;
         this.insuranceCatalogLogic = insuranceCatalogLogic;
+        this.chargeItemCatalogLogic = chargeItemCatalogLogic;
     }
 
 
@@ -56,6 +57,7 @@ public class CatalogProvisioning implements CommandLineRunner {
         if (diagnosisCatalogLogic.search("").size() == 0 ) {
             readDiagnosiss();
             readInsurances();
+            readChargeItems();
         }
     }
 
@@ -75,6 +77,15 @@ public class CatalogProvisioning implements CommandLineRunner {
         ));
     }
 
+    private void readChargeItems() {
+        loadFile("catalogs/goae.csv").forEach(line -> chargeItemCatalogLogic.create(ChargeItem.builder()
+                .code(line.split(";")[0])
+                .display(line.split(";")[1])
+                .price(Double.valueOf(line.split(";")[2])).build()
+        ));
+    }
+
+    /*
     @Value("${demo-data.size}") Integer demoDataSize;
     private void readInsurancesFaked() {
         Faker faker = new Faker();
@@ -84,6 +95,8 @@ public class CatalogProvisioning implements CommandLineRunner {
                 .reference(faker.address().city()).build()
         ));
     }
+
+     */
 
     private static List<String> loadFile(String fileName)  {
         try {
