@@ -37,7 +37,7 @@ services:
 
       #zipkin/jaeger
       spring.application.name: "encore"
-      management.zipkin.tracing.endpoint: "http://host.docker.internal:9411/api/v2/spans"
+      management.zipkin.tracing.endpoint: "http://jaeger:9411/api/v2/spans"
       management.tracing.sampling.probability: "1.0"
       management.tracing.enabled: "true"
       logging.level.zipkin2.reporter: "ERROR"
@@ -142,6 +142,20 @@ services:
     depends_on:
       application:
         condition: service_started
+
+  jaeger:
+    container_name: jaeger
+    image:  jaegertracing/all-in-one:1.42.0
+    restart: 'no'
+    ports:
+      - "16686:16686"
+      - "14268:14268"
+      - "9411:9411"
+    environment:
+      - TZ=Europe/Berlin
+      - COLLECTOR_ZIPKIN_HOST_PORT=:9411
+    networks:
+      - ${_Values_root_name}-net
 
 volumes:
     tmp:

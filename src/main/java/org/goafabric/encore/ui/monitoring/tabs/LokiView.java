@@ -5,8 +5,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 
 @PageTitle("Jaeger")
-public class TracingView extends VerticalLayout {
-    public TracingView(String tracingEndpoint) {
+public class LokiView extends VerticalLayout {
+    public LokiView(String tracingEndpoint) {
         setSizeFull();
 
         IFrame iFrame = new IFrame();

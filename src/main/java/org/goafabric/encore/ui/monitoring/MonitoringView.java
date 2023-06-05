@@ -5,7 +5,6 @@ import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.goafabric.encore.ui.MainView;
-import org.goafabric.encore.ui.monitoring.tabs.FhirView;
 import org.goafabric.encore.ui.monitoring.tabs.HealthView;
 import org.goafabric.encore.ui.monitoring.tabs.TracingView;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,16 +19,17 @@ public class MonitoringView extends VerticalLayout {
                           @Value("${management.zipkin.tracing.endpoint}") String tracingEndpoint) {
         this.setSizeFull();
 
-        tracingEndpoint = tracingEndpoint.replaceAll(":9411/api/v2/spans", ":16686");
 
         TabSheet tabSheet = new TabSheet();
         tabSheet.setSizeFull();
 
-        tabSheet.add("Health", new HealthView(healthEndpoint, s3Endpoint, tracingEndpoint));
+        tabSheet.add("Health", new HealthView(healthEndpoint, s3Endpoint
+                , tracingEndpoint.replaceAll(":9411/api/v2/spans", ":16686")));
 
-        tabSheet.add("FHIR", new FhirView());
+        //tabSheet.add("FHIR", new FhirView());
 
-        tabSheet.add("Tracing", new TracingView(tracingEndpoint));
+        tabSheet.add("Tracing", new TracingView("http://localhost:16686/search"));
+        tabSheet.add("Loki", new TracingView("http://localhost:3000/explore"));
 
         add(tabSheet);
     }
