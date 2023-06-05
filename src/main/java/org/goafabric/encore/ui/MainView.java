@@ -7,6 +7,7 @@ import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -23,6 +24,7 @@ import org.goafabric.encore.ui.files.FilesView;
 import org.goafabric.encore.ui.monitoring.MonitoringView;
 import org.goafabric.encore.ui.patient.practice.PatientMainView;
 import org.goafabric.encore.ui.practice.PracticeView;
+import org.goafabric.encore.xfunctional.HttpInterceptor;
 
 //@Route(value = "")
 public class MainView extends AppLayout {
@@ -48,7 +50,7 @@ public class MainView extends AppLayout {
                 LumoUtility.Padding.Vertical.NONE,
                 LumoUtility.Padding.Horizontal.MEDIUM);
 
-        addToNavbar(header);
+        addToNavbar(header, createUserIcon());
 
     }
 
@@ -77,6 +79,11 @@ public class MainView extends AppLayout {
         var button = new Button(VaadinIcon.HOME.create());
         button.addClickListener((ComponentEventListener<ClickEvent<Button>>) event -> getUI().get().getPage().setLocation("/"));
         return button;
+    }
+
+    private HorizontalLayout createUserIcon() {
+        return new HorizontalLayout(new Icon(VaadinIcon.USER), new Label(HttpInterceptor.getUserName())
+                , new Icon(VaadinIcon.HOME), new Label(HttpInterceptor.getTenantId() + "," + HttpInterceptor.getCompanyId()));
     }
 
     @Route(value = "", layout = MainView.class)

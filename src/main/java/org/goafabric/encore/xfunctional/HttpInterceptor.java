@@ -3,6 +3,8 @@ package org.goafabric.encore.xfunctional;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -18,8 +20,8 @@ public class HttpInterceptor implements WebMvcConfigurer {
         registry.addInterceptor(new HandlerInterceptor() {
             @Override
             public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-                tenantId.set(request.getHeader("X-TenantId"));
-                userName.set(request.getHeader("X-Auth-Request-Preferred-Username"));
+                //tenantId.set(request.getHeader("X-TenantId"));
+                //userName.set(request.getHeader("X-Auth-Request-Preferred-Username"));
                 return true;
             }
 
@@ -31,13 +33,19 @@ public class HttpInterceptor implements WebMvcConfigurer {
         });
     }
 
+
     public static String getTenantId() {
-        return tenantId.get() != null ? tenantId.get() : "0"; //tdo
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth instanceof OAuth2AuthenticationToken ? ((OAuth2AuthenticationToken)auth).getAuthorizedClientRegistrationId() : "0";
     }
 
     public static String getUserName() {
-        return userName.get() != null ? userName.get() : "";
-                //: SecurityContextHolder.getContext().getAuthentication() != null ? SecurityContextHolder.getContext().getAuthentication().getName() : "";
+        return userName.get() != null ? userName.get()
+                : SecurityContextHolder.getContext().getAuthentication() != null ? SecurityContextHolder.getContext().getAuthentication().getName() : "";
+    }
+
+    public static String getCompanyId() {
+        return "1";
     }
 
 }
