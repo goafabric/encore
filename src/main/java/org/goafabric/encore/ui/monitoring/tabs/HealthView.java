@@ -22,7 +22,7 @@ public class HealthView extends VerticalLayout {
         add(new HorizontalLayout(new Text("S3"), checkEndpoint(s3Endpoint) ? new Icon(VaadinIcon.CHECK) : new Icon(VaadinIcon.WARNING)));
     }
 
-    private boolean checkEndpoint(String url) {
+    public static boolean checkEndpoint(String url) {
         try {
             return new RestTemplate().getForEntity(url, Object.class).getStatusCode().value() == 200;
         } catch (Exception e) { return !(e instanceof ResourceAccessException);}
