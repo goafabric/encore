@@ -30,6 +30,7 @@ services:
 
       #oidc
       security.authentication.enabled: "true"
+      multi-tenancy.tenants: "0"
 
       spring.security.oauth2.frontend-uri: "http://127.0.0.1:30200/oidc"
       spring.security.oauth2.base-uri: "http://auth-server:30200/oidc"
