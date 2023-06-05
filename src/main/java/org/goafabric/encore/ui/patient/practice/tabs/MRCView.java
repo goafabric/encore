@@ -4,6 +4,7 @@ import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.provider.CallbackDataProvider;
@@ -34,9 +35,13 @@ public class MRCView extends VerticalLayout {
         masterFilter.setItems((CallbackDataProvider.FetchCallback<String, String>) query -> {
             query.getLimit(); query.getOffset();
             var filter = query.getFilter().get();
-            return filter.equals("")
+
+            long start = System.currentTimeMillis();
+            var lastNames = filter.equals("")
                     ? new ArrayList<String>().stream()
                     : patientLogic.searchLastNames(filter).stream().limit(query.getLimit());
+            Notification.show("Search took " + (System.currentTimeMillis() -start) + " ms");
+            return lastNames;
         });
 
         this.add(masterFilter);
