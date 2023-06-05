@@ -28,8 +28,11 @@ services:
       server.tomcat.threads.max: "20"
       server.forward-headers-strategy: FRAMEWORK
 
-      #security
-      security.authentication.enabled: "false"
+      #oidc
+      security.authentication.enabled: "true"
+
+      spring.security.oauth2.frontend-uri: "http://127.0.0.1:30200/oidc"
+      spring.security.oauth2.base-uri: "http://auth-server:30200/oidc"
 
       #monitoring
       management.endpoint.health.show-details: always
@@ -46,12 +49,13 @@ services:
       spring.cloud.aws.s3.endpoint: "http://s3minio:9000"
       spring.cloud.aws.s3.enabled: "true"
 
+
       #log levels
       logging.level.root: "WARN"
       logging.level.org.goafabric: "INFO"
       logging.level.org.springframework: "INFO"
 
-      #
+      # demodata
       demo-data.size: "${_Values_demo_data_size}"
 
   s3minio:
@@ -86,62 +90,6 @@ services:
       spring.security.authorization.users: "user1:user1,user2:user2,user3:user3,user4:user4"
     networks:
       - ${_Values_root_name}-net
-
-  oauth2-proxy:
-    container_name: oauthproxy
-    image: quay.io/oauth2-proxy/oauth2-proxy:v7.4.0
-    command:
-      - --email-domain=*
-    restart: 'no'
-    ports:
-      - "4180:4180"
-    environment:
-      #application
-      TZ: Europe/Berlin
-
-      # oauth2proxy generic config
-      OAUTH2_PROXY_UPSTREAM: "file:///dev/null"
-      OAUTH2_PROXY_HTTP_ADDRESS: "0.0.0.0:4180"
-      OAUTH2_PROXY_REVERSE_PROXY: "true"
-      OAUTH2_PROXY_SET_XAUTHREQUEST: "true"
-
-      OAUTH2_PROXY_SKIP_PROVIDER_BUTTON: "true"
-
-      # oauth2proxy provider config
-      OAUTH2_PROXY_PROVIDER: "oidc"
-      OAUTH2_PROXY_CLIENT_ID: "oauth2-proxy"
-      OAUTH2_PROXY_SKIP_OIDC_DISCOVERY: "true"
-
-      # urls
-      OAUTH2_PROXY_REDIRECT_URL: "http://localhost:8080/oauth2/callback"
-      OAUTH2_PROXY_LOGIN_URL: "http://localhost:30200/oidc/auth"
-
-      OAUTH2_PROXY_OIDC_ISSUER_URL: "http://auth-server:30200"
-      OAUTH2_PROXY_OIDC_JWKS_URL: "http://auth-server:30200/oidc/certs"
-      OAUTH2_PROXY_REDEEM_URL: "http://auth-server:30200/oidc/token"
-
-      # secrets
-      OAUTH2_PROXY_CLIENT_SECRET: none
-      OAUTH2_PROXY_COOKIE_SECRET: SvJIUgqBKxOYSxJwFREiOg==
-
-    networks:
-      - ${_Values_root_name}-net
-    depends_on:
-      - application
-
-  nginx:
-    container_name: ${_Values_root_name}-nginx
-    image: nginx:1.22.1
-    restart: 'no'
-    ports:
-      - 8080:80
-    networks:
-      - ${_Values_root_name}-net
-    volumes:
-      - ./nginx/nginx${_Values_nginx_oidc}.conf:/etc/nginx/nginx.conf
-    depends_on:
-      application:
-        condition: service_started
 
   jaeger:
     container_name: jaeger

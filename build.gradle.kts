@@ -49,6 +49,7 @@ dependencies {
 
 	//crosscuting
 	implementation("org.springframework.boot:spring-boot-starter-aop")
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
 
 	//code generation
 	compileOnly("org.projectlombok:lombok")
