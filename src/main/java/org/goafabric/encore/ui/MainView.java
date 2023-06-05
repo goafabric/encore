@@ -56,7 +56,7 @@ public class MainView extends AppLayout {
 
     private void createDrawer() {
         addToDrawer(new VerticalLayout(
-                new HorizontalLayout(new Icon(VaadinIcon.USER), new RouterLink("Patient", PatientMainView.class)),
+                new HorizontalLayout(new Icon(VaadinIcon.USERS), new RouterLink("Patient", PatientMainView.class)),
                 new HorizontalLayout(new Icon(VaadinIcon.HOSPITAL), new RouterLink("Practice", PracticeView.class)),
                 new HorizontalLayout(new Icon(VaadinIcon.BOOK), new RouterLink("Catalogs", CatalogView.class)),
                 //new HorizontalLayout(new Icon(VaadinIcon.CHAT), new RouterLink("Chat", ChatView.class)),
@@ -82,8 +82,10 @@ public class MainView extends AppLayout {
     }
 
     private HorizontalLayout createUserIcon() {
-        return new HorizontalLayout(new Icon(VaadinIcon.USER), new Label(HttpInterceptor.getUserName())
-                , new Icon(VaadinIcon.HOME), new Label(HttpInterceptor.getTenantId() + "," + HttpInterceptor.getCompanyId()));
+        var userButton = new Button(new Icon(VaadinIcon.USER));
+        userButton.addClickListener(event -> getUI().get().getPage().open("/logout"));
+        return new HorizontalLayout(userButton, new Label(HttpInterceptor.getUserName())
+                , new Button(new Icon(VaadinIcon.HOME)), new Label(HttpInterceptor.getTenantId() + "," + HttpInterceptor.getCompanyId()));
     }
 
     @Route(value = "", layout = MainView.class)
