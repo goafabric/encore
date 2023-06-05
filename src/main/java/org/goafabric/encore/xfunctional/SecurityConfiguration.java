@@ -37,6 +37,7 @@ public class SecurityConfiguration {
                             .anyRequest().authenticated())
                             .csrf(csrf -> csrf.disable())
                     .oauth2Login(Customizer.withDefaults());
+                    //.logout();
         } else {
             http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll()).csrf(csrf -> csrf.disable());
         }
