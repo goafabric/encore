@@ -1,5 +1,6 @@
 # 1.0.4
 - upgrade to spring boot 3.1.0
+- lots of UI enhancements
 
 # 1.0.3
 - database integration
