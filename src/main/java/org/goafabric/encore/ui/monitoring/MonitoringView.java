@@ -17,7 +17,11 @@ public class MonitoringView extends VerticalLayout {
 
     public MonitoringView(HealthEndpoint healthEndpoint,
                           @Value("${spring.cloud.aws.s3.endpoint:}") String s3Endpoint,
-                          @Value("${management.zipkin.tracing.endpoint}") String tracingEndpoint) {
+                          @Value("${management.zipkin.tracing.endpoint}") String tracingEndpoint,
+                          @Value("${monitoring.view.tracing.url}") String monitoringViewTracingUrl,
+                          @Value("${monitoring.view.loki.url}") String monitoringViewLokiUrl,
+                          @Value("${monitoring.view.s3.url}") String monitoringViewS3Url
+                          ) {
         this.setSizeFull();
 
 
@@ -29,9 +33,9 @@ public class MonitoringView extends VerticalLayout {
 
         //tabSheet.add("FHIR", new FhirView());
 
-        tabSheet.add("Tracing", new TracingView("http://localhost:16686/search"));
-        tabSheet.add("Loki", new TracingView("http://localhost:3000/explore"));
-        tabSheet.add("S3", new S3View("http://localhost:9101/browser/objects"));
+        tabSheet.add("Tracing", new TracingView(monitoringViewTracingUrl));
+        tabSheet.add("Loki", new TracingView(monitoringViewLokiUrl));
+        tabSheet.add("S3", new S3View(monitoringViewS3Url));
 
         add(tabSheet);
     }
