@@ -7,8 +7,10 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import org.springframework.boot.actuate.health.HealthEndpoint;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.web.client.ResourceAccessException;
-import org.springframework.web.client.RestTemplate;
+
+import java.time.Duration;
 
 
 @PageTitle("Health")
@@ -24,7 +26,8 @@ public class HealthView extends VerticalLayout {
 
     public static boolean checkEndpoint(String url) {
         try {
-            return new RestTemplate().getForEntity(url, Object.class).getStatusCode().value() == 200;
+            return new RestTemplateBuilder().setConnectTimeout(Duration.ofSeconds(1)).setReadTimeout(Duration.ofSeconds(1)).build()
+                    .getForEntity(url, Object.class).getStatusCode().value() == 200;
         } catch (Exception e) { return !(e instanceof ResourceAccessException);}
     }
 }

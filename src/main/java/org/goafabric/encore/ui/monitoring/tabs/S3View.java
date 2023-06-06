@@ -1,4 +1,4 @@
-package org.goafabric.encore.ui.files.tabs;
+package org.goafabric.encore.ui.monitoring.tabs;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;

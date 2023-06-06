@@ -11,8 +11,6 @@ import org.goafabric.encore.objectstorage.dto.ObjectEntry;
 import org.goafabric.encore.ui.MainView;
 import org.goafabric.encore.ui.files.tabs.ArchiveView;
 import org.goafabric.encore.ui.files.tabs.ImportExportView;
-import org.goafabric.encore.ui.files.tabs.S3View;
-import org.goafabric.encore.ui.monitoring.tabs.HealthView;
 import org.springframework.beans.factory.annotation.Value;
 
 @Route(value = "files", layout = MainView.class)
@@ -28,9 +26,6 @@ public class FilesView extends VerticalLayout {
         tabSheet.setSizeFull();
 
         tabSheet.add("Archive", new ArchiveView(objectStorageLogic));
-        if (HealthView.checkEndpoint(s3Endpoint)) {
-            tabSheet.add("S3", new S3View("http://localhost:9101/browser/objects"));
-        }
         tabSheet.add("Import & Export", new ImportExportView(importLogic, exportLogic));
 
         add(tabSheet);

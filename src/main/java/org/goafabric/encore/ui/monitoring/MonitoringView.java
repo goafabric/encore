@@ -6,6 +6,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.goafabric.encore.ui.MainView;
 import org.goafabric.encore.ui.monitoring.tabs.HealthView;
+import org.goafabric.encore.ui.monitoring.tabs.S3View;
 import org.goafabric.encore.ui.monitoring.tabs.TracingView;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.health.HealthEndpoint;
@@ -30,6 +31,7 @@ public class MonitoringView extends VerticalLayout {
 
         tabSheet.add("Tracing", new TracingView("http://localhost:16686/search"));
         tabSheet.add("Loki", new TracingView("http://localhost:3000/explore"));
+        tabSheet.add("S3", new S3View("http://localhost:9101/browser/objects"));
 
         add(tabSheet);
     }
