@@ -25,8 +25,8 @@ public class PatientBo {
     private String gender;
     private String birthDate;
 
-    @ElementCollection
-    private List<HumanNameBo> name;
+    @Embedded
+    private HumanNameBo name;
 
     @ElementCollection
     private List<TelecomBo> telecom;

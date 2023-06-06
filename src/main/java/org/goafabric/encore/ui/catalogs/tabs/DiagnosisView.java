@@ -15,7 +15,7 @@ public class DiagnosisView extends GridView<Diagnosis> {
 
     @Override
     protected void addColumns(Grid<Diagnosis> grid) {
-        grid.addColumn(Diagnosis::getCode).setHeader("ikk");
+        grid.addColumn(Diagnosis::getCode).setHeader("code");
         grid.addColumn(Diagnosis::getDisplay).setHeader("description");
         grid.addColumn(Diagnosis::getReference).setHeader("ref");
     }

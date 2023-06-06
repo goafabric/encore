@@ -7,6 +7,7 @@ import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -23,13 +24,17 @@ import org.goafabric.encore.ui.files.FilesView;
 import org.goafabric.encore.ui.monitoring.MonitoringView;
 import org.goafabric.encore.ui.patient.practice.PatientMainView;
 import org.goafabric.encore.ui.practice.PracticeView;
+import org.goafabric.encore.xfunctional.HttpInterceptor;
+import org.springframework.beans.factory.annotation.Value;
 
 //@Route(value = "")
 public class MainView extends AppLayout {
 
     private boolean darkness = false;
+    private final boolean monitoringViewEnabled;
 
-    public MainView() {
+    public MainView(@Value("${monitoring.view.enabled:true}") boolean monitoringViewEnabled) {
+        this.monitoringViewEnabled = monitoringViewEnabled;
         createHeader();
         createDrawer();
     }
@@ -48,19 +53,20 @@ public class MainView extends AppLayout {
                 LumoUtility.Padding.Vertical.NONE,
                 LumoUtility.Padding.Horizontal.MEDIUM);
 
-        addToNavbar(header);
+        addToNavbar(header, createUserIcon());
 
     }
 
     private void createDrawer() {
         addToDrawer(new VerticalLayout(
-                new HorizontalLayout(new Icon(VaadinIcon.USER), new RouterLink("Patient", PatientMainView.class)),
+                new HorizontalLayout(new Icon(VaadinIcon.USERS), new RouterLink("Patient", PatientMainView.class)),
                 new HorizontalLayout(new Icon(VaadinIcon.HOSPITAL), new RouterLink("Practice", PracticeView.class)),
                 new HorizontalLayout(new Icon(VaadinIcon.BOOK), new RouterLink("Catalogs", CatalogView.class)),
                 //new HorizontalLayout(new Icon(VaadinIcon.CHAT), new RouterLink("Chat", ChatView.class)),
                 new HorizontalLayout(new Icon(VaadinIcon.CALENDAR_USER), new RouterLink("Appointments", AppointmentView.class)),
                 new HorizontalLayout(new Icon(VaadinIcon.ARCHIVE), new RouterLink("Files", FilesView.class)),
-                new HorizontalLayout(new Icon(VaadinIcon.CHART), new RouterLink("Monitoring", MonitoringView.class))
+                monitoringViewEnabled ? new HorizontalLayout(new Icon(VaadinIcon.CHART), new RouterLink("Monitoring", MonitoringView.class))
+                        : new Icon(VaadinIcon.CHART)
         ));
     }
 
@@ -77,6 +83,13 @@ public class MainView extends AppLayout {
         var button = new Button(VaadinIcon.HOME.create());
         button.addClickListener((ComponentEventListener<ClickEvent<Button>>) event -> getUI().get().getPage().setLocation("/"));
         return button;
+    }
+
+    private HorizontalLayout createUserIcon() {
+        var userButton = new Button(new Icon(VaadinIcon.USER));
+        userButton.addClickListener(event -> getUI().get().getPage().open("/logout"));
+        return new HorizontalLayout(userButton, new Label(HttpInterceptor.getUserName())
+                , new Button(new Icon(VaadinIcon.HOME)), new Label(HttpInterceptor.getTenantId() + "," + HttpInterceptor.getCompanyId()));
     }
 
     @Route(value = "", layout = MainView.class)

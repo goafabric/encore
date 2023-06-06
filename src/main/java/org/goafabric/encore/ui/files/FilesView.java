@@ -26,7 +26,6 @@ public class FilesView extends VerticalLayout {
         tabSheet.setSizeFull();
 
         tabSheet.add("Archive", new ArchiveView(objectStorageLogic));
-        //if (s3Enabled) {tabSheet.add("S3", new S3View(s3Endpoint));}
         tabSheet.add("Import & Export", new ImportExportView(importLogic, exportLogic));
 
         add(tabSheet);

@@ -1,6 +1,7 @@
 package org.goafabric.encore.masterdata.logic;
 
 import org.goafabric.encore.masterdata.controller.dto.Patient;
+import org.goafabric.encore.masterdata.logic.mapper.HumanNameMapper;
 import org.goafabric.encore.masterdata.persistence.PatientRepository;
 import org.goafabric.encore.masterdata.persistence.bo.PatientBo;
 import org.mapstruct.Mapper;
@@ -9,13 +10,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.StreamSupport;
 
 @Component
 @Transactional
 public class PatientLogic implements CrudLogic<Patient> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-    interface BoMapper {
+    interface BoMapper extends HumanNameMapper {
         Patient map(PatientBo o);
         PatientBo map(Patient o);
         List<Patient> map(List<PatientBo> l);
@@ -52,8 +52,11 @@ public class PatientLogic implements CrudLogic<Patient> {
 
     @Override
     public List<Patient> search(String search) {
-        var patients =  StreamSupport.stream(repository.findAll().spliterator(), false).toList();
-        return mapper.map(patients.stream().filter(patient ->
-                patient.getName().get(0).getFamily().toLowerCase().startsWith(search.toLowerCase())).toList());
+        return mapper.map(repository.findByName_FamilyStartsWithIgnoreCase(search));
+    }
+
+    public List<String> searchLastNames(String search) {
+        return repository.findByName_FamilyStartsWithIgnoreCase(search)
+                .stream().map(p -> p.getName().getFamily()).toList();
     }
 }

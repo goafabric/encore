@@ -24,10 +24,21 @@ management.tracing.propagation.type: "B3"
 management.tracing.enabled: "true"
 logging.level.zipkin2.reporter: "ERROR"
 
-#security
+#oidc
 security.authentication.enabled: false
-spring.security.user.name: "admin"
-spring.security.user.password: "admin"
+
+multi-tenancy.tenants: "0"
+
+spring:
+  security:
+    oauth2:
+      base-uri: http://127.0.0.1:30200/oidc
+      frontend-uri: http://127.0.0.1:30200/oidc
+      prefix: "" # "/realms/tenant-{tenantId}/protocol/openid-connect"
+
+      client-id: "oauth2-proxy"
+      client-secret: "none"
+      user-name-attribute: "preferred_username"
 
 #s3
 spring.cloud.aws.s3.enabled: "false"
@@ -40,13 +51,10 @@ spring.cloud.aws.region.static: "eu"
 #mongo
 de.flapdoodle.mongodb.embedded.version: 6.0.4
 
-spring:
-  data:
-    mongodb:
-      username: mongodb
-      password: mongodb
-      authentication-database: admin
-      database: core
+spring.data.mongodb.username: mongodb
+spring.data.mongodb.password: mongodb
+spring.data.mongodb.authentication-database: admin
+spring.data.mongodb.database: core
 
 #jpa
 spring.jpa.hibernate.ddl-auto: "create-drop"
@@ -66,8 +74,15 @@ logging.level.org.springframework: "INFO"
 
 logging.level.org.goafabric: "INFO"
 logging.level.org.flywaydb.core: "INFO"
-logging.level.org.hibernate.SQL: "INFO"
+logging.level.org.hibernate.SQL: "DEBUG"
+
+#monitoring view
+monitoring.view.enabled: "true"
+monitoring.view.tracing.url: "http://localhost:16686/search"
+monitoring.view.loki.url: "http://localhost:3000/explore"
+monitoring.view.s3.url: "http://localhost:9101/browser/objects"
 
 #profile
 spring.profiles.active: "mongodb" #"jpa"
 database.provisioning.goals: "-import-demo-data -import-catalog-data"
+demo-data.size: "100"
