@@ -1,3 +1,5 @@
+# 1.0.5
+
 # 1.0.4
 - upgrade to spring boot 3.1.0
 - lots of UI enhancements
