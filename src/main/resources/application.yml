@@ -86,3 +86,4 @@ monitoring.view.s3.url: "http://localhost:9101/browser/objects"
 spring.profiles.active: "mongodb" #"jpa"
 database.provisioning.goals: "-import-demo-data -import-catalog-data"
 demo-data.size: "100"
+spring.docker.compose.skip.in-tests: false #https://softwaremill.com/do-you-still-need-testcontainers-with-spring-boot-3-1/
