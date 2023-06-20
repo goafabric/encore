@@ -33,8 +33,6 @@ class BundleControllerIT {
     }
 
     @Test
-    @Disabled
-
     void createPatientBundle() {
         final IGenericClient client = ClientFactory.createClient(port);
 

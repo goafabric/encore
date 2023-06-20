@@ -5,7 +5,6 @@ import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.IdType;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Practitioner;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -61,8 +60,6 @@ class PractitionerControllerIT {
      */
 
     @Test
-    @Disabled
-
     void delete() {
         final IGenericClient client = ClientFactory.createClient(port);
         client.delete().resourceById(new IdType("Practitioner", "1")).execute();
