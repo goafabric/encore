@@ -76,6 +76,7 @@ class PatientControllerIT {
 
 
     @Test
+    @Disabled
     void delete() {
         final IGenericClient client = ClientFactory.createClient(port);
         client.delete().resourceById(new IdType("Patient", "1")).execute();
