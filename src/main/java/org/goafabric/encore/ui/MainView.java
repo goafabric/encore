@@ -6,7 +6,6 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -87,7 +86,7 @@ public class MainView extends AppLayout {
 
     private HorizontalLayout createUserIcon() {
         var userButton = new Button(new Icon(VaadinIcon.USER));
-        userButton.addClickListener(event -> getUI().get().getPage().open("/logout"));
+        userButton.addClickListener(event -> getUI().get().getPage().open("./logout"));
         return new HorizontalLayout(userButton, new Label(HttpInterceptor.getUserName())
                 , new Button(new Icon(VaadinIcon.HOME)), new Label(HttpInterceptor.getTenantId() + "," + HttpInterceptor.getCompanyId()));
     }
@@ -98,7 +97,7 @@ public class MainView extends AppLayout {
         public SubView() {
             setSizeFull();
             this.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-            this.add(new Image("/images/logo.png", ""));
+            //this.add(new Image("/images/logo.png", ""));
         }
     }
 }
