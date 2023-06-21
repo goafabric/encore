@@ -67,7 +67,7 @@ spring.datasource.password: postgres
 #vaadin
 spring.mustache.check-template-location: false
 vaadin.whitelisted-packages: com.vaadin,org.vaadin,dev.hilla
-vaadin.url-mapping: "/*"
+vaadin.url-mapping: "/frontend/*"
 
 #logging
 logging.level.root: "WARN"
