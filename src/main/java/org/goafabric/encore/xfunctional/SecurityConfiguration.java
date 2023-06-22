@@ -21,8 +21,7 @@ public class SecurityConfiguration {
     @Value("${security.authentication.enabled}") private Boolean isAuthenticationEnabled;
 
     @Value("${spring.security.oauth2.base-uri}") private String baseUri;
-    @Value("${spring.security.oauth2.frontend-uri}") private String frontendUri;
-    @Value("${spring.security.oauth2.prefix:}") private String prefix;
+    @Value("${spring.security.oauth2.authorization-uri}") private String frontendUri;
 
 
     @Value("${spring.security.oauth2.client-id}") private String clientId;
