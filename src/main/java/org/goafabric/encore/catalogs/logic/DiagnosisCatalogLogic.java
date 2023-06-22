@@ -4,6 +4,7 @@ import org.goafabric.encore.catalogs.dto.Diagnosis;
 import org.goafabric.encore.catalogs.persistence.DiagnosisRepository;
 import org.goafabric.encore.catalogs.persistence.bo.DiagnosisBo;
 import org.goafabric.encore.masterdata.logic.CrudLogic;
+import org.goafabric.encore.xfunctional.DurationLog;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Component
+@DurationLog
 @Transactional
+
 public class DiagnosisCatalogLogic implements CrudLogic<Diagnosis> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
     interface BoMapper {

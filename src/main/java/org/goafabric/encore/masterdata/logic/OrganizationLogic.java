@@ -3,6 +3,7 @@ package org.goafabric.encore.masterdata.logic;
 import org.goafabric.encore.masterdata.controller.dto.Organization;
 import org.goafabric.encore.masterdata.persistence.OrganizationRepository;
 import org.goafabric.encore.masterdata.persistence.bo.OrganizationBo;
+import org.goafabric.encore.xfunctional.DurationLog;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Component
+@DurationLog
 @Transactional
 public class OrganizationLogic implements CrudLogic<Organization> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)

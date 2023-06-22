@@ -25,16 +25,17 @@ management.tracing.enabled: "true"
 logging.level.zipkin2.reporter: "ERROR"
 
 #oidc
-security.authentication.enabled: false
+security.authentication.enabled: true
 
 multi-tenancy.tenants: "0"
 
 spring:
   security:
     oauth2:
-      base-uri: http://127.0.0.1:30200/oidc
-      frontend-uri: http://127.0.0.1:30200/oidc
-      prefix: "" # "/realms/tenant-{tenantId}/protocol/openid-connect"
+      base-uri: "http://127.0.0.1:30200/oidc"
+      authorization-uri: "http://127.0.0.1:30200/oidc/auth"
+#      base-uri: http://localhost:30200/oidc/realms/tenant-{tenantId}/protocol/openid-connect
+#      authorization-uri: http://localhost:30200/oidc/realms/tenant-{tenantId}/protocol/openid-connect/auth
 
       client-id: "oauth2-proxy"
       client-secret: "none"
@@ -77,6 +78,8 @@ logging.level.org.flywaydb.core: "INFO"
 logging.level.org.hibernate.SQL: "DEBUG"
 
 #monitoring view
+logging.pattern.level: "%5p tenantId=%X{tenantId:-}" #"%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}] tenantId=%X{tenantId:-}"
+
 monitoring.view.enabled: "true"
 monitoring.view.tracing.url: "http://localhost:16686/search"
 monitoring.view.loki.url: "http://localhost:3000/explore"
@@ -86,3 +89,4 @@ monitoring.view.s3.url: "http://localhost:9101/browser/objects"
 spring.profiles.active: "mongodb" #"jpa"
 database.provisioning.goals: "-import-demo-data -import-catalog-data"
 demo-data.size: "100"
+spring.docker.compose.skip.in-tests: false #https://softwaremill.com/do-you-still-need-testcontainers-with-spring-boot-3-1/

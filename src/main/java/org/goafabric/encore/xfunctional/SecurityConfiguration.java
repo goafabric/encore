@@ -4,95 +4,80 @@ import io.micrometer.observation.ObservationPredicate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.client.oidc.web.logout.OidcClientInitiatedLogoutSuccessHandler;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Configuration
 public class SecurityConfiguration {
     @Value("${security.authentication.enabled}") private Boolean isAuthenticationEnabled;
 
     @Value("${spring.security.oauth2.base-uri}") private String baseUri;
-    @Value("${spring.security.oauth2.frontend-uri}") private String frontendUri;
-    @Value("${spring.security.oauth2.prefix:}") private String prefix;
+    @Value("${spring.security.oauth2.authorization-uri}") private String frontendUri;
 
 
     @Value("${spring.security.oauth2.client-id}") private String clientId;
     @Value("${spring.security.oauth2.client-secret}") private String clientSecret;
     @Value("${spring.security.oauth2.user-name-attribute:}") private String userNameAttribute;
 
-
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, TenantClientRegistrationRepository clientRegistrationRepository) throws Exception {
         if (isAuthenticationEnabled) {
             http
                     .authorizeHttpRequests(authorize -> authorize
-                            .requestMatchers("/" ,"/actuator/**", "/welcome/**").permitAll()
+                            .requestMatchers("/" ,"/actuator/**","/tlogin.html").permitAll()
                             .anyRequest().authenticated())
-                            .csrf(csrf -> csrf.disable())
-                    .oauth2Login(Customizer.withDefaults());
-                    //.logout();
+                    .oauth2Login(oauth2 -> oauth2
+                            .clientRegistrationRepository(clientRegistrationRepository))
+                    .logout(l -> l.logoutSuccessHandler(new OidcClientInitiatedLogoutSuccessHandler(clientRegistrationRepository)))
+                    .csrf(c -> c.disable())
+                    .exceptionHandling(exception ->
+                            exception.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/tlogin.html")));
         } else {
             http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll()).csrf(csrf -> csrf.disable());
         }
         return http.build();
     }
 
+    @Component
+    class TenantClientRegistrationRepository implements ClientRegistrationRepository {
 
-    @Bean
-    public ClientRegistrationRepository clientRegistrationRepository(@Value("${multi-tenancy.tenants}") String tenants) {
-        return new InMemoryClientRegistrationRepository(
-                Arrays.stream(tenants.split(",")).map(this::createClientRegistration).toList());
+        private static final Map<String, ClientRegistration> clientRegistrations = new ConcurrentHashMap<>();
+
+
+        @Override
+        public ClientRegistration findByRegistrationId(String registrationId) {
+            return clientRegistrations.computeIfAbsent(registrationId, this::buildClientRegistration);
+        }
+
+        private ClientRegistration buildClientRegistration(String tenantId) {
+            return ClientRegistration.withRegistrationId(tenantId)
+                    .clientId(clientId)
+                    .clientSecret(clientSecret)
+                    .scope("openid")
+                    .redirectUri("{baseUrl}/login/oauth2/code/{registrationId}")
+                    .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+                    .userNameAttributeName(userNameAttribute)
+                    .authorizationUri(frontendUri.replaceAll("\\{tenantId}", tenantId))
+                    .tokenUri(baseUri.replaceAll("\\{tenantId}", tenantId) + "/token")
+                    .userInfoUri(baseUri.replaceAll("\\{tenantId}", tenantId) + "/userinfo")
+                    .jwkSetUri(baseUri.replaceAll("\\{tenantId}", tenantId) + "/certs")
+                    .build();
+        }
     }
-
-    private ClientRegistration createClientRegistration(String tenantId) {
-        var fix = prefix.replaceAll("\\{tenantId}", tenantId);
-        return ClientRegistration.withRegistrationId(tenantId)
-                .clientId(clientId)
-                .clientSecret(clientSecret)
-                .scope("openid")
-                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                .userNameAttributeName(userNameAttribute)
-                .redirectUri("{baseUrl}/login/oauth2/code/{registrationId}")
-                .authorizationUri(frontendUri + fix + "/auth")
-                .tokenUri(baseUri + fix + "/token")
-                .userInfoUri(baseUri + fix + "/userinfo")
-                .jwkSetUri(baseUri + fix + "/certs")
-                .build();
-    }
-
 
     @Bean
     ObservationPredicate disableHttpServerObservationsFromName() {
         return (name, context) -> !name.startsWith("spring.security.");
     }
-
-    /*
-    @Bean
-    GrantedAuthoritiesMapper userAuthoritiesMapper() {
-        return (authorities) -> {
-            final Set<GrantedAuthority> mappedAuthorities = new HashSet<>();
-            authorities.forEach(authority -> {
-                mappedAuthorities.add(authority); //add original authority if needed
-                if (authority instanceof OidcUserAuthority oidcAuth) {
-                    var context = SecurityContextHolder.getContext();
-                    List<String> roles = (List<String>) oidcAuth.getAttributes().get("roles");
-                    //add role from oidc attributes so that f*** spring can understand it and also add f*** ROLE_ prefix for f*** spring
-                    roles.forEach(role -> mappedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + role)));
-                }
-            });
-
-            return mappedAuthorities;
-        };
-    }
-
-     */
 
 }
 

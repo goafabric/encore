@@ -33,7 +33,7 @@ services:
       security.authentication.enabled: "true"
       multi-tenancy.tenants: "0,5"
 
-      spring.security.oauth2.frontend-uri: "http://127.0.0.1:30200/oidc"
+      spring.security.oauth2.authorization-uri: "http://127.0.0.1:30200/oidc/auth"
       spring.security.oauth2.base-uri: "http://auth-server:30200/oidc"
 
       #monitoring
@@ -101,11 +101,29 @@ services:
       - "16686:16686"
       - "14268:14268"
       - "9411:9411"
+      - "4317:4317"
+      - "4318:4318"
     environment:
       - TZ=Europe/Berlin
+      - COLLECTOR_OTLP_ENABLED=true
       - COLLECTOR_ZIPKIN_HOST_PORT=:9411
     networks:
       - ${_Values_root_name}-net
+
+  nginx:
+    container_name: ${_Values_root_name}-nginx
+    image: nginx:1.22.1
+    restart: 'no'
+    ports:
+      - 8080:80
+    networks:
+      - ${_Values_root_name}-net
+    volumes:
+      - ./nginx/nginx${_Values_nginx_oidc}.conf:/etc/nginx/nginx.conf
+    depends_on:
+      application:
+        condition: service_started
+
 
 volumes:
     tmp:

@@ -1,7 +1,7 @@
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
 group = "org.goafabric"
-version = "1.0.5-SNAPSHOT"
+version = "1.0.6-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 val dockerRegistry = "goafabric"
@@ -46,6 +46,7 @@ dependencies {
 
 	implementation("io.micrometer:micrometer-tracing-bridge-brave")
 	implementation("io.zipkin.reporter2:zipkin-reporter-brave")
+	implementation("net.ttddyy.observation:datasource-micrometer-spring-boot:1.0.2")
 
 	//crosscuting
 	implementation("org.springframework.boot:spring-boot-starter-aop")

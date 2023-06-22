@@ -4,6 +4,7 @@ import org.goafabric.encore.masterdata.controller.dto.Patient;
 import org.goafabric.encore.masterdata.logic.mapper.HumanNameMapper;
 import org.goafabric.encore.masterdata.persistence.PatientRepository;
 import org.goafabric.encore.masterdata.persistence.bo.PatientBo;
+import org.goafabric.encore.xfunctional.DurationLog;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Component
+@DurationLog
 @Transactional
 public class PatientLogic implements CrudLogic<Patient> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)

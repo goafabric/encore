@@ -4,6 +4,7 @@ import org.goafabric.encore.masterdata.controller.dto.Practitioner;
 import org.goafabric.encore.masterdata.logic.mapper.HumanNameMapper;
 import org.goafabric.encore.masterdata.persistence.PractitionerRepository;
 import org.goafabric.encore.masterdata.persistence.bo.PractitionerBo;
+import org.goafabric.encore.xfunctional.DurationLog;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Component
+@DurationLog
 @Transactional
 public class PractitionerLogic implements CrudLogic<Practitioner> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
