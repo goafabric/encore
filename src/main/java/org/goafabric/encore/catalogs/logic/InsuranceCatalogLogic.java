@@ -4,6 +4,7 @@ import org.goafabric.encore.catalogs.dto.Insurance;
 import org.goafabric.encore.catalogs.persistence.InsuranceRepository;
 import org.goafabric.encore.catalogs.persistence.bo.InsuranceBo;
 import org.goafabric.encore.masterdata.logic.CrudLogic;
+import org.goafabric.encore.xfunctional.DurationLog;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Component
+@DurationLog
 @Transactional
 public class InsuranceCatalogLogic implements CrudLogic<Insurance> {
     @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
