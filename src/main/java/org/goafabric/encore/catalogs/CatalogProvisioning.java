@@ -7,7 +7,6 @@ import org.goafabric.encore.catalogs.dto.Insurance;
 import org.goafabric.encore.masterdata.logic.CrudLogic;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
@@ -47,10 +46,13 @@ public class CatalogProvisioning implements CommandLineRunner {
             log.info("Catalog data import done ...");
         }
 
+        /*
         if (goals.contains("-terminate")) {
             log.info("Terminating app ...");
             SpringApplication.exit(applicationContext, () -> 0); //if an exception is raised, spring will automatically terminate with 1
         }
+
+         */
     }
 
     private void importDemoData() {
