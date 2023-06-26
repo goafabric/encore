@@ -25,7 +25,7 @@ management.tracing.enabled: "true"
 logging.level.zipkin2.reporter: "ERROR"
 
 #oidc
-security.authentication.enabled: true
+security.authentication.enabled: false
 
 multi-tenancy.tenants: "0"
 
